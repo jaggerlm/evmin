@@ -1,0 +1,67 @@
+# url: http://localhost:8080/BestCars.html?
+There are 4 events (with 0 prefix events)
+ddmin([0, 1, 2, 3])...
+circumstance [n=2]: [0, 1, 2, 3]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 2 : selenium.type('''xpath=(//input[@name='lastname'])[2]''', '''Yasmine''');
+  - execute event 3 : val = selenium.getValue('''xpath=(//input[@name='lastname'])[2]'''); assertHelper.assertEquals(true, ''''''.equals(val) || Integer.parseInt(val)>=0); selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for your submission''', selenium.getAlert());
+	@A failure occurs at event 3 [java.lang.NumberFormatException]
+	---
+	For input string: "Yasmine"
+	---
+circumstance [n=2]: [2, 3]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 3 : val = selenium.getValue('''xpath=(//input[@name='lastname'])[2]'''); assertHelper.assertEquals(true, ''''''.equals(val) || Integer.parseInt(val)>=0); selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for your submission''', selenium.getAlert());
+	@A failure occurs at event 3 [java.lang.NullPointerException]
+	---
+	null
+	---
+ddmin([0, 1, 2, 3]) = [3]
+Delta Debugging time: 2.616 seconds
+### Validation ###
+# original
+# url: http://localhost:8080/BestCars.html?
+There are 4 events (with 0 prefix events)
+ddmin([0, 1, 2, 3])...
+circumstance [n=2]: [0, 1, 2, 3]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 2 : selenium.type('''xpath=(//input[@name='lastname'])[2]''', '''Yasmine''');
+  - execute event 3 : val = selenium.getValue('''xpath=(//input[@name='lastname'])[2]'''); assertHelper.assertEquals(true, ''''''.equals(val) || Integer.parseInt(val)>=0); selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for your submission''', selenium.getAlert());
+	@A failure occurs at event 3 [java.lang.NumberFormatException]
+	---
+	For input string: "Yasmine"
+	---
+circumstance [n=2]: [2, 3]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 3 : val = selenium.getValue('''xpath=(//input[@name='lastname'])[2]'''); assertHelper.assertEquals(true, ''''''.equals(val) || Integer.parseInt(val)>=0); selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for your submission''', selenium.getAlert());
+  - executing prefix events
+  - execute event 2 : selenium.type('''xpath=(//input[@name='lastname'])[2]''', '''Yasmine''');
+ddmin([0, 1, 2, 3]) = [2, 3]
+Delta Debugging time: 3.177 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''Mouna''');
+  - execute event 1 : selenium.type('''name=lastname''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='lastname'])[2]''', '''Yasmine''');
+  - execute event 3 : val = selenium.getValue('''xpath=(//input[@name='lastname'])[2]'''); assertHelper.assertEquals(true, ''''''.equals(val) || Integer.parseInt(val)>=0); selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for your submission''', selenium.getAlert());
+	@A failure occurs at event 3 [java.lang.NumberFormatException]
+	---
+	For input string: "Yasmine"
+	---
+Elapsed time: 0.921 seconds
+# reduced
+  - executing prefix events
+  - execute event 2 : selenium.type('''xpath=(//input[@name='lastname'])[2]''', '''Yasmine''');
+  - execute event 3 : val = selenium.getValue('''xpath=(//input[@name='lastname'])[2]'''); assertHelper.assertEquals(true, ''''''.equals(val) || Integer.parseInt(val)>=0); selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for your submission''', selenium.getAlert());
+	@A failure occurs at event 3 [java.lang.NumberFormatException]
+	---
+	For input string: "Yasmine"
+	---
+Elapsed time: 0.76 seconds
+Total Test: 3[0] (Pass: 2[0], Fail: 1[0], Unresolved: 0[0])
+Reduced events: [2, 3] (size: 2/4)

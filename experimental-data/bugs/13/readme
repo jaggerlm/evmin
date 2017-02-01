@@ -1,0 +1,11 @@
+project:fullPage.js
+issue: https://github.com/alvarotrigo/fullPage.js/issues/146
+description: Auto scroll to bottom
+
+rp:
+	1. Scroll Down, 
+	2. Navigate to Slide 2 
+	3. Scroll Up or Down
+
+result:  Auto scroll to bottom!
+expected:(#3 events) to previous or next section

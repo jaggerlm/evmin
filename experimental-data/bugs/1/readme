@@ -1,0 +1,26 @@
+Project: chart
+Version:
+Issue:https://github.com/nnnick/Chart.js/issues/503
+desc: bar is not displayed
+Rp: init data->clear data->add data
+Steps(6): select bar->click 'save setup'->click 'clear' -> input 'title' -> input 'data' ->click 'addData'
+Expected:show the graph
+Result: the first added data is not displayed
+Reason:
+	calculateX : function(index){
+		var isRotated = (this.xLabelRotation > 0),
+		innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
+		valueWidth = innerWidth/(this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), //E
+		valueOffset = (valueWidth * index) + this.xScalePaddingLeft; //E
+		
+		if (this.offsetGridLines){
+			valueOffset += (valueWidth/2);
+		}
+		
+		return Math.round(valueOffset);
+	}
+	// valueWidth: Infinity, divided by 0
+	// valueOffset: Infinity
+	// return: Infinity
+
+Error lines: marked as //E

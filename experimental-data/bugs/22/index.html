@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://foundation.zurb.com/sites/docs/accordion.html -->
+<html class="" lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Accordions are elements that help you organize and navigate multiple documents in a single container. They can be used for switching between items in the container.">
+  <link rel="icon" href="http://foundation.zurb.com/sites/docs/assets/img/icons/favicon.ico" type="image/x-icon">
+  <title>Foundation for Sites 6 Docs | Accordion</title>
+  <link href="./docs.css" rel="stylesheet">
+  <link href="./foundation-icons.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="./node_modules/motion-ui/dist/motion-ui.css" /> -->
+<style type="text/css" adt="123"></style><script type="text/javascript" async="" src="./d945f04ff5e68057c85f5323b46f185efb3826b3.1.js"></script><script type="text/javascript" async="" src="./i.js"></script><meta class="foundation-mq"></head>
+<body data-whatinput="keyboard">
+
+  <div class="off-canvas-wrapper"><div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+
+    <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="zu3xj6-off-canvas" data-position="left" aria-hidden="true">
+      <button class="close-button" aria-label="Close menu" type="button" data-close="">
+        <span aria-hidden="true">×</span>
+      </button>
+      <ul class="mobile-ofc vertical menu">
+        
+        <li>
+          <a href="http://foundation.zurb.com/learn/about.html">Learn</a>
+          <ul class="submenu menu vertical" data-submenu="">
+            <li><a href="http://foundation.zurb.com/learn/about.html">About Foundation</a></li> 
+            <li><a href="http://foundation.zurb.com/learn/tutorials.html">Tutorials</a></li>
+            <li><a href="http://foundation.zurb.com/learn/classes.html">Classes</a></li>
+            <li><a href="http://foundation.zurb.com/learn/case-studies.html">Case Studies</a></li>
+            <li><a href="http://foundation.zurb.com/learn/brands.html">Brands</a></li>  
+          </ul>
+        </li>
+        
+        <li>
+          <a href="http://foundation.zurb.com/develop/getting-started.html">Develop</a>
+          <ul class="submenu menu vertical" data-submenu="">
+            <li class="title">Frameworks</li>
+            <li><a href="http://foundation.zurb.com/sites.html">Foundation for Sites</a></li>
+            <li><a href="http://foundation.zurb.com/emails.html">Foundation for Email</a></li>
+            <li><a href="http://foundation.zurb.com/apps.html">Foundation for Apps</a></li>
+            <li class="divider"></li>
+            <li class="title">Develop</li>
+            <li><a href="http://foundation.zurb.com/templates.html">HTML Templates</a></li>
+            <li><a href="http://foundation.zurb.com/sites/resources.html">Resources</a></li>
+            <li><a href="http://foundation.zurb.com/develop/building-blocks.html">Building Blocks</a></li>
+            <li><a href="http://foundation.zurb.com/develop/yeti-launch.html">Yeti Launch</a></li>
+            <li><a href="http://foundation.zurb.com/develop/contribute.html">Contribute</a></li>
+          </ul>
+        </li>
+    
+        <li><a href="http://foundation.zurb.com/upload.html">Upload</a></li>
+        
+        <li>
+          <a href="http://foundation.zurb.com/support/support.html">Support</a>
+          <ul class="submenu menu vertical" data-submenu="">
+            <li><a href="http://foundation.zurb.com/support/support.html">Support Channels</a></li>
+            <li><a href="http://foundation.zurb.com/support/premium-support.html">Premium Support</a></li>
+            <li><a href="http://foundation.zurb.com/forum/sort/unanswered">Foundation Forum</a></li>
+            <li><a href="http://foundation.zurb.com/support/faq.html">FAQs</a></li>
+          </ul>
+        </li>
+        
+        <li>
+          <a href="http://foundation.zurb.com/frameworks-docs.html">Docs</a>
+          <ul class="submenu menu vertical" data-submenu="">
+            <li><a href="http://foundation.zurb.com/docs/" target="_blank">Sites Docs</a></li>
+            <li><a href="http://foundation.zurb.com/apps/docs/#!/" target="_blank">Apps Docs</a></li>
+            <li><a href="http://zurb.com/ink/docs.php" target="_blank">Email Docs</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="http://foundation.zurb.com/develop/getting-started.html" class="button">Getting Started</a></li>
+    
+      </ul>
+    </div>
+    
+    <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas="3ask6d-off-canvas" data-position="right" aria-hidden="true">
+      <button class="close-button" aria-label="Close menu" type="button" data-close="">
+        <span aria-hidden="true">×</span>
+      </button>
+      <ul class="vertical menu">
+        <li><a href="http://foundation.zurb.com/sites/docs/accordion.html#">Foundation</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/accordion.html#">Dot</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/accordion.html#">ZURB</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/accordion.html#">Com</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/accordion.html#">Slash</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/accordion.html#">Sites</a></li>
+      </ul>
+    </div>
+    
+
+    <div class="off-canvas-content" data-off-canvas-content="">
+      <!-- Info Banner For Announcements or Links -->
+      <!-- <a href="http://zurb.com/article/1416/foundation-6-is-here" id="notice">
+      <div class="info">
+      <h5>Foundation 6 is here!</h5>
+    </div>
+  </a> -->
+
+  <nav class="marketing-topbar show-for-medium">
+  
+    <ul class="menu">
+      <li class="topbar-title"><a href="http://foundation.zurb.com/index.html"><img src="./zurb-logo.svg" alt="ZURB"> Foundation</a></li>
+    </ul>
+  
+    <ul class="dropdown menu" data-dropdown-menu="9z3vor-dropdown-menu" data-click-open="false" role="menubar">
+  
+      <li role="menuitem" class="is-dropdown-submenu-parent is-down-arrow" aria-haspopup="true" aria-expanded="false" aria-label="Learn">
+        <a href="http://foundation.zurb.com/learn/about.html" tabindex="0">Learn</a>
+        <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" role="menu">
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/learn/about.html">About Foundation</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/learn/tutorials.html">Tutorials</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/learn/classes.html">Classes</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/learn/case-studies.html">Case Studies</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/learn/brands.html">Brands</a></li>
+        </ul>
+      </li>
+  
+      <li role="menuitem" class="is-dropdown-submenu-parent is-down-arrow" aria-haspopup="true" aria-expanded="false" aria-label="Develop">
+        <a href="http://foundation.zurb.com/develop/getting-started.html">Develop</a>
+        <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" role="menu">
+          <li class="title is-submenu-item is-dropdown-submenu-item" role="menuitem">Frameworks</li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/sites.html">Foundation for Sites</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/emails.html">Foundation for Email</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/apps.html">Foundation for Apps</a></li>
+          <li class="divider is-submenu-item is-dropdown-submenu-item" role="menuitem"></li>
+          <li class="title is-submenu-item is-dropdown-submenu-item" role="menuitem">Develop</li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/templates.html">HTML Templates</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/sites/resources.html">Resources</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/develop/building-blocks.html">Building Blocks</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/develop/yeti-launch.html">Yeti Launch</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/develop/contribute.html">Contribute</a></li>
+        </ul>
+      </li>
+  
+      <li role="menuitem"><a href="http://foundation.zurb.com/upload.html">Upload</a></li>
+  
+      <li role="menuitem" class="is-dropdown-submenu-parent is-down-arrow" aria-haspopup="true" aria-expanded="false" aria-label="Support">
+        <a href="http://foundation.zurb.com/support/support.html">Support</a>
+        <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" role="menu">
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/support/support.html">Support Channels</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/support/premium-support.html">Premium Support</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/forum/">Foundation Forum</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/support/faq.html">FAQs</a></li>
+        </ul>
+      </li>
+  
+      <li role="menuitem" class="is-dropdown-submenu-parent is-down-arrow" aria-haspopup="true" aria-expanded="false" aria-label="Docs">
+        <a href="http://foundation.zurb.com/frameworks-docs.html">Docs</a>
+        <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" role="menu">
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/docs/" target="_blank">Sites Docs</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://foundation.zurb.com/apps/docs/#!/" target="_blank">Apps Docs</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="http://zurb.com/ink/docs.php" target="_blank">Email Docs</a></li>
+        </ul>
+      </li>
+  
+      <li role="menuitem"><a href="http://foundation.zurb.com/develop/getting-started.html" class="button">Getting Started</a></li>
+  
+    </ul>
+  
+  </nav>
+  
+  <div class="title-bar hide-for-medium">
+    <div class="title-bar-left">
+      <button class="menu-icon" type="button" data-open="offCanvasLeft" aria-expanded="false" aria-controls="offCanvasLeft"></button>
+      <span class="title-bar-title">Foundation</span>
+    </div>
+  </div>
+  
+
+  <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input type="text" class="docs-search tt-hint" data-docs-search="" readonly="" autocomplete="off" spellcheck="false" tabindex="-1" dir="ltr" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(254, 254, 254);"><input type="text" class="docs-search tt-input" data-docs-search="" placeholder="Find a page, component, variable, mixin, function..." autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &#39;Proxima Nova&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 20.8px; font-style: normal; font-variant: normal; font-weight: 300; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div class="tt-dataset tt-dataset-0"></div></div></span>
+
+  <div class="expanded row">
+    <div class="medium-9 large-10 medium-push-3 large-push-2 columns">
+      
+      <article class="docs-component" id="docs-accordion">
+      
+      <a href="http://foundation.zurb.com/sites/docs/accordion.html#docs-menu" class="small secondary expanded button hide-for-medium">Jump to Nav</a>
+      
+      <h1 class="docs-page-title">Accordion</h1>
+      
+        <span data-tooltip="qdgenr-tooltip" title="" class="docs-js label" aria-describedby="p84ewo-tooltip" data-yeti-box="p84ewo-tooltip" data-toggle="p84ewo-tooltip" data-resize="p84ewo-tooltip" data-events="resize">JavaScript</span>
+      
+      <p class="lead docs-page-lead">Accordions are elements that help you organize and navigate multiple documents in a single container. They can be used for switching between items in the container.</p>
+      
+      <hr>
+      
+      <div class="row">
+      
+      <div class="large-9 columns" id="docs">
+      
+      <h2 id="basics" class="docs-heading" data-magellan-target="basics"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#basics"></a>Basics</h2><p>The container for an accordion needs the class <code>.accordion</code>, and the attribute <code>data-accordion</code>. Note that in these examples, we use a <code>&lt;ul&gt;</code>, but you can use any element you want.</p>
+      <div class="docs-code" data-docs-code=""><button class="docs-code-copy" id="copy-btn-0">Copy</button><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"accordion"</span> <span class="hljs-attr">data-accordion</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre></div><p>The default class for an accordion section is <code>.accordion-item</code>. Inside each section is a title, default <code>.accordion-title</code>, and corresponding content pane <code>.accordion-content</code>. Please note, the only opinionated component here is the use of an anchor <code>&lt;a&gt;&lt;/a&gt;</code> for the title link, which controls the opening and closing of the pane. You can include your own attributes, or our JavaScript will assign it for you. JS assigned attributes include unique id's, aria attributes, and roles. You do still need to include the <code>data-tab-content</code> attribute for your content pane.</p>
+      <p>Note that the <code>data-accordion-item</code> attribute on each list item is required when not using <code>&lt;li&gt;</code>.</p>
+      <p>Loading a page with an open pane is achieved by adding the <code>is-active</code> class to one, (or more, if using the multiExpand option), <code>.accordion-item</code> element.</p>
+      <p>This is the minimum markup for creating an Accordion with Foundation, repeating the <code>accordion-item</code>, <code>accordion-title</code>, and <code>accordion-content</code> elements as many times as you require.</p>
+      <div class="docs-code" data-docs-code=""><button class="docs-code-copy" id="copy-btn-1">Copy</button><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"accordion"</span> <span class="hljs-attr">data-accordion</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"accordion-item is-active"</span> <span class="hljs-attr">data-accordion-item</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"accordion-title"</span>&gt;</span>Accordion 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"accordion-content"</span> <span class="hljs-attr">data-tab-content</span>&gt;</span>
+            I would start in the open state, due to using the `is-active` state class.
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre></div><p>Once you put it all together, here's what you get!</p>
+      <ul class="accordion" data-accordion="gz8ifo-accordion" role="tablist">
+        <li class="accordion-item is-active" data-accordion-item="">
+          <a class="accordion-title" aria-controls="yiov3s-accordion" role="tab" id="yiov3s-accordion-label" aria-expanded="true" aria-selected="true">Accordion 1</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="yiov3s-accordion-label" aria-hidden="false" id="yiov3s-accordion" style="display: block;">
+            <p>Panel 1. Lorem ipsum dolor</p>
+            <a href="http://foundation.zurb.com/sites/docs/accordion.html#">Nowhere to Go</a>
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item="">
+          <a class="accordion-title" aria-controls="g1n39w-accordion" role="tab" id="g1n39w-accordion-label" aria-expanded="false" aria-selected="false">Accordion 2</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="g1n39w-accordion-label" aria-hidden="true" id="g1n39w-accordion">
+            <textarea></textarea>
+            <button class="button">I do nothing!</button>
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item="">
+          <a class="accordion-title" aria-controls="efy4o7-accordion" role="tab" id="efy4o7-accordion-label" aria-expanded="false" aria-selected="false">Accordion 3</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="efy4o7-accordion-label" aria-hidden="true" id="efy4o7-accordion">
+            Pick a date!
+            <input type="date">
+          </div>
+        </li>
+      </ul>
+      
+      <hr>
+      <h2 id="advanced-options" class="docs-heading" data-magellan-target="advanced-options"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#advanced-options"></a>Advanced Options</h2><h3 id="multi-expand" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#multi-expand"></a>Multi-expand</h3><p>By default, only one pane of an accordion can be open at a time. This can be changed with the <code>multiExpand</code> setting.</p>
+      <div class="docs-code" data-docs-code=""><button class="docs-code-copy" id="copy-btn-2">Copy</button><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"accordion"</span> <span class="hljs-attr">data-accordion</span> <span class="hljs-attr">data-multi-expand</span>=<span class="hljs-string">"true"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre></div><ul class="accordion" data-accordion="5f2s4l-accordion" data-multi-expand="true" role="tablist">
+        <li class="accordion-item is-active" data-accordion-item="">
+          <a href="http://foundation.zurb.com/sites/docs/accordion.html#" class="accordion-title" aria-controls="e7hux7-accordion" role="tab" id="e7hux7-accordion-label" aria-expanded="true" aria-selected="true">Accordion 1</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="e7hux7-accordion-label" aria-hidden="false" id="e7hux7-accordion" style="display: block;">
+            Panel 1. Lorem ipsum dolor
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item="">
+          <a href="http://foundation.zurb.com/sites/docs/accordion.html#" class="accordion-title" aria-controls="05hg2m-accordion" role="tab" id="05hg2m-accordion-label" aria-expanded="false" aria-selected="false">Accordion 2</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="05hg2m-accordion-label" aria-hidden="true" id="05hg2m-accordion" style="display: none;">
+            Panel 2. Lorem ipsum dolor
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item="">
+          <a href="http://foundation.zurb.com/sites/docs/accordion.html#" class="accordion-title" aria-controls="bd5r73-accordion" role="tab" id="bd5r73-accordion-label" aria-expanded="false" aria-selected="false">Accordion 3</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="bd5r73-accordion-label" aria-hidden="true" id="bd5r73-accordion" style="display: none;">
+            Panel 3. Lorem ipsum dolor
+          </div>
+        </li>
+      </ul>
+      
+      <hr>
+      <h3 id="all-closed" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#all-closed"></a>All Closed</h3><p>By default, at least one pane in an accordion must be open. This can be changed with the <code>allowAllClosed</code> setting.</p>
+      <div class="docs-code" data-docs-code=""><button class="docs-code-copy" id="copy-btn-3">Copy</button><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"accordion"</span> <span class="hljs-attr">data-accordion</span> <span class="hljs-attr">data-allow-all-closed</span>=<span class="hljs-string">"true"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre></div><ul class="accordion" data-accordion="ljgkkc-accordion" data-allow-all-closed="true" role="tablist">
+        <li class="accordion-item is-active" data-accordion-item="">
+          <a href="http://foundation.zurb.com/sites/docs/accordion.html#" class="accordion-title" aria-controls="twngam-accordion" role="tab" id="twngam-accordion-label" aria-expanded="true" aria-selected="true">Accordion 1</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="twngam-accordion-label" aria-hidden="false" id="twngam-accordion" style="display: block;">
+            Panel 1. Lorem ipsum dolor
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item="">
+          <a href="http://foundation.zurb.com/sites/docs/accordion.html#" class="accordion-title" aria-controls="gdthy1-accordion" role="tab" id="gdthy1-accordion-label" aria-expanded="false" aria-selected="false">Accordion 2</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="gdthy1-accordion-label" aria-hidden="true" id="gdthy1-accordion">
+            Panel 2. Lorem ipsum dolor
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item="">
+          <a href="http://foundation.zurb.com/sites/docs/accordion.html#" class="accordion-title" aria-controls="k8p72y-accordion" role="tab" id="k8p72y-accordion-label" aria-expanded="false" aria-selected="false">Accordion 3</a>
+          <div class="accordion-content" data-tab-content="" role="tabpanel" aria-labelledby="k8p72y-accordion-label" aria-hidden="true" id="k8p72y-accordion">
+            Panel 3. Lorem ipsum dolor
+          </div>
+        </li>
+      </ul>
+      
+      
+      <hr>
+      
+      <section>
+        <h2 id="sass-reference" class="docs-heading" data-magellan-target="sass-reference"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#sass-reference"></a>Sass Reference</h2>
+      
+        <section>
+          <h3 id="sass-variables" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#sass-variables"></a>Variables</h3>
+      
+          <p>The default styles of this component can be customized using these Sass variables in your project's <a href="http://foundation.zurb.com/sites/docs/sass.html#the-settings-file">settings file</a>.</p>
+      
+          <table class="docs-variable-table">
+            <thead>
+              <tr><th>Name</th><th>Type</th><th>Default Value</th><th>Description</th></tr>
+            </thead>
+            <tbody><tr>
+              <td class="name"><code>$accordion-background</code></td>
+              <td>Color</td>
+              <td class="color"><code>$white</code></td>
+              <td><p>Default background color of an accordion group.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-plusminus</code></td>
+              <td>Boolean</td>
+              <td class="boolean"><code>true</code></td>
+              <td><p>If <code>true</code>, adds plus and minus icons to the side of each accordion title.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-item-color</code></td>
+              <td>Color</td>
+              <td class="color"><code>foreground($accordion-background, $primary-color)</code></td>
+              <td><p>Default text color for items in a Menu.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-item-background-hover</code></td>
+              <td>Color</td>
+              <td class="color"><code>$light-gray</code></td>
+              <td><p>Default background color on hover for items in a Menu.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-item-padding</code></td>
+              <td>Number or  List</td>
+              <td class="number | list"><code>1.25rem 1rem</code></td>
+              <td><p>Default padding of an accordion item.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-content-background</code></td>
+              <td>Color</td>
+              <td class="color"><code>$white</code></td>
+              <td><p>Default background color of tab content.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-content-border</code></td>
+              <td>Color</td>
+              <td class="color"><code>1px solid $light-gray</code></td>
+              <td><p>Default border color of tab content.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-content-color</code></td>
+              <td>Color</td>
+              <td class="color"><code>foreground($accordion-background, $primary-color)</code></td>
+              <td><p>Default text color of tab content.</p>
+      </td>
+            </tr>
+            <tr>
+              <td class="name"><code>$accordion-content-padding</code></td>
+              <td>Number or  List</td>
+              <td class="number | list"><code>1rem</code></td>
+              <td><p>Default padding for tab content.</p>
+      </td>
+            </tr>
+          </tbody></table>
+        </section>
+      
+        <hr>
+      
+        <section>
+          <h3 id="sass-mixins" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#sass-mixins"></a>Mixins</h3>
+      
+          <p>We use these mixins to build the final CSS output of this component. You can use the mixins yourself to build your own class structure out of our components.</p>
+      
+          
+          <section>
+            <h4 id="accordion-container" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#accordion-container"></a>accordion-container</h4>
+      
+      
+      
+            <div class="docs-code">
+              <pre><code>@<span class="hljs-keyword">include</span> accordion-container;</code></pre>
+            </div>
+      
+            <p>Adds styles for an accordion container. Apply this to the same element that gets <code>data-accordion</code>.</p>
+      
+      
+      
+            
+      
+          </section>
+      
+          <hr>
+      
+      
+          
+          <section>
+            <h4 id="accordion-title" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#accordion-title"></a>accordion-title</h4>
+      
+      
+      
+            <div class="docs-code">
+              <pre><code>@<span class="hljs-keyword">include</span> accordion-title;</code></pre>
+            </div>
+      
+            <p>Adds styles for the title of an accordion item. Apply this to the link within an accordion item.</p>
+      
+      
+      
+            
+      
+          </section>
+      
+          <hr>
+      
+      
+          
+          <section>
+            <h4 id="accordion-content" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#accordion-content"></a>accordion-content</h4>
+      
+      
+      
+            <div class="docs-code">
+              <pre><code>@<span class="hljs-keyword">include</span> accordion-content;</code></pre>
+            </div>
+      
+            <p>Adds styles for accordion content. Apply this to the content pane below an accordion item's title.</p>
+      
+      
+      
+            
+      
+          </section>
+      
+          
+      
+      
+          
+        </section>
+      
+      
+      </section>
+      
+      <hr>
+      
+      <section>
+        <h2 id="javascript-reference" class="docs-heading" data-magellan-target="javascript-reference"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#javascript-reference"></a>JavaScript Reference</h2>
+      
+        
+        <section>
+          <h3 id="js-module" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#js-module"></a>Initializing</h3>
+      
+          <p>The file <code>foundation.accordion.js</code> must be included in your JavaScript to use this plugin, along with <code>foundation.core.js</code>. <strong>This plugin also requires these utility libraries:</strong></p>
+      
+          
+          <ul>
+            <li><code>foundation.util.keyboard.js</code></li>
+          </ul>
+          
+          <ul>
+            <li><code>foundation.util.motion.js</code></li>
+          </ul>
+          
+      
+        </section>
+        
+      
+        <section>
+          <h3 id="js-class" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#js-class"></a>Foundation.Accordion</h3>
+      
+          <p>Creates a new instance of an accordion.</p>
+      
+      
+          <div class="docs-code"><pre><code>var elem = new Foundation.Accordion(element);</code></pre></div>
+      
+            <p><strong>Fires these events:</strong>
+              Accordion#event:init
+            </p>
+      
+          <table class="docs-variable-table">
+            <thead>
+              <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody><tr>
+              <td><code>element</code></td>
+              <td>jQuery</td>
+              <td>jQuery object to make into an accordion.</td>
+            </tr>
+            <tr>
+              <td><code>options</code></td>
+              <td>Object</td>
+              <td>a plain object with settings to override the default options.</td>
+            </tr>
+          </tbody></table>
+        </section>
+      
+        <hr>
+      
+        <section>
+          <h3 id="js-options" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#js-options"></a>Plugin Options</h3>
+      
+          <p>Use these options to customize an instance of Accordion. Plugin options can be set as individual data attributes, one combined <code>data-options</code> attribute, or as an object passed to the plugin's constructor. <a href="http://foundation.zurb.com/sites/docs/javascript.html#initializing">Learn more about how JavaScript plugins are initialized.</a></p>
+      
+          <table class="docs-variable-table">
+            <thead>
+              <tr><th>Name</th><th>Description</th><th>Example</th></tr>
+            </thead>
+            <tbody><tr>
+              <td>slideSpeed</td>
+              <td>Amount of time to animate the opening of an accordion pane.</td>
+              <td><code>250</code></td>
+            </tr>
+            <tr>
+              <td>multiExpand</td>
+              <td>Allow the accordion to have multiple open panes.</td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td>allowAllClosed</td>
+              <td>Allow the accordion to close all panes.</td>
+              <td><code>false</code></td>
+            </tr>
+          </tbody></table>
+        </section>
+      
+        <hr>
+      
+        <section>
+          <h3 id="js-events" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#js-events"></a>Events</h3>
+      
+          <p>These events will fire from any element with a Accordion plugin attached.</p>
+      
+          <table class="docs-variable-table">
+            <thead>
+              <tr><th>Name</th><th>Description</th></tr>
+            </thead>
+              <tbody><tr>
+                <td>down.zf.accordion</td>
+                <td>Fires when the tab is done opening.</td>
+              </tr>
+              <tr>
+                <td>up.zf.accordion</td>
+                <td>Fires when the tab is done collapsing up.</td>
+              </tr>
+          </tbody></table>
+        </section>
+      
+        <hr>
+      
+        <section>
+          <h3 id="js-functions" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#js-functions"></a>Functions</h3>
+      
+          <section>
+            <h4 id="toggle" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#toggle"></a>Accordion.toggle</h4>
+      
+            <p>Toggles the selected content pane's open/close state.</p>
+      
+      
+      
+            <table class="docs-variable-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody><tr>
+                <td><code>$target</code></td>
+                <td>jQuery</td>
+                <td>jQuery object of the pane to toggle.</td>
+              </tr>
+            </tbody></table>
+      
+            <hr>
+          </section>
+          <section>
+            <h4 id="down" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#down"></a>Accordion.down</h4>
+      
+            <p>Opens the accordion tab defined by <code>$target</code>.</p>
+      
+      
+              <p><strong>Fires these events:</strong>
+                Accordion#event:down
+              </p>
+      
+            <table class="docs-variable-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody><tr>
+                <td><code>$target</code></td>
+                <td>jQuery</td>
+                <td>Accordion pane to open.</td>
+              </tr>
+              <tr>
+                <td><code>firstTime</code></td>
+                <td>Boolean</td>
+                <td>flag to determine if reflow should happen.</td>
+              </tr>
+            </tbody></table>
+      
+            <hr>
+          </section>
+          <section>
+            <h4 id="up" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#up"></a>Accordion.up</h4>
+      
+            <p>Closes the tab defined by <code>$target</code>.</p>
+      
+      
+              <p><strong>Fires these events:</strong>
+                Accordion#event:up
+              </p>
+      
+            <table class="docs-variable-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody><tr>
+                <td><code>$target</code></td>
+                <td>jQuery</td>
+                <td>Accordion tab to close.</td>
+              </tr>
+            </tbody></table>
+      
+            <hr>
+          </section>
+          <section>
+            <h4 id="destroy" class="docs-heading"><a class="docs-heading-icon" href="http://foundation.zurb.com/sites/docs/accordion.html#destroy"></a>Accordion.destroy</h4>
+      
+            <p>Destroys an instance of an accordion.</p>
+      
+      
+              <p><strong>Fires these events:</strong>
+                Accordion#event:destroyed
+              </p>
+      
+      
+            
+          </section>
+        </section>
+      </section>
+      
+      <!-- <hr> -->
+      
+      <!-- <section class="docs-building-blocks">
+        <h2 id="building-blocks" class="docs-heading" data-magellan-target="building-blocks"><a class="docs-heading-icon" href="#building-blocks"></a>Building Blocks</h2>
+      
+        <p><a href="http://zurb.com/building-blocks">Building Blocks</a> is a ZURB-curated resource with useful code snippets that use Foundation components. Here are a few for this component:</p>
+      
+        <div class="warning callout">
+          <p>These are placeholder items. If you have ideas for building blocks for this component, <a href="https://github.com/zurb/foundation-sites-6/issues/118">we're taking ideas on GitHub</a>.</p>
+        </div>
+      
+        <div data-building-blocks></div>
+      </section> -->
+      
+      </div>
+      
+      <div class="large-3 columns sticky-container" data-sticky-container="" style="height: 420px;">
+        <nav class="columns sticky is-stuck is-at-top" data-sticky="hb62k3-sticky" data-anchor="docs" data-sticky-on="large" data-resize="w8k386-sticky" style="max-width: 232.484px; margin-top: 1em; top: 0px; bottom: auto; left: 955.5px;" data-events="resize">
+          <div class="docs-toc hide" id="docsTOC">
+            <ul class="vertical menu docs-sub-menu" data-docs-toc="" data-resize="rcntbo-magellan" data-scroll="rcntbo-magellan" id="rcntbo-magellan" data-magellan="kq1hy8-magellan" data-events="resize">
+              <li class="docs-menu-title">On this page:</li>
+            <li><a href="http://foundation.zurb.com/sites/docs/accordion.html#basics" class="">Basics</a></li><li><a href="http://foundation.zurb.com/sites/docs/accordion.html#advanced-options" class="active">Advanced Options</a></li><li><a href="http://foundation.zurb.com/sites/docs/accordion.html#sass-reference" class="">Sass Reference</a></li><li><a href="http://foundation.zurb.com/sites/docs/accordion.html#javascript-reference">JavaScript Reference</a></li></ul>
+            <ul class="vertical menu docs-sub-menu">
+              <li class="docs-menu-title">Contribute:</li>
+              <li><a href="https://github.com/zurb/foundation-sites/edit/develop/docs/pages/accordion.md">Edit this Page</a></li>
+                <li><a href="https://github.com/zurb/foundation-sites/issues/new?title=%5BAccordion%5D%20ISSUE%20NAME%20HERE&body=**How%20can%20we%20reproduce%20this%20bug%3F**%0A%0A1.%20Step%20one%0A2.%20Step%20two%0A3.%20Step%20three%0A%0A**What%20did%20you%20expect%20to%20happen%3F**%0A%0A**What%20happened%20instead%3F**%0A%0A**Test%20case**%0A%0AGive%20us%20a%20link%20to%20a%20%5BCodePen%5D(http%3A%2F%2Fcodepen.io)%20or%20%5BJSFiddle%5D(http%3A%2F%2Fjsfiddle.net)%20that%20recreates%20the%20issue.">Report a Bug</a></li>
+              <li><a href="https://github.com/zurb/foundation-sites/tree/master/scss/components/_accordion.scss">View Sass Source</a></li><li><a href="https://github.com/zurb/foundation-sites/tree/master/js/foundation.accordion.js">View JavaScript Source</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      
+      </div>
+      
+      </article>
+      
+    </div>
+    <div class="medium-3 large-2 medium-pull-9 large-pull-10 columns">
+      <ul class="vertical menu docs-menu" id="docs-menu">
+        <p class="docs-version-number">
+          <span data-docs-version="">v6.1.2</span>
+          <a href="https://github.com/zurb/foundation-sites/releases/" target="_blank">(Changelog)</a>
+        </p>
+      
+        <li class="docs-menu-title">Getting Started</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/installation.html">Installation</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/starter-projects.html">Starter Projects</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/compatibility.html">Compatibility</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/accessibility.html">Accessibility</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/kitchen-sink.html">Kitchen Sink</a></li>
+      
+        <li class="docs-menu-title">General</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/global.html">Global Styles</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/rtl.html">Right-to-Left Support</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/sass.html">Sass</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/javascript.html">JavaScript</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/javascript-utilities.html">JavaScript Utilities</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/media-queries.html">Media Queries</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/grid.html">Grid</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/flex-grid.html">Flex Grid</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/forms.html">Forms</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/visibility.html">Visibility Classes</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/float-classes.html">Float Classes</a></li>
+      
+        <li class="docs-menu-title">Typography</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/typography-base.html">Base Styles</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/typography-helpers.html">Helper Classes</a></li>
+      
+        <li class="docs-menu-title">Controls</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/button.html">Button</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/button-group.html">Button Group</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/close-button.html">Close Button</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/slider.html">Slider <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/switch.html">Switch</a></li>
+      
+        <li class="docs-menu-title">Navigation</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/navigation.html">Overview</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/menu.html">Menu</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/dropdown-menu.html">Dropdown Menu <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/drilldown-menu.html">Drilldown Menu <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/accordion-menu.html">Accordion Menu <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/top-bar.html">Top Bar</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/responsive-navigation.html">Responsive Navigation</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/magellan.html">Magellan <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/pagination.html">Pagination</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/breadcrumbs.html">Breadcrumbs</a></li>
+      
+        <li class="docs-menu-title">Containers</li>
+        <li class="current"><a href="./Foundation for Sites 6 Docs _ Accordion.html">Accordion <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/callout.html">Callout</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/dropdown.html">Dropdown <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/media-object.html">Media Object</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/off-canvas.html">Off-canvas <span class="label">JS</span></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/reveal.html">Reveal <span class="label">JS</span> <small>Modal</small></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/table.html">Table</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/tabs.html">Tabs <span class="label">JS</span></a></li>
+      
+        <li class="docs-menu-title">Media</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/badge.html">Badge</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/flex-video.html">Flex Video</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/label.html">Label</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/orbit.html">Orbit <span class="label">JS</span> <small>Carousel</small></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/progress-bar.html">Progress Bar</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/thumbnail.html">Thumbnail</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/tooltip.html">Tooltip <span class="label">JS</span></a></li>
+      
+        <li class="docs-menu-title">Plugins</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/abide.html">Abide <small>Form Validation</small></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/equalizer.html">Equalizer <small>Column Alignment</small></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/interchange.html">Interchange <small>Responsive Content</small></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/toggler.html">Toggler <small>CSS Helper</small></a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/sticky.html">Sticky <small>Header/Sidebar</small></a></li>
+      
+        <li class="docs-menu-title">Sass</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/sass-functions.html">Functions</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/sass-mixins.html">Mixins</a></li>
+      
+        <li class="docs-menu-title">Libraries</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/motion-ui.html">Motion UI</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/panini.html">Panini</a></li>
+      
+        <li class="docs-menu-title">Older Versions</li>
+        <li><a href="http://foundation.zurb.com/sites/docs/v/5.5.3/index.html">Foundation 5</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/v/4.3.2/index.html">Foundation 4</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/v/3.2.5/">Foundation 3</a></li>
+        <li><a href="http://foundation.zurb.com/sites/docs/v/2.2.1/">Foundation 2</a></li>
+      </ul>
+      
+    </div>
+  </div>
+
+  <!-- Small Business(Docs) -->
+  <section id="studiosCallout" class="foundation">
+    <div class="row">
+      <div class="large-4 medium-4 columns">
+        <img src="./smallbiz-footer.svg" alt="">
+      </div>
+      <div class="large-8 medium-8 columns banner-info">
+        <div class="row column property-label">ZURB STUDIOS</div>
+        <h3 class="light">Let's build something amazing.</h3>
+        <p class="lead">Work with our scrappy design team to bring your concepts to life. We’ll equip you with our battle-tested Progressive Design process and the tools to get your product or website off the ground and in front of your users.</p>
+        <div class="course-buttons">
+            <a href="http://zurb.com/studios" class="button" data-zcom-event="studios_foundation_click" id="foundationSmallV1" data-has-zcom-event-handler="1">Show Me How →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="docs-newsletter">
+    <div class="row">
+      <div class="medium-8 columns">
+        <h5>Stay on top of what’s happening in <a href="http://zurb.com/responsive">responsive design</a>.</h5>
+        <p>Sign up to receive monthly Responsive Reading highlights. <a href="http://zurb.com/responsive/reading">Read Last Month's Edition »</a></p>
+      </div>
+      <div class="medium-4 columns">
+        <form action="http://zurb.createsend.com/t/y/s/xlitlu/" method="post" id="subForm" data-has-zcom-email-handler="1">
+          <div class="row collapse margintop-20px">
+            <div class="small-8 medium-8 columns">
+              <input id="fieldEmail" name="cm-xlitlu-xlitlu" type="email" placeholder="signup@example.com">
+            </div>
+            <div class="small-4 medium-4 columns">
+              <input type="submit" href="#" class="postfix button" value="Sign Up">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="zurb-footer-top bg-fblue">
+    <div class="row property">
+      <div class="medium-4 columns">
+        <div class="property-info">
+          <h3>Foundation for Sites</h3>
+          <p>Foundation is a responsive front-end framework made by <a href="http://zurb.com/">ZURB</a>, a product design company in Campbell, CA. This framework is the result of building web products &amp; services since 1998.
+          </p>
+        </div>
+      </div>
+  
+      <div class="medium-8 columns">
+        <div class="row collapse">
+          <div class="medium-4 columns">
+            <div class="learn-links">
+              <h4 class="hide-for-small">Want more?</h4>
+              <ul>
+                <li><a href="http://foundation.zurb.com/apps">Foundation for Apps</a></li>
+                <li><a href="http://zurb.com/ink/">Ink Responsive Emails</a></li>
+                <li><a href="http://zurb.com/notable">Notable Design Apps</a></li>
+                <li><a href="http://zurb.com/university/courses">Training</a></li>
+                <li><a href="http://zurb.com/library">Design Resources</a></li>
+              </ul>
+            </div>
+          </div>
+            <div class="medium-4 columns">
+              <div class="support-links">
+              <h4 class="hide-for-small">Talk to us</h4>
+              <p>Tweet us at <br> <a href="https://twitter.com/zurbfoundation">@ZURBfoundation</a></p>
+              <p><a href="http://foundation.zurb.com/business/business-support.html">Business Support</a></p>
+              <p>Or check our <a href="http://foundation.zurb.com/support/support.html">support page</a></p>
+              </div>
+            </div>
+          <div class="medium-4 columns">
+            <div class="connect-links">
+              <h4 class="hide-for-small">Stay Updated</h4>
+              <p>Keep up with the latest on Foundation. Find us on <a href="https://github.com/zurb/foundation">Github</a>.</p>
+              <a href="http://zurb.com/news" class="small button">Stay Connected</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row global">
+      <div class="medium-3 small-6 columns">
+        <a href="http://zurb.com/studios" class="footer-link-block services">
+          <span class="title">Studios</span>
+          <span>Helping more than 200 startups succeed since 1998.</span>
+        </a>
+      </div>
+      <div class="medium-3 small-6 columns">
+        <a href="http://foundation.zurb.com/" class="footer-link-block foundation">
+          <span class="title">Foundation</span>
+          <span>The most advanced front-end framework in the world.</span>
+        </a>
+      </div>
+      <div class="medium-3 small-6 columns">
+        <a href="http://zurb.com/notable" class="footer-link-block apps">
+          <span class="title">Notable Design Apps</span>
+          <span>Prototype, iterate and collect feedback on your products.</span>
+        </a>
+      </div>
+      <div class="medium-3 small-6 columns">
+        <a href="http://zurb.com/university" class="footer-link-block expo">
+          <span class="title">University</span>
+          <span>Ideas, thoughts and design resources shared with you.</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="zurb-footer-bottom">
+    <div class="row">
+      <div class="medium-4 medium-push-8 columns">
+        <ul class="home-social">
+            <li><a href="http://www.twitter.com/ZURB" class="twitter"></a></li>
+            <li><a href="http://www.facebook.com/ZURB" class="facebook"></a></li>
+            <li><a href="http://zurb.com/contact" class="mail"></a></li>
+          </ul>
+       </div>
+       <div class="medium-8 medium-pull-4 columns">
+          <a href="http://www.zurb.com/" class="zurb-logo regular"></a>
+          <ul class="zurb-links">
+            <li><a href="http://zurb.com/about">About</a></li>
+            <li><a href="http://zurb.com/blog">Blog</a></li>
+            <li><a href="http://zurb.com/news">News<span class="show-for-medium-up"> &amp; Events</span></a></li>
+            <li><a href="http://zurb.com/contact">Contact</a></li>
+            <li><a href="http://zurb.com/sitemap">Sitemap</a></li>
+         </ul>
+         <p class="copyright">© 1998‐2015 ZURB, Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+  
+<div class="js-off-canvas-exit"></div></div>
+
+</div></div>
+
+<script type="text/javascript" async="" src="./ga.js"></script><script>
+var _gaq = _gaq || [];
+_gaq.push(
+  ['_setAccount', 'UA-2195009-2'],
+  ['_trackPageview'],
+  ['b._setAccount', 'UA-2195009-27'],
+  ['b._trackPageview']
+);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script src='./jquery.min.js' type='text/javascript'></script>
+<script src="./foundation.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+    	  Foundation.Accordion.defaults.multiExpand = true;
+
+	    $(document).foundation();
+	});
+</script>
+
+
+</body></html>

@@ -1,0 +1,304 @@
+# url: http://localhost:8080/onlineshopping.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+  - executing prefix events
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+ddmin: increasing granularity
+circumstance [n=4]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+ddmin: increasing granularity
+circumstance [n=3]: [6, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) = [6, 9]
+Delta Debugging time: 8.517 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''4023045473''');
+  - execute event 3 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 4 : selenium.type('''name=quantity''', '''100000''');
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 1.298 seconds
+# reduced
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.717 seconds
+Total Test: 12[3] (Pass: 8[3], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [6, 9] (size: 2/10)
+# url: http://localhost:8080/onlineshopping.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+  - executing prefix events
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+ddmin: increasing granularity
+circumstance [n=4]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+ddmin: increasing granularity
+circumstance [n=3]: [6, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) = [6, 9]
+Delta Debugging time: 8.272 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''4023045473''');
+  - execute event 3 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 4 : selenium.type('''name=quantity''', '''100000''');
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 1.293 seconds
+# reduced
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.733 seconds
+Total Test: 12[3] (Pass: 8[3], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [6, 9] (size: 2/10)
+# url: http://localhost:8080/onlineshopping.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+# url: http://localhost:8080/onlineshopping.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+  - executing prefix events
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+ddmin: increasing granularity
+circumstance [n=4]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+ddmin: increasing granularity
+circumstance [n=3]: [6, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) = [6, 9]
+Delta Debugging time: 8.135 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''4023045473''');
+  - execute event 3 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 4 : selenium.type('''name=quantity''', '''100000''');
+  - execute event 5 : selenium.select('''xpath=(//select[@id='carSelect'])[2]''', '''label=Discover''');
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 7 : selenium.type('''name=credit''', '''8939832899832''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='credit'])[2]''', '''09/20''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 1.314 seconds
+# reduced
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=quantity''', '''-81''');
+  - execute event 9 : String v = selenium.getValue('''name=quantity''');  assertHelper.assertEquals(true, ''''''.equals(v) || (Integer.parseInt(v)>=1 && Integer.parseInt(v)<=5)); selenium.click('''css=button''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.745 seconds
+Total Test: 12[3] (Pass: 8[3], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [6, 9] (size: 2/10)
+# url: http://localhost:8080/onlineshopping.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets

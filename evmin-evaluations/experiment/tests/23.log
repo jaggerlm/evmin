@@ -1,0 +1,102 @@
+# url: http://localhost:8080/StudentInfo.html
+There are 9 events (with 1 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+  - execute event 5 : selenium.click('''css=button[type=\"button\"]''');
+  - execute event 6 : selenium.click('''xpath=(//input[@name='Studies'])[2]''');
+  - execute event 7 : selenium.click('''name=Studies''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [4, 5, 6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.click('''xpath=(//input[@name='Studies'])[2]''');
+  - execute event 7 : selenium.click('''name=Studies''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+  - executing prefix events
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+  - execute event 5 : selenium.click('''css=button[type=\"button\"]''');
+ddmin: increasing granularity
+circumstance [n=4]: [4, 5, 6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.click('''css=button[type=\"button\"]''');
+  - execute event 6 : selenium.click('''xpath=(//input[@name='Studies'])[2]''');
+  - execute event 7 : selenium.click('''name=Studies''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+  - executing prefix events
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+  - execute event 6 : selenium.click('''xpath=(//input[@name='Studies'])[2]''');
+  - execute event 7 : selenium.click('''name=Studies''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [4, 6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+  - execute event 7 : selenium.click('''name=Studies''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [4, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.click('''name=Studies''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+  - executing prefix events
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+ddmin: increasing granularity
+circumstance [n=3]: [4, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [4, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8]) = [4, 8]
+Delta Debugging time: 8.707 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''mouna''');
+  - execute event 1 : selenium.type('''name=lastname''', '''hammoudi''');
+  - execute event 2 : selenium.type('''name=Username''', '''8899990000''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+  - execute event 5 : selenium.click('''css=button[type=\"button\"]''');
+  - execute event 6 : selenium.click('''xpath=(//input[@name='Studies'])[2]''');
+  - execute event 7 : selenium.click('''name=Studies''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 1.175 seconds
+# reduced
+  - executing prefix events
+  - execute event 4 : selenium.type('''id=demo''', '''989'''); state++;
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true, state == 0); assertHelper.assertEquals('''thank you very much for your submission! ''', selenium.getAlert());
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.702 seconds
+Total Test: 13[3] (Pass: 9[3], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [4, 8] (size: 2/9)

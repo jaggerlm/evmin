@@ -1,0 +1,300 @@
+# url: http://localhost:8080/Library.html
+There are 50 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 25 : selenium.addSelection('''id=selectionField''', '''label=Harry Potter''');assertHelper.assertEquals(true,false);
+	@Selenium cannot find an element at event 25 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	Element id=selectionField not found
+	---
+# url: http://localhost:8080/Library.html
+There are 50 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 25 : selenium.addSelection('''id=selectionField''', '''label=Harry Potter''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 25 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 37 : selenium.addSelection('''id=selectionField''', '''label=Harry Potter''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 37 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 43 : selenium.removeSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 43 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [43, 44, 45, 46, 47, 48, 49]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 46 : selenium.addSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 46 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [46, 47, 48, 49]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 48 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 48 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [48, 49]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 49 : selenium.click('''css=button''');assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert());assertHelper.assertEquals(true,false);
+	@A failure occurs at event 49 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]) = [49]
+Delta Debugging time: 6.356 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''1233323232''');
+  - execute event 1 : selenium.type('''name=lastname''', '''Mouna Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='lastname'])[2]''', '''3rf''');
+  - execute event 3 : selenium.type('''name=lastname''', '''J K rowling''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='lastname'])[2]''', '''3rd''');
+  - execute event 5 : selenium.addSelection('''id=selectionField''', '''label=Lord of the Rings'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 5 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 6 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert()); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 7 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 9 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 10 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 11 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 11 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 12 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 12 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 13 : selenium.click('''css=input[type=\"button\"]''');
+  - execute event 14 : selenium.click('''//input[@value='Empty the basket']''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 15 : selenium.click('''//input[@value='Empty the basket']''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 15 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 16 : selenium.click('''//input[@value='Empty the basket']''');
+  - execute event 17 : selenium.removeSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 17 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 18 : selenium.addSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 18 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 19 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 19 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 20 : selenium.click('''css=button''');assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert());assertHelper.assertEquals(true,false);
+	@A failure occurs at event 20 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 21 : selenium.addSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 21 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 22 : selenium.removeSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 22 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 23 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 23 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 24 : selenium.click('''css=button''');assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert());assertHelper.assertEquals(true,false);
+	@A failure occurs at event 24 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 25 : selenium.addSelection('''id=selectionField''', '''label=Harry Potter''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 25 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 26 : selenium.removeSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 26 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 27 : selenium.removeSelection('''id=selectionField''', '''label=Harry Potter''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 27 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 28 : selenium.addSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 28 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 29 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 29 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 30 : selenium.addSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 30 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 31 : selenium.removeSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 31 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 32 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 32 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 33 : selenium.removeSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 33 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 34 : selenium.addSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 34 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 35 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 35 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 36 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 36 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 37 : selenium.addSelection('''id=selectionField''', '''label=Harry Potter''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 37 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 38 : selenium.removeSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 38 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 39 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 39 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 40 : selenium.removeSelection('''id=selectionField''', '''label=Harry Potter''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 40 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 41 : selenium.addSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 41 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 42 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 42 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 43 : selenium.removeSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 43 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 44 : selenium.addSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 44 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 45 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 45 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 46 : selenium.addSelection('''id=selectionField''', '''label=Lord of the Rings''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 46 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 47 : selenium.removeSelection('''id=selectionField''', '''label=The Hunger Games''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 47 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 48 : selenium.click('''css=input[type=\"button\"]''');assertHelper.assertEquals(true,false);
+	@A failure occurs at event 48 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 49 : selenium.click('''css=button''');assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert());assertHelper.assertEquals(true,false);
+	@A failure occurs at event 49 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 4.171 seconds
+# reduced
+  - executing prefix events
+  - execute event 49 : selenium.click('''css=button''');assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert());assertHelper.assertEquals(true,false);
+	@A failure occurs at event 49 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.659 seconds
+Total Test: 6[0] (Pass: 0[0], Fail: 6[0], Unresolved: 0[0])
+Reduced events: [49] (size: 1/50)

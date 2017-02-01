@@ -1,0 +1,68 @@
+# url: http://localhost:8080/Bpooladmin.html
+There are 8 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.click('''name=erase''');
+  - execute event 5 : selenium.click('''name=erase'''); assertHelper.assertEquals(true, selenium.isChecked('''name=erase'''));
+	@A failure occurs at event 5 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.click('''xpath=(//input[@name='erase'])[2]''');
+  - execute event 7 : selenium.click('''name=erase''');
+  - executing prefix events
+  - execute event 4 : selenium.click('''name=erase''');
+  - execute event 5 : selenium.click('''name=erase'''); assertHelper.assertEquals(true, selenium.isChecked('''name=erase'''));
+	@A failure occurs at event 5 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [4, 5]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.click('''name=erase'''); assertHelper.assertEquals(true, selenium.isChecked('''name=erase'''));
+	@A failure occurs at event 5 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7]) = [5]
+Delta Debugging time: 3.938 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.click('''name=erase''');
+  - execute event 1 : selenium.click('''xpath=(//input[@name='erase'])[2]''');
+  - execute event 2 : selenium.click('''name=erase''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='erase'])[2]''');
+  - execute event 4 : selenium.click('''name=erase''');
+  - execute event 5 : selenium.click('''name=erase'''); assertHelper.assertEquals(true, selenium.isChecked('''name=erase'''));
+	@Selenium cannot find an element at event 5 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	Element name=erase not found
+	---
+  - execute event 6 : selenium.click('''xpath=(//input[@name='erase'])[2]''');
+	@Selenium cannot find an element at event 6 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	Element xpath=(//input[@name='erase'])[2] not found
+	---
+  - execute event 7 : selenium.click('''name=erase''');
+	@Selenium cannot find an element at event 7 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	Element name=erase not found
+	---
+Elapsed time: 1.057 seconds
+# reduced
+  - executing prefix events
+  - execute event 5 : selenium.click('''name=erase'''); assertHelper.assertEquals(true, selenium.isChecked('''name=erase'''));
+	@A failure occurs at event 5 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.749 seconds
+Total Test: 4[0] (Pass: 1[0], Fail: 3[0], Unresolved: 0[0])
+Reduced events: [5] (size: 1/8)

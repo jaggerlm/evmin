@@ -1,0 +1,169 @@
+# url: http://localhost:8080/game.html
+There are 13 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+# url: http://localhost:8080/game.html
+There are 13 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''xpath=(//input[@name='fn'])[5]''', '''J street 21''');
+  - execute event 7 : selenium.type('''xpath=(//input[@name='fn'])[6]''', '''100000000''');
+  - execute event 8 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 9 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 10 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 11 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 1 : selenium.type('''xpath=(//input[@name='fn'])[2]''', '''jkdsjk''');
+  - execute event 2 : selenium.selectWindow('''null''');
+  - execute event 3 : selenium.type('''xpath=(//input[@name='fn'])[3]''', '''09/09/1991''');
+  - execute event 4 : selenium.click('''name=fem''');
+  - execute event 5 : selenium.type('''xpath=(//input[@name='fn'])[4]''', '''0664617857''');
+ddmin: increasing granularity
+circumstance [n=4]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 3 : selenium.type('''xpath=(//input[@name='fn'])[3]''', '''09/09/1991''');
+  - execute event 4 : selenium.click('''name=fem''');
+  - execute event 5 : selenium.type('''xpath=(//input[@name='fn'])[4]''', '''0664617857''');
+  - execute event 6 : selenium.type('''xpath=(//input[@name='fn'])[5]''', '''J street 21''');
+  - execute event 7 : selenium.type('''xpath=(//input[@name='fn'])[6]''', '''100000000''');
+  - execute event 8 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 9 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 10 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 11 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 1 : selenium.type('''xpath=(//input[@name='fn'])[2]''', '''jkdsjk''');
+  - execute event 2 : selenium.selectWindow('''null''');
+  - execute event 6 : selenium.type('''xpath=(//input[@name='fn'])[5]''', '''J street 21''');
+  - execute event 7 : selenium.type('''xpath=(//input[@name='fn'])[6]''', '''100000000''');
+  - execute event 8 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [0, 1, 2, 6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 1 : selenium.type('''xpath=(//input[@name='fn'])[2]''', '''jkdsjk''');
+  - execute event 2 : selenium.selectWindow('''null''');
+  - execute event 9 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [0, 1, 2, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 10 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 11 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 1 : selenium.type('''xpath=(//input[@name='fn'])[2]''', '''jkdsjk''');
+  - execute event 2 : selenium.selectWindow('''null''');
+ddmin: increasing granularity
+circumstance [n=4]: [0, 1, 2, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 1 : selenium.type('''xpath=(//input[@name='fn'])[2]''', '''jkdsjk''');
+  - execute event 2 : selenium.selectWindow('''null''');
+  - execute event 9 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 10 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 11 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 9 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [0, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 11 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 11 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [0, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 11 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+ddmin: increasing granularity
+circumstance [n=3]: [0, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 12 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [0, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) = [0, 12]
+Delta Debugging time: 15.404 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 1 : selenium.type('''xpath=(//input[@name='fn'])[2]''', '''jkdsjk''');
+  - execute event 2 : selenium.selectWindow('''null''');
+  - execute event 3 : selenium.type('''xpath=(//input[@name='fn'])[3]''', '''09/09/1991''');
+  - execute event 4 : selenium.click('''name=fem''');
+  - execute event 5 : selenium.type('''xpath=(//input[@name='fn'])[4]''', '''0664617857''');
+  - execute event 6 : selenium.type('''xpath=(//input[@name='fn'])[5]''', '''J street 21''');
+  - execute event 7 : selenium.type('''xpath=(//input[@name='fn'])[6]''', '''100000000''');
+  - execute event 8 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 9 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 10 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 11 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 11 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 12 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 1.584 seconds
+# reduced
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''781287218''');
+  - execute event 12 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''name=fn''')) || !Character.isDigit(selenium.getValue('''name=fn''').charAt(0)));selenium.click('''css=button[type=\"button\"]''');
+	@A failure occurs at event 12 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.782 seconds
+Total Test: 18[4] (Pass: 13[4], Fail: 5[0], Unresolved: 0[0])
+Reduced events: [0, 12] (size: 2/13)

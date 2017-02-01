@@ -1,0 +1,11 @@
+prject: handsontable, Cannot rollback "column sort" action #2040
+issue: https://github.com/handsontable/handsontable/issues/2040
+
+rp: 
+1. perform some change operations
+2. sort a colume
+3. may perform some change operations
+4. use 'ctrl+z' to roll back.
+result: cant roll back sort operation and there are some data errors.
+expect: normally roll back.
+

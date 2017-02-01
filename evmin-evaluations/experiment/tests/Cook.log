@@ -1,0 +1,206 @@
+# url: http://localhost:8080/Cooking.html
+There are 30 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 15 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 22 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 22 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [22, 23, 24, 25, 26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 26 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 26 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 28 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 28 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [28, 29]
+ddmin: testing subsets
+# url: http://localhost:8080/Cooking.html
+There are 30 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 15 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 22 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 22 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [22, 23, 24, 25, 26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 26 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 26 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [26, 27, 28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 28 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 28 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [28, 29]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 29 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 29 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]) = [29]
+Delta Debugging time: 5.303 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''name=year_week''', '''30th''');
+  - execute event 3 : selenium.type('''name=year_week''', '''4th week March 2015''');
+  - execute event 4 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 5 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 6 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 7 : selenium.select('''id=mySelect''', '''label=Mango''');
+  - execute event 8 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 9 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 10 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 11 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 11 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 12 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 12 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 13 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 13 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 14 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 15 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 15 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 16 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 17 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 17 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 18 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 18 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 19 : selenium.select('''id=mySelect''', '''label=Banana''');
+  - execute event 20 : selenium.select('''id=mySelect''', '''label=Kiwi''');
+  - execute event 21 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 21 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 22 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 22 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 23 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 23 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 24 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 24 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 25 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 25 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 26 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 26 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 27 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 27 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 28 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 28 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 29 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 29 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 4.154 seconds
+# reduced
+  - executing prefix events
+  - execute event 29 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals(true, selenium.getText('''id=mySelect''').indexOf(selenium.getSelectedValue('''id=mySelect''')) < 0);
+	@A failure occurs at event 29 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.782 seconds
+Total Test: 5[0] (Pass: 0[0], Fail: 5[0], Unresolved: 0[0])
+Reduced events: [29] (size: 1/30)

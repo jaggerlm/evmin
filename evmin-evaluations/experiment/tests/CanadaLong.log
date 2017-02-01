@@ -1,0 +1,673 @@
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+ddmin: increasing granularity
+circumstance [n=3]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) = [14, 16]
+Delta Debugging time: 9.238 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''css=input[name=\"race \"]''', '''Siamese''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='race '])[2]''', '''10''');
+  - execute event 5 : selenium.type('''name=year_week''', '''3rd week of March 2015''');
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 2.114 seconds
+# reduced
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.828 seconds
+Total Test: 9[2] (Pass: 5[2], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [14, 16] (size: 2/17)
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+ddmin: increasing granularity
+circumstance [n=3]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) = [14, 16]
+Delta Debugging time: 9.215 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''css=input[name=\"race \"]''', '''Siamese''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='race '])[2]''', '''10''');
+  - execute event 5 : selenium.type('''name=year_week''', '''3rd week of March 2015''');
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 2.145 seconds
+# reduced
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.85 seconds
+Total Test: 9[2] (Pass: 5[2], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [14, 16] (size: 2/17)
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+ddmin: increasing granularity
+circumstance [n=3]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) = [14, 16]
+Delta Debugging time: 9.043 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''css=input[name=\"race \"]''', '''Siamese''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='race '])[2]''', '''10''');
+  - execute event 5 : selenium.type('''name=year_week''', '''3rd week of March 2015''');
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 2.165 seconds
+# reduced
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.853 seconds
+Total Test: 9[2] (Pass: 5[2], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [14, 16] (size: 2/17)
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+ddmin: increasing granularity
+circumstance [n=3]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) = [14, 16]
+Delta Debugging time: 9.328 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''css=input[name=\"race \"]''', '''Siamese''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='race '])[2]''', '''10''');
+  - execute event 5 : selenium.type('''name=year_week''', '''3rd week of March 2015''');
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 2.093 seconds
+# reduced
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.862 seconds
+Total Test: 9[2] (Pass: 5[2], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [14, 16] (size: 2/17)
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+ddmin: increasing granularity
+circumstance [n=3]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) = [14, 16]
+Delta Debugging time: 9.245 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''css=input[name=\"race \"]''', '''Siamese''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='race '])[2]''', '''10''');
+  - execute event 5 : selenium.type('''name=year_week''', '''3rd week of March 2015''');
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 2.088 seconds
+# reduced
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.867 seconds
+Total Test: 9[2] (Pass: 5[2], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [14, 16] (size: 2/17)
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+ddmin: increasing granularity
+circumstance [n=3]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) = [14, 16]
+Delta Debugging time: 9.119 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''css=input[name=\"race \"]''', '''Siamese''');
+  - execute event 3 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='race '])[2]''', '''10''');
+  - execute event 5 : selenium.type('''name=year_week''', '''3rd week of March 2015''');
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 2.084 seconds
+# reduced
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.86 seconds
+Total Test: 9[2] (Pass: 5[2], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [14, 16] (size: 2/17)
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+# url: http://localhost:8080/canada.html
+There are 17 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.select('''css=select''', '''label=Discover''');
+  - execute event 9 : selenium.type('''css=input[name=\"credit \"]''', '''89348989438934''');
+  - execute event 10 : selenium.type('''css=input[name=\"exp \"]''', '''09/19''');
+  - execute event 11 : selenium.type('''id=credit_limit''', '''37887 R street''');
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.type('''id=input_name''', '''Lincoln''');
+  - execute event 13 : selenium.select('''//select[2]''', '''label=United States''');
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [12, 13, 14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.select('''//select[2]''', '''label=Canada''');
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+  - execute event 16 : assertHelper.print(selenium.getSelectedLabel('''//select[2]''')); assertHelper.print(selenium.getText('''//select[3]''')); assertHelper.assertEquals(true, !'''Canada'''.equals(selenium.getSelectedLabel('''//select[2]''')) || !'''Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington West Virginia Wisconsin Wyoming Province'''.equals(selenium.getText('''//select[3]'''))); selenium.click('''css=button''');selenium.waitForPageToLoad('''30000''');
+	@A failure occurs at event 16 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [14, 15, 16]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.select('''//select[3]''', '''label=Nebraska''');
+	@Selenium cannot find an element at event 15 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	Element //select[3] not found
+	---

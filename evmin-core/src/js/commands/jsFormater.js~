@@ -1,0 +1,24 @@
+arguments = process.argv.splice(2);
+var acorn = require('acorn');
+var escodegen = require('escodegen');
+var path = require('path');
+var fs = require('fs');
+function format(str){
+	var ast = acorn.parse(str);
+	var code = escodegen.generate(ast);
+	return code;
+}
+function renameFile(old){
+	var ext = path.extname(old);
+	var newp = old.replace(ext,'_old'+ext);
+	console.log('-------rename:',old,newp);
+	fs.renameSync(old,newp);
+}
+if(arguments.length>0){
+	for(var i=0;i<arguments.length;i++){
+		var file = arguments[i];
+		var content = fs.readFileSync(file);
+		renameFile(file);
+		fs.writeFileSync(file,format(content));
+	}
+}

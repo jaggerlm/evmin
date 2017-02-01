@@ -1,0 +1,13 @@
+#write solutions to file:
+def format(model):
+    res='';
+    for x in model:
+        res = res + str(x) +'='+ str(model[x])+';'
+    return '"'+res+'"';
+
+def serialize(filename):
+    f = open(filename, 'w')
+    f.write('solutions={}\n');
+    for i in range(len(res)):
+        f.write('solutions['+str(i)+']'+'='+format(res[i])+'\n');
+    f.close();

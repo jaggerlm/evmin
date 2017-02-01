@@ -1,0 +1,72 @@
+# url: http://localhost:8080/AgeCalculation.html
+There are 9 events (with 4 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.click('''name=friend''');
+  - execute event 5 : selenium.click('''document.live.friend[1]''');
+  - execute event 6 : selenium.type('''name=age''', '''09/09/1991''');
+  - execute event 7 : selenium.click('''name=start'''); t2 = t2_new = selenium.getValue('''name=time2''');t3 = t3_new = selenium.getValue('''name=time3''');
+  - execute event 8 : Thread.sleep(3000); t2_new = selenium.getValue('''name=time2''');t3_new = selenium.getValue('''name=time3''');assertHelper.assertEquals(true, t2.equals(t2_new) && t3.equals(t3_new));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [4, 5, 6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=age''', '''09/09/1991''');
+  - execute event 7 : selenium.click('''name=start'''); t2 = t2_new = selenium.getValue('''name=time2''');t3 = t3_new = selenium.getValue('''name=time3''');
+  - execute event 8 : Thread.sleep(3000); t2_new = selenium.getValue('''name=time2''');t3_new = selenium.getValue('''name=time3''');assertHelper.assertEquals(true, t2.equals(t2_new) && t3.equals(t3_new));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.click('''name=start'''); t2 = t2_new = selenium.getValue('''name=time2''');t3 = t3_new = selenium.getValue('''name=time3''');
+  - execute event 8 : Thread.sleep(3000); t2_new = selenium.getValue('''name=time2''');t3_new = selenium.getValue('''name=time3''');assertHelper.assertEquals(true, t2.equals(t2_new) && t3.equals(t3_new));
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=age''', '''09/09/1991''');
+ddmin: increasing granularity
+circumstance [n=3]: [6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=age''', '''09/09/1991''');
+  - execute event 8 : Thread.sleep(3000); t2_new = selenium.getValue('''name=time2''');t3_new = selenium.getValue('''name=time3''');assertHelper.assertEquals(true, t2.equals(t2_new) && t3.equals(t3_new));
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=age''', '''09/09/1991''');
+  - execute event 7 : selenium.click('''name=start'''); t2 = t2_new = selenium.getValue('''name=time2''');t3 = t3_new = selenium.getValue('''name=time3''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8]) = [6, 7, 8]
+Delta Debugging time: 19.227 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''Mouna''');
+  - execute event 1 : selenium.type('''name=lastname''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 3 : selenium.type('''name=PhoneNumber''', '''894389349''');
+  - execute event 4 : selenium.click('''name=friend''');
+  - execute event 5 : selenium.click('''document.live.friend[1]''');
+  - execute event 6 : selenium.type('''name=age''', '''09/09/1991''');
+  - execute event 7 : selenium.click('''name=start'''); t2 = t2_new = selenium.getValue('''name=time2''');t3 = t3_new = selenium.getValue('''name=time3''');
+  - execute event 8 : Thread.sleep(3000); t2_new = selenium.getValue('''name=time2''');t3_new = selenium.getValue('''name=time3''');assertHelper.assertEquals(true, t2.equals(t2_new) && t3.equals(t3_new));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 4.487 seconds
+# reduced
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=age''', '''09/09/1991''');
+  - execute event 7 : selenium.click('''name=start'''); t2 = t2_new = selenium.getValue('''name=time2''');t3 = t3_new = selenium.getValue('''name=time3''');
+  - execute event 8 : Thread.sleep(3000); t2_new = selenium.getValue('''name=time2''');t3_new = selenium.getValue('''name=time3''');assertHelper.assertEquals(true, t2.equals(t2_new) && t3.equals(t3_new));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 4.117 seconds
+Total Test: 7[1] (Pass: 5[1], Fail: 2[0], Unresolved: 0[0])
+Reduced events: [6, 7, 8] (size: 3/9)

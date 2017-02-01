@@ -1,0 +1,10 @@
+Project: chart
+Version:
+Issue:https://github.com/nnnick/Chart.js/issues/920 
+Desc: tooltip causeing reverting to old chart when rendering different charts in same canvas.
+Rp: draw a 'Line' -> clear canvas -> draw a 'bar' -> mouse over the 'bar'
+Steps: click 'save setup' -> click 'clear' ->select type 'bar' ->click 'save setup' -> mouse over the picture.
+Expect: show the tooltip of current chart 'bar'
+Result: the canvas renders the old chart 'line'.
+
+Reason:

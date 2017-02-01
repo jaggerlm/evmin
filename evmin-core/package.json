@@ -1,0 +1,30 @@
+{
+  "name": "jsreplay",
+  "version": "0.1.0",
+  "description": "event-based record replay system",
+  "dependencies": {
+    "acorn": "*",
+    "argparse": "*",
+    "body-parser": "*",
+    "collection": "0.1.6",
+    "commander": "2.9.0",
+    "ejs": "^1.0.0",
+    "escodegen": "*",
+    "express": "^4.13.3",
+    "express-http-proxy": "^0.6.0",
+    "fs-utils": "0.7.0",
+    "html5": "1.0.5",
+    "http-proxy": "*",
+    "jsdom": "0.11.1",
+    "log4js": "^0.6.35",
+    "mkdirp": "*",
+    "python-shell": "^0.4.0",
+    "source-map": "*",
+    "ws": "^0.6.4"
+  },
+  "license": "Apache",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SRA-SiliconValley/jalangi.git"
+  }
+}

@@ -1,0 +1,148 @@
+[0] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1286]
+Time Cost:2003
+Trace Length:2
+[1] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1286]
+Time Cost:2004
+Trace Length:3
+[2] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1286, 1289]
+Time Cost:3958
+Trace Length:3
+[3] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1286, 1290]
+Time Cost:2126
+Trace Length:3
+[4] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1105, 1286]
+Time Cost:2006
+Trace Length:3
+[5] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1286]
+Time Cost:2007
+Trace Length:3
+[6] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1286]
+Time Cost:2007
+Trace Length:4
+[7] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1286, 1290]
+Time Cost:2127
+Trace Length:4
+[8] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1286, 1289, 1290]
+Time Cost:4077
+Trace Length:4
+[9] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1286, 1289]
+Time Cost:3960
+Trace Length:4
+[10] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1105, 1286, 1289]
+Time Cost:3960
+Trace Length:4
+[11] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1286, 1289]
+Time Cost:3959
+Trace Length:4
+[12] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1095, 1286]
+Time Cost:2904
+Trace Length:4
+[13] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1105, 1286, 1290]
+Time Cost:2127
+Trace Length:4
+[14] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1105, 1286]
+Time Cost:2009
+Trace Length:4
+[15] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1286]
+Time Cost:2007
+Trace Length:4
+[16] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1286, 1290]
+Time Cost:2127
+Trace Length:4
+[17] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1105, 1286]
+Time Cost:2006
+Trace Length:4
+[18] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1105, 1286, 1289, 1290]
+Time Cost:4082
+Trace Length:5
+[19] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1095, 1286, 1290]
+Time Cost:3025
+Trace Length:5
+[20] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1105, 1286, 1289]
+Time Cost:3962
+Trace Length:5
+[21] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1095, 1105, 1286]
+Time Cost:2905
+Trace Length:5
+[22] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1105, 1286]
+Time Cost:2010
+Trace Length:5
+[23] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1105, 1286, 1290]
+Time Cost:2130
+Trace Length:5
+[24] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1286, 1289, 1290]
+Time Cost:4080
+Trace Length:5
+[25] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1095, 1286, 1289]
+Time Cost:4857
+Trace Length:5
+[26] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1095, 1286]
+Time Cost:2904
+Trace Length:5
+[27] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1286, 1289]
+Time Cost:3961
+Trace Length:5
+[28] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1286, 1290]
+Time Cost:2130
+Trace Length:5
+[29] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1093, 1286]
+Time Cost:2011
+Trace Length:5
+[30] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1286, 1289, 1290]
+Time Cost:4079
+Trace Length:5
+[31] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1286, 1289]
+Time Cost:3958
+Trace Length:5
+[32] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1105, 1286, 1289]
+Time Cost:3962
+Trace Length:5
+[33] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1105, 1286, 1290]
+Time Cost:2129
+Trace Length:5
+[34] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1286, 1290]
+Time Cost:2125
+Trace Length:5
+[35] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1105, 1286]
+Time Cost:2008
+Trace Length:5
+[36] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 952, 1286]
+Time Cost:2576
+Trace Length:5
+[37] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 922, 1286]
+Time Cost:2006
+Trace Length:5
+[38] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 922, 1105, 1286]
+Time Cost:2009
+Trace Length:6
+[39] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1095, 1105, 1286, 1289]
+Time Cost:4861
+Trace Length:6
+[40] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1105, 1286, 1289]
+Time Cost:3963
+Trace Length:6
+[41] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1105, 1286, 1289, 1290]
+Time Cost:4083
+Trace Length:6
+[42] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1095, 1286, 1289]
+Time Cost:4858
+Trace Length:6
+[43] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[1093, 1095, 1286, 1289, 1290]
+Time Cost:4977
+Trace Length:6
+[44] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1105, 1286, 1289]
+Time Cost:3964
+Trace Length:6
+[45] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1093, 1286, 1289, 1290]
+Time Cost:4081
+Trace Length:6
+[46] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1093, 1286, 1289]
+Time Cost:3960
+Trace Length:6
+[47] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 1105, 1286, 1289, 1290]
+Time Cost:4081
+Trace Length:6
+[48] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 1286, 1289, 1290]
+Time Cost:4081
+Trace Length:6
+[49] openning url:http://192.168.137.2/rr_replay?sid=1471844959272&policy=DELTA&subset=[374, 688, 922, 1286, 1289]

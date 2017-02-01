@@ -1,0 +1,10 @@
+project: editor.md
+issue: clicking 'about' button not work after load (clicking a twice time it works)
+
+rp:
+	1. load the page and click about button
+	2. click again
+
+result: the clicking operation won't work after 1, but works after 2
+
+

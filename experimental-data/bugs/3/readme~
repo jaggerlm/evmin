@@ -1,0 +1,11 @@
+project: handsontable
+vertion: 0.10.0
+issue: https://github.com/handsontable/handsontable/issues/1366
+desc: the original value of the cell is lost after entering an invalid value in a dropdown field
+
+steps: click color dropdown component -> set value green -> reclick the dropdown -> input an invalid value
+expected: the dropdown value should be the most recent value.
+result: the dropdown value is the first value in the list.
+
+
+

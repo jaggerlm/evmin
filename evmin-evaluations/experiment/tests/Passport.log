@@ -1,0 +1,65 @@
+# url: http://localhost:8080/passport.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.type('''id=datepicker''', '''02/06/1997''');
+  - execute event 6 : selenium.type('''xpath=(//input[@name='Social Seurity Number'])[2]''', '''Mouna'''); assertHelper.assertEquals(true, selenium.isChecked('''id=chkBox'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.type('''xpath=(//input[@name='Address'])[2]''', '''Moroccan'''); assertHelper.assertEquals(true, selenium.isChecked('''id=chkBox'''));
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.click('''css=button''');
+  - execute event 9 : assertHelper.assertEquals('''Thank you, your application has been submitted successfully!''', selenium.getAlert());
+  - executing prefix events
+  - execute event 7 : selenium.type('''xpath=(//input[@name='Address'])[2]''', '''Moroccan'''); assertHelper.assertEquals(true, selenium.isChecked('''id=chkBox'''));
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) = [7]
+Delta Debugging time: 5.283 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''Yasmine''');
+  - execute event 1 : selenium.type('''name=lastname''', '''Hammoudi''');
+  - execute event 2 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 3 : selenium.type('''css=input[name=\"Social Seurity Number\"]''', '''32988972387''');
+  - execute event 4 : selenium.type('''name=Address''', '''Rue Jaafar essadik''');
+  - execute event 5 : selenium.type('''id=datepicker''', '''02/06/1997''');
+  - execute event 6 : selenium.type('''xpath=(//input[@name='Social Seurity Number'])[2]''', '''Mouna'''); assertHelper.assertEquals(true, selenium.isChecked('''id=chkBox'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 7 : selenium.type('''xpath=(//input[@name='Address'])[2]''', '''Moroccan'''); assertHelper.assertEquals(true, selenium.isChecked('''id=chkBox'''));
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 8 : selenium.click('''css=button''');
+  - execute event 9 : assertHelper.assertEquals('''Thank you, your application has been submitted successfully!''', selenium.getAlert());
+Elapsed time: 1.548 seconds
+# reduced
+  - executing prefix events
+  - execute event 7 : selenium.type('''xpath=(//input[@name='Address'])[2]''', '''Moroccan'''); assertHelper.assertEquals(true, selenium.isChecked('''id=chkBox'''));
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.716 seconds
+Total Test: 4[0] (Pass: 1[0], Fail: 3[0], Unresolved: 0[0])
+Reduced events: [7] (size: 1/10)

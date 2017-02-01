@@ -1,0 +1,4 @@
+var execSync = require('exec-sync');
+ 
+var res = execSync('python ./log/1464657621260_z3/generatingCons.py');
+console.log(res);

@@ -1,0 +1,6 @@
+function FindProxyForURL(url, host) {
+	if(url.indexOf('192.168.137.2:8080') >=0 || url.indexOf("192.168.137.2:3000")>=0){
+		return "DIRECT"
+	}
+	return "PROXY 192.168.137.2:8051"
+}

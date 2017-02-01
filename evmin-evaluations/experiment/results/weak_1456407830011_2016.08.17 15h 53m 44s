@@ -1,0 +1,21 @@
+[0] openning url:http://192.168.137.2/rr_replay?sid=1456407830011&policy=DELTA&subset=[201, 262, 329, 964, 1290, 1561, 1562]
+Time Cost:1307
+Trace Length:8
+[1] openning url:http://192.168.137.2/rr_replay?sid=1456407830011&policy=DELTA&subset=[201, 262, 329, 401, 964, 1290, 1561, 1562]
+Time Cost:1309
+Trace Length:9
+[2] openning url:http://192.168.137.2/rr_replay?sid=1456407830011&policy=DELTA&subset=[201, 262, 329, 353, 964, 1290, 1561, 1562]
+Time Cost:1310
+Trace Length:9
+[3] openning url:http://192.168.137.2/rr_replay?sid=1456407830011&policy=DELTA&subset=[201, 262, 329, 378, 964, 1290, 1561, 1562]
+Time Cost:1310
+Trace Length:9
+[4] openning url:http://192.168.137.2/rr_replay?sid=1456407830011&policy=DELTA&subset=[201, 262, 304, 329, 964, 1290, 1561, 1562]
+Time Cost:1310
+Trace Length:9
+[5] openning url:http://192.168.137.2/rr_replay?sid=1456407830011&policy=DELTA&subset=[201, 262, 329, 964, 1290, 1556, 1561, 1562]
+Time Cost:1309
+Trace Length:9
+Generating time:11571
+Validating time:7855
+Total time(gen+validate):19426ms

@@ -1,0 +1,66 @@
+# url: http://localhost:8080/WaitingListClasses.html
+There are 9 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.type('''name=Phone''', '''4008989988''');
+  - execute event 5 : selenium.select('''css=select''', '''label=CSE 775''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : selenium.click('''css=button''');
+  - execute event 8 : assertHelper.assertEquals('''Thank you very much for your submission, we will process your request!''', selenium.getAlert());
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''4023045473''');
+  - execute event 3 : selenium.type('''name=email''', '''40389988'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 3 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [0, 1, 2, 3]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''4023045473''');
+  - execute event 3 : selenium.type('''name=email''', '''40389988'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 3 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [2, 3]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 3 : selenium.type('''name=email''', '''40389988'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 3 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8]) = [3]
+Delta Debugging time: 4.179 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''4023045473''');
+  - execute event 3 : selenium.type('''name=email''', '''40389988'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 3 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 4 : selenium.type('''name=Phone''', '''4008989988''');
+  - execute event 5 : selenium.select('''css=select''', '''label=CSE 775''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : selenium.click('''css=button''');
+  - execute event 8 : assertHelper.assertEquals('''Thank you very much for your submission, we will process your request!''', selenium.getAlert());
+Elapsed time: 1.278 seconds
+# reduced
+  - executing prefix events
+  - execute event 3 : selenium.type('''name=email''', '''40389988'''); assertHelper.assertEquals(true,false);
+	@A failure occurs at event 3 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.679 seconds
+Total Test: 4[0] (Pass: 1[0], Fail: 3[0], Unresolved: 0[0])
+Reduced events: [3] (size: 1/9)

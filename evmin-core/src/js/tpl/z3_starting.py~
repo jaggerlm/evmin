@@ -1,0 +1,7 @@
+from z3 import *
+import os
+
+print 'current dir:'+os.getcwd()
+
+s = Solver();
+res=[];

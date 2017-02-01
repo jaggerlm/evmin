@@ -1,0 +1,11 @@
+project:handsontable
+version: 0.8.23
+issue: https://github.com/handsontable/handsontable/issues/638
+desc: Autocomplete selects item even when clicked outside of the list selection
+steps: 
+1. Open the options at row='chrysler' & col='Bumper color' (current value "black"). marked as position p1.
+2. Hover over the option such that it is highlighted (e.g. "green").
+3. Click on the cell in row='chrysler' & col="Chassis color" (current value 'yellow'. marked as position p2.
+
+expected: p1 remains the value 'black' and p2 remains 'yellow'
+result: the value of p1 is "green", the value of p2 is 'black'

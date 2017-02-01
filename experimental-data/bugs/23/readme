@@ -1,0 +1,10 @@
+#https://github.com/hakimel/reveal.js/issues/463
+From default presentation example from http://lab.hakim.se/reveal-js 
+
+Doscription:
+step back from the first vertical slide (#/2), using 'navigatePrev' (e.g. pageUp),
+Then step forward ('navigateNext', e.g. pageDown).
+
+Result: This steps to the second vertical slide (#/2/1).
+Expect: When going back to the first slide, the correct order is restored.
+

@@ -1,0 +1,126 @@
+# url: http://localhost:8080/Account.html
+There are 18 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : selenium.click('''xpath=(//input[@name='sex'])[4]''');
+  - execute event 10 : selenium.click('''css=button'''); assertHelper.assertEquals('''Both password inputs do not match. Please retry.''', selenium.getAlert());
+	@Selenium cannot find an element at event 10 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	There were no alerts
+	---
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''Mouna''');
+  - execute event 1 : selenium.type('''name=lastname''', '''Hammoudi''');
+  - execute event 2 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 3 : selenium.type('''css=input[name=\"Phone Number\"]''', '''4023045465''');
+  - execute event 4 : selenium.type('''name=Address''', '''573 Y street''');
+  - execute event 5 : selenium.type('''id=datepicker''', '''09/09/1991''');
+  - execute event 6 : selenium.type('''name=uname''', '''mouna''');
+  - execute event 7 : selenium.type('''id=upass''', '''dsdsjkjk''');
+  - execute event 8 : selenium.type('''id=reupass''', '''jkdjkdsjkjkdsjkds''');
+ddmin: increasing granularity
+circumstance [n=4]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.type('''name=Address''', '''573 Y street''');
+  - execute event 5 : selenium.type('''id=datepicker''', '''09/09/1991''');
+  - execute event 6 : selenium.type('''name=uname''', '''mouna''');
+  - execute event 7 : selenium.type('''id=upass''', '''dsdsjkjk''');
+  - execute event 8 : selenium.type('''id=reupass''', '''jkdjkdsjkjkdsjkds''');
+  - execute event 9 : selenium.click('''xpath=(//input[@name='sex'])[4]''');
+  - execute event 10 : selenium.click('''css=button'''); assertHelper.assertEquals('''Both password inputs do not match. Please retry.''', selenium.getAlert());
+  - execute event 11 : selenium.type('''id=reupass''', '''Mouna''');
+  - execute event 12 : selenium.type('''id=upass''', '''MounaCamelia''');
+  - execute event 13 : selenium.type('''id=reupass''', '''MounaCamelia''');
+  - execute event 14 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for creating account with us!''', selenium.getAlert());
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[Thank you for creating account with us!], actual:[Both password inputs do not match. Please retry.]
+	---
+circumstance [n=3]: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.type('''id=reupass''', '''jkdjkdsjkjkdsjkds''');
+  - execute event 9 : selenium.click('''xpath=(//input[@name='sex'])[4]''');
+  - execute event 10 : selenium.click('''css=button'''); assertHelper.assertEquals('''Both password inputs do not match. Please retry.''', selenium.getAlert());
+  - execute event 11 : selenium.type('''id=reupass''', '''Mouna''');
+  - execute event 12 : selenium.type('''id=upass''', '''MounaCamelia''');
+  - execute event 13 : selenium.type('''id=reupass''', '''MounaCamelia''');
+  - execute event 14 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for creating account with us!''', selenium.getAlert());
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[Thank you for creating account with us!], actual:[Both password inputs do not match. Please retry.]
+	---
+circumstance [n=2]: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 13 : selenium.type('''id=reupass''', '''MounaCamelia''');
+  - execute event 14 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for creating account with us!''', selenium.getAlert());
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[Thank you for creating account with us!], actual:[Both password inputs do not match. Please retry.]
+	---
+circumstance [n=2]: [13, 14, 15, 16, 17]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 15 : selenium.type('''id=upass''', '''Merde''');
+  - execute event 16 : selenium.type('''id=reupass''', '''Merde2''');
+  - execute event 17 : selenium.click('''css=button'''); assertHelper.assertEquals('''Both password inputs do not match. Please retry.''', selenium.getAlert());
+  - executing prefix events
+  - execute event 13 : selenium.type('''id=reupass''', '''MounaCamelia''');
+  - execute event 14 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for creating account with us!''', selenium.getAlert());
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[Thank you for creating account with us!], actual:[Both password inputs do not match. Please retry.]
+	---
+circumstance [n=2]: [13, 14]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 14 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for creating account with us!''', selenium.getAlert());
+	@Selenium cannot find an element at event 14 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	There were no alerts
+	---
+  - executing prefix events
+  - execute event 13 : selenium.type('''id=reupass''', '''MounaCamelia''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]) = [13, 14]
+Delta Debugging time: 11.416 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''Mouna''');
+  - execute event 1 : selenium.type('''name=lastname''', '''Hammoudi''');
+  - execute event 2 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 3 : selenium.type('''css=input[name=\"Phone Number\"]''', '''4023045465''');
+  - execute event 4 : selenium.type('''name=Address''', '''573 Y street''');
+  - execute event 5 : selenium.type('''id=datepicker''', '''09/09/1991''');
+  - execute event 6 : selenium.type('''name=uname''', '''mouna''');
+  - execute event 7 : selenium.type('''id=upass''', '''dsdsjkjk''');
+  - execute event 8 : selenium.type('''id=reupass''', '''jkdjkdsjkjkdsjkds''');
+  - execute event 9 : selenium.click('''xpath=(//input[@name='sex'])[4]''');
+  - execute event 10 : selenium.click('''css=button'''); assertHelper.assertEquals('''Both password inputs do not match. Please retry.''', selenium.getAlert());
+  - execute event 11 : selenium.type('''id=reupass''', '''Mouna''');
+  - execute event 12 : selenium.type('''id=upass''', '''MounaCamelia''');
+  - execute event 13 : selenium.type('''id=reupass''', '''MounaCamelia''');
+  - execute event 14 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for creating account with us!''', selenium.getAlert());
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[Thank you for creating account with us!], actual:[Both password inputs do not match. Please retry.]
+	---
+  - execute event 15 : selenium.type('''id=upass''', '''Merde''');
+  - execute event 16 : selenium.type('''id=reupass''', '''Merde2''');
+  - execute event 17 : selenium.click('''css=button'''); assertHelper.assertEquals('''Both password inputs do not match. Please retry.''', selenium.getAlert());
+Elapsed time: 1.836 seconds
+# reduced
+  - executing prefix events
+  - execute event 13 : selenium.type('''id=reupass''', '''MounaCamelia''');
+  - execute event 14 : selenium.click('''css=button'''); assertHelper.assertEquals('''Thank you for creating account with us!''', selenium.getAlert());
+	@A failure occurs at event 14 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[Thank you for creating account with us!], actual:[Both password inputs do not match. Please retry.]
+	---
+Elapsed time: 0.789 seconds
+Total Test: 9[0] (Pass: 3[0], Fail: 4[0], Unresolved: 2[0])
+Reduced events: [13, 14] (size: 2/18)

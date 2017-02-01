@@ -1,0 +1,293 @@
+if(typeof R$ == 'undefined'){
+    R$ = {} 
+}
+(function(sandbox){
+    sandbox.consoleLogger = console;
+    
+    sandbox.common = {};
+
+    function Logger(){}
+    Logger.prototype.logTest = function(interval,id){
+        var args = arguments;
+        var res=[];
+        var itv = '';
+        if(interval>0){
+            for(var i=0;i<interval;i++){
+                itv += '-';
+            }
+        }
+        var info = '['+id + itv+']';
+        res.push('info');
+        for(var i=2;i<args.length;i++){
+            res.push('args['+i+']');
+        }
+        var s = 'R$.consoleLogger.log('+res.join(',')+');';
+        eval(s);
+    }
+    Logger.prototype.log = function(){
+        var res=[];
+        var args = arguments;
+        for(var i=0;i<args.length;i++){
+            res.push('args['+i+']');
+        }
+        var s = 'R$.consoleLogger.log('+res.join(',')+');';
+        try{
+            eval(s);
+        }catch(e){
+            sandbox.getConcrete(console).log(s,e);
+        }
+    }
+
+    var util = {};
+    util.logger = new Logger();
+    var js = util.js = {};
+    
+    util.HOP = function(obj, prop) {
+        return Object.prototype.hasOwnProperty.call(obj, prop);
+    };
+
+    js.printCallStack = function() {  
+        var i = 0;  
+        var fun = arguments.callee;  
+        do {  
+          fun = fun.arguments.callee.caller;  
+          util.logger.log(++i + ': ' + fun);  
+        }while(fun&&fun.arguments.callee);  
+    }  
+    
+    js.getPrototypeChain = function(obj) {
+        var protoChain = [];
+        while (obj = Object.getPrototypeOf(obj)) {
+            protoChain.push(obj);
+        }
+        protoChain.push(null);
+        return protoChain;
+    }
+    util.extend = function(base, setting){
+        base = base || {};
+        if(typeof setting === 'object'){
+            for(var key in setting){
+                base[key] = setting[key];
+            }
+        }
+        return base;
+    }
+    util.options= {}
+    util.options.extend = function(base,setting){
+        
+        var res = {};
+        util.extend(res,base);
+        util.extend(res,setting);
+        return res; 
+    }
+
+    //--------------------
+    //when key is a string
+	function Map(initMap,length){
+        this.map    =  initMap || {};
+        this.length = length || 0;
+		if(initMap && arguments.length ===1){
+			for(var i in initMap){
+				this.length++;
+			}
+		}
+ 
+        this.size = function(){
+           return this.length;
+        }
+ 
+        this.put = function(key, value){
+    
+           if( !this.map[key]){
+                ++this.length;
+           }     
+           this.map[key] = value;    
+        }
+		
+		this.putAll = function(obj){
+			if(obj instanceof Map)
+				obj = obj.map;
+			for(var i in obj){
+				this.put(i, obj[i]);
+			}
+		}
+    	
+		this.extends = function(obj){
+			var res = new Map(this.map,this.length);
+			if(!obj) return res;
+
+			if(obj instanceof Map)
+				obj = obj.map;
+			res.putAll(obj);
+			return res;
+		}
+
+		this.remove = function(key){
+     
+           if(this.map[key]){         
+               --this.length;
+               return delete this.map[key];
+           }
+           else{
+               return false;
+           }
+        }
+        
+		this.containsKey = function(key){   
+           return this.map[key] ? true:false;  
+        }
+  
+        this.get = function(key){ 
+           return this.map[key];
+        }
+        this.keyArray = function(){
+            return keyArray(this.map);
+        }
+        this.inspect=function(){   
+           var str = '';
+           for(var each in this.map){
+               str+= '\n'+ each + ' -> '+ this.map[each];
+           }
+           return str;
+        }
+    }
+	function keyArray(map){
+		var res = [];
+		for(var v in map){
+			res.push(v);
+		}
+		return res;
+	}
+
+	function MMap(){
+		this.values = {};
+		this.put = function(keys, value){
+			value = value || true;
+			var base = this.values;
+			for(var i=0;i<keys.length-1;i++){
+				base[keys[i]] = typeof base[keys[i]] === 'object'? base[keys[i]]:{};
+				base = base[keys[i]];
+			}
+			base[keys[keys.length-1]] = value;
+		}
+		this.get = function(keys){
+			var base = this.values;
+			for(var i=0;i<keys.length-1;i++){
+				if(typeof base[keys[i]] === 'undefined'){
+					return undefined;
+				}
+				base = base[keys[i]];
+			}
+			return base[keys[keys.length-1]];
+		}
+		
+		function _keyArray(base, key, depth, res){
+			if(key.length>=depth){
+				res.push(key.slice(0));
+				return;
+			}
+			for(var x in base){
+				key.push(x);
+				_keyArray(base[x],key,depth, res);
+				key.pop();
+			}
+		}
+
+
+		this.keyArray = function(depth){
+			var keys = [];
+			_keyArray(this.values,[], depth,keys);
+			return keys;
+		}
+	}
+	function test(){
+		var a= new MMap();
+		a.put(['a']);
+		a.put(['a'],1);
+		a.put(['a','b'],1);
+		a.put(['a','c'],1);
+		a.put(['a','d'],1);
+		a.put(['a','d','e'],1);
+		a.put(['a','d','f'],1);
+		a.put(['b'],1);
+		console.log('------------1',a.keyArray(1));
+		console.log('------------2',a.keyArray(2));
+		console.log('------------3',a.keyArray(3));
+	}
+//	test();
+	//key can be an object, and cmp is callback to compare two keys
+    function CMap(cmp){
+        this.keys = [];
+        this.values = [];
+        this.cmp = cmp || function(v1,v2){
+            return v1 === v2;
+        };
+        this.size = function(){
+            return this.keys.length;
+        }
+        this.put = function(key,value){
+            var idx = this.indexOf(key);
+            if(idx>=0){
+                this.values[idx] = value;
+            }else{
+                this.keys.push(key);
+                this.values.push(value);
+            }
+
+        }
+        this.get = function(key){
+            var idx = this.indexOf(key);
+            if(idx>=0){
+                return this.values[idx];
+            }
+            return undefined;
+        }
+        
+        this.remove = function(key){
+            var idx = this.indexOf(key);
+            if(idx>=0){
+                this.keys.splice(idx,1);
+                this.values.splice(idx,1);
+            }
+        };
+        this.indexOf = function(key){
+            for(var i=0;i<this.keys.length;i++){
+                if(this.cmp(this.keys[i],key)){
+                    return i;
+                }
+            }
+            return  -1;
+        }
+        this.containsKey = function(key){
+            if(this.indexOf(key)>=0){
+                return true;
+            }
+            return false;
+        }
+		this.clear = function(){
+			this.keys.length = 0;
+		}
+
+    }
+    
+    util.Map = Map;
+    util.MMap = MMap;
+	util.CMap = CMap;
+   	util.keyArray = keyArray;
+
+    util.String = function(){}
+    util.String.trim = function(s){
+        try{    
+            return s.replace(/(^\s*)|(\s*$)/g, '');
+        }catch(e){
+            return s;
+        }
+    }
+
+    sandbox.common.util = util;
+
+    if(typeof exports == 'object'){
+        exports.common = sandbox.common;
+    }
+})(R$);
+

@@ -1,0 +1,142 @@
+# url: http://localhost:8080/Numbers.html
+There are 8 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@Selenium cannot find an element at event 4 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	unknown error: Option with label 'one' not found
+  (Session info: chrome=51.0.2704.106)
+  (Driver info: chromedriver=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 36 milliseconds
+Build info: version: '2.45.0', revision: '32a636c', time: '2015-03-05 22:01:35'
+System info: host: 'wangjie-pc', ip: '192.168.137.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_05'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={chromedriverVersion=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b), userDataDir=C:\Users\YOURS_~1\AppData\Local\Temp\scoped_dir33396_11897}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=51.0.2704.106, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 34b623db17b405dfc5fdf79df60fdda6
+	---
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''30''');
+  - execute event 1 : selenium.type('''name=lastname''', '''30''');
+  - execute event 2 : selenium.type('''name=rara''', '''30''');
+  - execute event 3 : selenium.click('''name=Button1''');
+ddmin: increasing granularity
+circumstance [n=4]: [0, 1, 2, 3, 4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 2 : selenium.type('''name=rara''', '''30''');
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@A failure occurs at event 4 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=3]: [2, 3, 4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 2 : selenium.type('''name=rara''', '''30''');
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 6 : selenium.removeSelection('''id=theList''', '''label=three''');
+  - execute event 7 : selenium.addSelection('''id=theList''', '''label=five''');
+  - executing prefix events
+  - execute event 2 : selenium.type('''name=rara''', '''30''');
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@A failure occurs at event 4 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [2, 3, 4, 5]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@Selenium cannot find an element at event 4 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	unknown error: Option with label 'one' not found
+  (Session info: chrome=51.0.2704.106)
+  (Driver info: chromedriver=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 39 milliseconds
+Build info: version: '2.45.0', revision: '32a636c', time: '2015-03-05 22:01:35'
+System info: host: 'wangjie-pc', ip: '192.168.137.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_05'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={chromedriverVersion=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b), userDataDir=C:\Users\YOURS_~1\AppData\Local\Temp\scoped_dir33396_11897}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=51.0.2704.106, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 34b623db17b405dfc5fdf79df60fdda6
+	---
+  - executing prefix events
+  - execute event 2 : selenium.type('''name=rara''', '''30''');
+  - execute event 3 : selenium.click('''name=Button1''');
+ddmin: increasing granularity
+circumstance [n=4]: [2, 3, 4, 5]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@A failure occurs at event 4 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=3]: [3, 4, 5]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 5 : selenium.removeSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+  - executing prefix events
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@A failure occurs at event 4 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [3, 4]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@Selenium cannot find an element at event 4 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	unknown error: Option with label 'one' not found
+  (Session info: chrome=51.0.2704.106)
+  (Driver info: chromedriver=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 37 milliseconds
+Build info: version: '2.45.0', revision: '32a636c', time: '2015-03-05 22:01:35'
+System info: host: 'wangjie-pc', ip: '192.168.137.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_05'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={chromedriverVersion=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b), userDataDir=C:\Users\YOURS_~1\AppData\Local\Temp\scoped_dir33396_11897}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=51.0.2704.106, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 34b623db17b405dfc5fdf79df60fdda6
+	---
+  - executing prefix events
+  - execute event 3 : selenium.click('''name=Button1''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7]) = [3, 4]
+Delta Debugging time: 10.468 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''30''');
+  - execute event 1 : selenium.type('''name=lastname''', '''30''');
+  - execute event 2 : selenium.type('''name=rara''', '''30''');
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@A failure occurs at event 4 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+  - execute event 5 : selenium.removeSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@A failure occurs at event 5 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+  - execute event 6 : selenium.removeSelection('''id=theList''', '''label=three''');
+  - execute event 7 : selenium.addSelection('''id=theList''', '''label=five''');
+Elapsed time: 1.264 seconds
+# reduced
+  - executing prefix events
+  - execute event 3 : selenium.click('''name=Button1''');
+  - execute event 4 : selenium.addSelection('''id=theList''', '''label=one'''); assertHelper.assertEquals(false, selenium.isAlertPresent());
+	@A failure occurs at event 4 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+Elapsed time: 0.778 seconds
+Total Test: 14[2] (Pass: 5[0], Fail: 4[0], Unresolved: 5[2])
+Reduced events: [3, 4] (size: 2/8)

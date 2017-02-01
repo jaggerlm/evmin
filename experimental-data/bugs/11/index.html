@@ -1,0 +1,77 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.9.1.js"></script>
+<script type="text/javascript" src="jquery-migrate-1.1.0.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script type="text/javascript" src="jPushMenu.js"></script>
+
+<link rel="stylesheet" type="text/css" href="bootstrap-combined.min.css"/>
+<link rel="stylesheet" type="text/css" href="jPushMenu.css"/>
+<link rel="stylesheet" type="text/css" href="demo.css"/>
+</head>
+<body>
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+    <h3>Menu</h3>
+    <div class="sidebar-nav">
+        <ul class="nav nav-list">
+            <li class="active"><a href="#">Link</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                data-toggle="dropdown"
+                href="#">
+                    Dropdown
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+        </ul>
+    </div><!--/.well -->
+</nav>
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right">
+    <h3>Menu</h3>
+    <a href="#">Celery seakale</a>
+    <a href="#">Dulse daikon</a>
+    <a href="#">Zucchini garlic</a>
+    <a href="#">Catsear azuki bean</a>
+    <a href="#">Dandelion bunya</a>
+    <a href="#">Rutabaga</a>
+</nav>
+
+<div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          &nbsp;
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>jPushMenu Demo</h1>
+              
+              <div class="main">
+				<section>
+					<p>Click button to show/hide menu</p>
+					<button class="toggle-menu menu-left">Toggle Left Menu</button>
+                </section>
+              </div>
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+	<script type='text/javascript'>
+		jQuery(document).ready(function($) {
+			$('.toggle-menu').jPushMenu();
+		});
+	</script>
+	</body>
+</html>

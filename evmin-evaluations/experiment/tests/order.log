@@ -1,0 +1,58 @@
+# url: http://localhost:8080/order.html
+There are 14 events (with 1 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+ddmin: testing subsets
+# url: http://localhost:8080/order.html
+There are 14 events (with 1 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+ddmin: testing subsets
+# url: http://localhost:8080/order.html
+There are 14 events (with 1 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=zip''', '''37878''');
+  - execute event 8 : selenium.type('''name=phone''', '''8765673562''');
+  - execute event 9 : selenium.type('''name=fax''', '''23332''');
+  - execute event 10 : selenium.click('''name=same_flag'''); state++;
+  - execute event 11 : selenium.click('''name=same_flag'''); state++; assertHelper.assertEquals(false, state > 1 && state%2 == 0);
+	@A failure occurs at event 11 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [7, 8, 9, 10, 11, 12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 10 : selenium.click('''name=same_flag'''); state++;
+  - execute event 11 : selenium.click('''name=same_flag'''); state++; assertHelper.assertEquals(false, state > 1 && state%2 == 0);
+	@A failure occurs at event 11 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [10, 11, 12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.click('''name=order_type''');
+  - execute event 13 : selenium.click('''css=input[type=\"button\"]'''); assertHelper.assertEquals('''first false''', selenium.getAlert());
+  - executing prefix events
+  - execute event 10 : selenium.click('''name=same_flag'''); state++;
+  - execute event 11 : selenium.click('''name=same_flag'''); state++; assertHelper.assertEquals(false, state > 1 && state%2 == 0);
+	@A failure occurs at event 11 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [10, 11]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 11 : selenium.click('''name=same_flag'''); state++; assertHelper.assertEquals(false, state > 1 && state%2 == 0);
+  - executing prefix events
+  - execute event 10 : selenium.click('''name=same_flag'''); state++;
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]) = [10, 11]
+Delta Debugging time: 5.619 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=comments''', '''No comment''');

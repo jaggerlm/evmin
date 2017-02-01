@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+{{rr_script}}
+
+</head>
+<body>
+	<script type="text/javascript">
+			window.addEventListener('load',function(){
+				R$.instrument.replaceNative();
+				debugger;
+				R$.command.replay.replay({{sid}},'{{mode}}',{{reduce}},'{{base}}','{{policy}}','{{subset}}');
+			});
+	</script>
+</body>
+</html>

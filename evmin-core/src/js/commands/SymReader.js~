@@ -1,0 +1,140 @@
+(function(){
+	var config = require('../jalangi.config.js').config;
+	var fs = require('fs-utils');
+
+	function Z3py(fileName){
+		this.fileName = fileName;
+		this.wstream = fs.createWriteStream(fileName);
+		this.wstream.write(Z3py.starting);
+		this.indent = 0;
+	}
+	
+	Z3py.starting = function(){
+		return fs.readFileSync('../tpl/z3_starting').toString();
+	}
+	Z3py.z3_solution = function(){
+		return fs.readFileSync('../tpl/z3_solution').toString();	
+	}
+	Z3py.z3_solutions = function(){
+		return fs.readFileSync('../tpl/z3_solution').toString();	
+	}
+
+	Z3py.prototype.exp = function(exp){
+		this.writeln(exp);
+	}
+	
+	Z3py.prototype.assert = function(exp){
+		this.writeln('s.add('+exp+')');	
+	}
+
+	Z3py.prototype.push = function(exp){
+		this.writeln('s.push('+exp+')');
+	}
+
+	Z3py.prototype.pop = function(exp){
+		this.writeln('s.pop('+exp+')');
+	}
+
+	Z3py.prototype.whileSat = function(cond,body){
+	
+	}
+	Z3py.prototype.ifSat = function(){
+		this.exp('if s.check() == sat:');
+		this.ident++;
+		this.exp('print s.model();');
+		this.ident--;
+	}
+	
+	Z3py.prototype.getIndent = function(){
+		var res = '';
+		for(var i=0;i<this.indent;i++){
+			res+='\t';
+		}
+		return res;
+	}
+
+	Z3py.prototype.forEach = function(varn, range, bodyCb){
+		this.exp('for '+varn+' in range('+range[0]+','+range[1]+'):');
+		this.indent++;
+		this.exp(bodyCb(varn));
+		this.indent--;
+		
+	}
+
+	Z3py.prototype.comment = function(comment){
+		this.writeln('#'+comment);
+	}
+	
+	Z3py.prototype.end = function(endCb){
+		if(typeof endCb === 'function')
+			endCb();
+		wstream.end();
+	}
+	
+	Z3py.prototype.writeln = function(line){
+		this.wstream.write(this.getIndent()+(line||'')+'ln');
+	}
+		
+	Z3py.prototype.solve = function(fileName){
+	
+	}
+	
+	function SymbolicSolver(options){
+		this.sid = options.sid;
+		this.traceFile = options.traceFile;
+		this.errors = options.errors || [];
+		this.maxLength = options.maxLength || 10;
+
+		this.baseDir = config.logPath + this.sid+'_z3/';
+		this.init();
+	}
+	
+
+	SymbolicSolver.prototype.init = function(){
+		fs.del(this.baseDir);
+		fs.mkdirSync(this.baseDir);
+		var cons = fs.readJsonSync(config.logPath);
+		this.generatings = cons.generatings||[];
+		this.validatings = cons.validatings || [];
+		this.events = cons.events || [];
+		this.pathConstraints = cons.pathConstraints;
+	}
+
+	// sequence generating
+	SymbolicSolver.prototype.generating = function(){
+		var genCons = this.baseDir+'generatingCons';
+		var z3 = new Z3py();
+		z3.comment('Event declarations:');
+		z3.comment('  0: not selected; 1: selected');
+		for(var i=0;i<evts.length;i++){
+			z3.exp('e'+evts[i]+" = Int('e"+evts[i]+"')");
+			z3.assert('e'+evts[i]+'Or(e'+evts[i]+'==0,e'+evts[i]+'==1)');
+		}
+		z3.writeln();
+		z3.comment('Pre-defiend error events')
+		for(i=0;i<this.errors;i++){
+			z3.exp('e'+this.errors[i]+'=1');
+		}
+
+		z3.comment('Data compatible constraints');
+		for(i=0;i<this.generatings.length;i++){
+			z3.assert(this.generatings[i]);
+		}
+
+		var that = this;
+		z3.end(function(){
+			z3.comment('MaxLength constraints: Try all solutions with a given sequence length <= maxLength');
+			z3.forEach('i',[1,that.maxLength],function(i){
+				z3.push('sum<'+i);
+				z3.ifSat();
+				z3.pop();
+
+			});
+		});
+	}
+	
+	//sequence validating
+	SymbolicSolver.prototype.validating = function(){
+		fs.writeFileSync(this.baseDir+'validatingCons');
+	}
+})();

@@ -1,0 +1,9 @@
+(function(){
+	config = {};
+	config.instrumentedScripts = './instrumentedScripts';
+	config.logpath = './log/';
+	config.encoding = 'utf8';
+	config.useCache = true;
+	exports.config = config;
+})();
+		

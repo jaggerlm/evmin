@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <title>Simple - Editor.md examples</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="../dist/css/editormd.css" />
+    </head>
+    <body>
+        <div id="layout">
+            <header>
+                <h1>简单示例</h1>
+            </header>
+            <div id="test-editormd">
+                <textarea style="display:none;">###Hello world!
+                
+本示例未开启：
+
+- TeX(基于KaTeX)；
+- 智能识别和解析HTML标签；
+- 流程图和时序/序列图支持;
+</textarea>
+            </div>
+        </div>
+        <script src="../lib/jquery.min.js"></script>
+        <script src="../src/js/editormd.js"></script>
+        <script type="text/javascript">
+			var testEditor;
+
+            $(function() {
+                testEditor = editormd("test-editormd", {
+                    width: "90%",
+                    height: 540,
+                    path : '../lib/'
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+project: myMind
+issue: https://github.com/ondras/my-mind/issues/12
+description: editing unaccessible
+
+rp:
+1. add  nodes(at least 2)
+2. select a node.
+3. press space to edit.
+4. click away
+5. edit ohter node
+
+result: editing unaccessible
+expected: other nodes are editable
+

@@ -1,0 +1,120 @@
+# url: http://localhost:8080/cart.html
+There are 14 events (with 1 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@Selenium cannot find an element at event 7 [com.thoughtworks.selenium.SeleniumException]. Skipped.
+	---
+	no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=51.0.2704.106)
+  (Driver info: chromedriver=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: '2.45.0', revision: '32a636c', time: '2015-03-05 22:01:35'
+System info: host: 'wangjie-pc', ip: '192.168.137.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_05'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={chromedriverVersion=2.22.397933 (1cab651507b88dec79b2b2a22d1943c01833cc1b), userDataDir=C:\Users\YOURS_~1\AppData\Local\Temp\scoped_dir32396_31124}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=51.0.2704.106, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: f34ef456350e2cd22625fc7a902f2d7a
+	---
+# url: http://localhost:8080/cart.html
+There are 14 events (with 1 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+  - execute event 8 : selenium.type('''name=data1''', '''10'''); value="10"
+  - execute event 9 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[10], actual:[2]
+	---
+circumstance [n=2]: [7, 8, 9, 10, 11, 12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 10 : selenium.click('''css=form > input.submit''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(false, selenium.isElementPresent('''name=data1'''));
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [10, 11, 12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 12 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+  - execute event 13 : selenium.click('''css=form > input.submit''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(false, selenium.isElementPresent('''name=data1'''));
+	@A failure occurs at event 13 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [12, 13]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 13 : selenium.click('''css=form > input.submit''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(false, selenium.isElementPresent('''name=data1'''));
+	@A failure occurs at event 13 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]) = [13]
+Delta Debugging time: 218.455 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=data1''', '''3'''); value="3"
+  - execute event 1 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@A failure occurs at event 1 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[3], actual:[2]
+	---
+  - execute event 2 : selenium.type('''name=data1''', '''10'''); value="10"
+  - execute event 3 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@A failure occurs at event 3 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[10], actual:[2]
+	---
+  - execute event 4 : selenium.type('''name=data1''', '''5'''); value="5"
+  - execute event 5 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@A failure occurs at event 5 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[5], actual:[2]
+	---
+  - execute event 6 : selenium.type('''name=data1''', '''5'''); value="5"
+  - execute event 7 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[5], actual:[2]
+	---
+  - execute event 8 : selenium.type('''name=data1''', '''10'''); value="10"
+  - execute event 9 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[10], actual:[2]
+	---
+  - execute event 10 : selenium.click('''css=form > input.submit''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(false, selenium.isElementPresent('''name=data1'''));
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+  - execute event 11 : selenium.type('''name=data1''', '''3'''); value="3"
+  - execute event 12 : selenium.click('''id=Update''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(value, selenium.getValue('''name=data1'''));
+	@A failure occurs at event 12 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[3], actual:[2]
+	---
+  - execute event 13 : selenium.click('''css=form > input.submit''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(false, selenium.isElementPresent('''name=data1'''));
+	@A failure occurs at event 13 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+Elapsed time: 195.619 seconds
+# reduced
+  - executing prefix events
+  - execute event 13 : selenium.click('''css=form > input.submit''');selenium.waitForPageToLoad('''30000'''); assertHelper.assertEquals(false, selenium.isElementPresent('''name=data1'''));
+	@A failure occurs at event 13 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+Elapsed time: 43.278 seconds
+Total Test: 4[0] (Pass: 0[0], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [13] (size: 1/14)

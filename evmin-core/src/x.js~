@@ -1,0 +1,2 @@
+require('./log/test_1461920559900_z3/candidates.js');
+console.log(solutions);

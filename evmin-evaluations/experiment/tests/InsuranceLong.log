@@ -1,0 +1,82 @@
+# url: http://localhost:8080/student.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+# url: http://localhost:8080/student.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.click('''id=phone_yes''');
+  - execute event 6 : selenium.type('''name=lastname''', '''Mouna''');
+  - execute event 7 : selenium.type('''name=pwd''', '''sdjhhdshjdjksjkdsjk''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='pwd'])[2]''', '''hjskkjsdjks''');
+  - execute event 9 : assertHelper.assertEquals(false, !''''''.equals(selenium.getValue('''name=pwd''')) && !selenium.getValue('''name=pwd''').equals(selenium.getValue('''xpath=(//input[@name='pwd'])[2]'''))); selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much, we will process your request shortly! ''', selenium.getAlert());
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=pwd''', '''sdjhhdshjdjksjkdsjk''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='pwd'])[2]''', '''hjskkjsdjks''');
+  - execute event 9 : assertHelper.assertEquals(false, !''''''.equals(selenium.getValue('''name=pwd''')) && !selenium.getValue('''name=pwd''').equals(selenium.getValue('''xpath=(//input[@name='pwd'])[2]'''))); selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much, we will process your request shortly! ''', selenium.getAlert());
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.type('''xpath=(//input[@name='pwd'])[2]''', '''hjskkjsdjks''');
+  - execute event 9 : assertHelper.assertEquals(false, !''''''.equals(selenium.getValue('''name=pwd''')) && !selenium.getValue('''name=pwd''').equals(selenium.getValue('''xpath=(//input[@name='pwd'])[2]'''))); selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much, we will process your request shortly! ''', selenium.getAlert());
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=pwd''', '''sdjhhdshjdjksjkdsjk''');
+ddmin: increasing granularity
+circumstance [n=3]: [7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=pwd''', '''sdjhhdshjdjksjkdsjk''');
+  - execute event 9 : assertHelper.assertEquals(false, !''''''.equals(selenium.getValue('''name=pwd''')) && !selenium.getValue('''name=pwd''').equals(selenium.getValue('''xpath=(//input[@name='pwd'])[2]'''))); selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much, we will process your request shortly! ''', selenium.getAlert());
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [7, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : assertHelper.assertEquals(false, !''''''.equals(selenium.getValue('''name=pwd''')) && !selenium.getValue('''name=pwd''').equals(selenium.getValue('''xpath=(//input[@name='pwd'])[2]'''))); selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much, we will process your request shortly! ''', selenium.getAlert());
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) = [7, 9]
+Delta Debugging time: 5.998 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''4023045473''');
+  - execute event 3 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 4 : selenium.select('''css=select''', '''label=INCROYAL''');
+  - execute event 5 : selenium.click('''id=phone_yes''');
+  - execute event 6 : selenium.type('''name=lastname''', '''Mouna''');
+  - execute event 7 : selenium.type('''name=pwd''', '''sdjhhdshjdjksjkdsjk''');
+  - execute event 8 : selenium.type('''xpath=(//input[@name='pwd'])[2]''', '''hjskkjsdjks''');
+  - execute event 9 : assertHelper.assertEquals(false, !''''''.equals(selenium.getValue('''name=pwd''')) && !selenium.getValue('''name=pwd''').equals(selenium.getValue('''xpath=(//input[@name='pwd'])[2]'''))); selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much, we will process your request shortly! ''', selenium.getAlert());
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+Elapsed time: 1.438 seconds
+# reduced
+  - executing prefix events
+  - execute event 7 : selenium.type('''name=pwd''', '''sdjhhdshjdjksjkdsjk''');
+  - execute event 9 : assertHelper.assertEquals(false, !''''''.equals(selenium.getValue('''name=pwd''')) && !selenium.getValue('''name=pwd''').equals(selenium.getValue('''xpath=(//input[@name='pwd'])[2]'''))); selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much, we will process your request shortly! ''', selenium.getAlert());
+	@A failure occurs at event 9 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+Elapsed time: 0.778 seconds
+Total Test: 8[2] (Pass: 5[2], Fail: 3[0], Unresolved: 0[0])
+Reduced events: [7, 9] (size: 2/10)

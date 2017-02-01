@@ -1,0 +1,110 @@
+# url: http://localhost:8080/29.html
+There are 8 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 4 : selenium.type('''name=Phone''', '''89328778''');
+  - execute event 5 : selenium.select('''css=select''', '''label=Soare Throat''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''coucou''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+  - execute event 2 : selenium.type('''name=year_week''', '''4th week March''');
+  - execute event 3 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+ddmin: increasing granularity
+circumstance [n=4]: [0, 1, 2, 3, 4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 2 : selenium.type('''name=year_week''', '''4th week March''');
+  - execute event 3 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 4 : selenium.type('''name=Phone''', '''89328778''');
+  - execute event 5 : selenium.select('''css=select''', '''label=Soare Throat''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''coucou''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+  - execute event 4 : selenium.type('''name=Phone''', '''89328778''');
+  - execute event 5 : selenium.select('''css=select''', '''label=Soare Throat''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [0, 1, 4, 5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''coucou''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [0, 1, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''coucou''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+ddmin: increasing granularity
+circumstance [n=4]: [0, 1, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=3]: [1, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [1, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+  - executing prefix events
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+ddmin([0, 1, 2, 3, 4, 5, 6, 7]) = [1, 7]
+Delta Debugging time: 10.776 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''coucou''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+  - execute event 2 : selenium.type('''name=year_week''', '''4th week March''');
+  - execute event 3 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 4 : selenium.type('''name=Phone''', '''89328778''');
+  - execute event 5 : selenium.select('''css=select''', '''label=Soare Throat''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 1.189 seconds
+# reduced
+  - executing prefix events
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''1223832998''');
+  - execute event 7 : assertHelper.assertEquals(true, ''''''.equals(selenium.getValue('''css=input[name=\"last \"]''')) || !Character.isDigit(selenium.getValue('''css=input[name=\"last \"]''').charAt(0)));selenium.click('''css=button''');assertHelper.assertEquals('''Thank you very much for your submission, you will receive a confirmation message shortly!''', selenium.getAlert());
+	@A failure occurs at event 7 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.723 seconds
+Total Test: 13[2] (Pass: 9[2], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [1, 7] (size: 2/8)

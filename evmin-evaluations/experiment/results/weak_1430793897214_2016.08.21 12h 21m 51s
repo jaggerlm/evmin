@@ -1,0 +1,6 @@
+[0] openning url:http://192.168.137.2/rr_replay?sid=1430793897214&policy=DELTA&subset=[145, 148, 338]
+Time Cost:1197
+Trace Length:4
+Generating time:220
+Validating time:1197
+Total time(gen+validate):1417ms

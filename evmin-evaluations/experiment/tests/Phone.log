@@ -1,0 +1,106 @@
+# url: http://localhost:8080/Phone.html
+There are 11 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.select('''css=select''', '''label=Renew a contract''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : selenium.click('''xpath=(//input[@id='phone_yes'])[2]''');
+  - execute event 8 : selenium.click('''xpath=(//input[@id='phone_no'])[3]''');
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.click('''xpath=(//input[@id='phone_no'])[3]''');
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10]
+ddmin: testing subsets
+# url: http://localhost:8080/Phone.html
+There are 11 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.select('''css=select''', '''label=Renew a contract''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : selenium.click('''xpath=(//input[@id='phone_yes'])[2]''');
+  - execute event 8 : selenium.click('''xpath=(//input[@id='phone_no'])[3]''');
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.click('''xpath=(//input[@id='phone_no'])[3]''');
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [8, 9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) = [10]
+Delta Debugging time: 4.068 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''css=input[name=\"first \"]''', '''Mouna''');
+  - execute event 1 : selenium.type('''css=input[name=\"last \"]''', '''Hammoudi''');
+  - execute event 2 : selenium.type('''xpath=(//input[@name='last '])[2]''', '''Yasmine''');
+  - execute event 3 : assertHelper.assertEquals('''empty''', selenium.getText('''xpath=(//input[@name='last '])[2]'''));
+	@A failure occurs at event 3 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[empty], actual:[]
+	---
+  - execute event 4 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 5 : selenium.select('''css=select''', '''label=Renew a contract''');
+  - execute event 6 : selenium.click('''id=phone_no''');
+  - execute event 7 : selenium.click('''xpath=(//input[@id='phone_yes'])[2]''');
+  - execute event 8 : selenium.click('''xpath=(//input[@id='phone_no'])[3]''');
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 1.401 seconds
+# reduced
+  - executing prefix events
+  - execute event 10 : assertHelper.assertEquals(true, (selenium.isChecked('''id=phone_no''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[2]''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[2]''') || selenium.isChecked('''id=phone_yes''')) && (selenium.isChecked('''xpath=(//input[@id='phone_no'])[3]''') || selenium.isChecked('''xpath=(//input[@id='phone_yes'])[3]'''))); assertHelper.assertEquals('''We are glad ot help you thank you very much for taking time and filling this survey! We appreciate your cooperation!''', selenium.getAlert());
+	@A failure occurs at event 10 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.633 seconds
+Total Test: 4[0] (Pass: 0[0], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [10] (size: 1/11)

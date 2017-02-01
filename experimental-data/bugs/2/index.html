@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<title>Bar Chart</title>
+<script src="./Chart.js"></script>
+</head>
+<body>
+<div>
+	<div id='settings'>
+		<button id='setup'>save setup</button>
+		type<select name='type'class='ipt' >
+			<option value="Line">line</option>
+			<option value="Bar">bar</option>
+			<option value="Pie">pie</option>
+		</select>
+		<input name='responsive' class='ipt' type='checkbox'>isResponsive
+		<input class='ipt' name='isResizable' type='checkbox'>isResizable
+		<input class='ipt' name='otherSetting'  type='checkbox'>otherSetting
+		
+	</div>
+	<div id='chart'>
+		<div>title<input id='ipt_title' class='ipt' type='text'>data<input id='ipt_data' class='ipt' type='text'><button value='addData' id='update'>addData</button><button id='removeData'>removeData</button><button id='clear'>clear</button>
+</div>
+	</div>
+</div>
+
+<div style="width: 50%">
+<canvas id="canvas" height="450" width="600"></canvas>
+</div>
+
+
+<script>
+	function ChartData(){
+	}
+	function MyChart(){
+		this.settings={};
+		this.ctx = document.getElementById("canvas").getContext("2d");
+		this.barChartData = {};
+		this.myChart = new Chart(this.ctx);
+		console.log('-------------mychart:',this.myChart);
+		this.datas = {};
+		this.datas.Bar = {
+			labels : ['test'],
+			datasets : [{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,0.8)",
+				highlightFill : "rgba(151,187,205,0.75)",
+				highlightStroke : "rgba(151,187,205,1)",
+				data : [1]
+			}]
+	
+		}
+		this.datas.Line = {
+			labels : ["January","February","March"],
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [1,2,1]
+				}
+			]
+
+		}
+	}
+	MyChart.prototype.getValue = function(ele){
+		if(ele){
+			if(ele.type=='checkbox'){
+				return ele.checked;
+			}else{
+				return ele.value;
+			}
+
+		}
+	}
+	MyChart.prototype.init = function(){
+		var settings = document.getElementById('settings');
+		var setupBtn = document.getElementById('setup');
+		var _self = this;
+		setupBtn.addEventListener('click',function(){
+			var values = settings.getElementsByClassName('ipt');
+			for(var i=0;i<values.length;i++){
+				_self.settings[values[i].name] = _self.getValue(values[i]);
+			}
+			var type = _self.settings.type;
+			_self.cur = _self.myChart[type](_self.datas[type], {
+				responsive : false
+			});	
+
+		});
+
+		var chart = document.getElementById('chart');
+		var cl = document.getElementById('clear');
+		var update = document.getElementById('update');
+		var remove = document.getElementById('removeData');
+		cl.addEventListener('click',function(){
+				if(_self.cur){
+					console.log('==========clear');
+					_self.cur.clear();
+				}
+
+		});
+		update.addEventListener('click',function(){
+			var title = document.getElementById('ipt_title').value;
+			var data = document.getElementById('ipt_data').value;
+			console.log(title,data);
+			if(_self.cur)	{
+				_self.cur.addData([data], title);
+			}
+		});
+		remove.addEventListener('click',function(){
+			if(_self.cur){
+				_self.cur.removeData();
+			}
+		});
+		return this;
+	}
+	
+	xx = new MyChart().init();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+# url: http://localhost:8080/Birthday.html
+There are 11 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ddmin: testing subsets
+# url: http://localhost:8080/Birthday.html
+There are 11 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.type('''id=datepicker''', '''09/09/1991''');
+  - execute event 6 : selenium.click('''id=all'''); assertHelper.assertEquals(true, selenium.isChecked('''id=title_1''') && selenium.isChecked('''id=title_2'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9, 10]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.click('''id=title_2''');
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert());
+  - executing prefix events
+  - execute event 5 : selenium.type('''id=datepicker''', '''09/09/1991''');
+  - execute event 6 : selenium.click('''id=all'''); assertHelper.assertEquals(true, selenium.isChecked('''id=title_1''') && selenium.isChecked('''id=title_2'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [5, 6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.click('''id=all'''); assertHelper.assertEquals(true, selenium.isChecked('''id=title_1''') && selenium.isChecked('''id=title_2'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+circumstance [n=2]: [6, 7]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.click('''id=title_1''');
+  - executing prefix events
+  - execute event 6 : selenium.click('''id=all'''); assertHelper.assertEquals(true, selenium.isChecked('''id=title_1''') && selenium.isChecked('''id=title_2'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) = [6]
+Delta Debugging time: 6.598 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=firstname''', '''Mouna''');
+  - execute event 1 : selenium.type('''name=lastname''', '''Hammoudi''');
+  - execute event 2 : selenium.click('''xpath=(//input[@name='sex'])[2]''');
+  - execute event 3 : selenium.type('''css=input[name=\"Social Seurity Number\"]''', '''7837887782387783''');
+  - execute event 4 : selenium.type('''name=Address''', '''787 R street''');
+  - execute event 5 : selenium.type('''id=datepicker''', '''09/09/1991''');
+  - execute event 6 : selenium.click('''id=all'''); assertHelper.assertEquals(true, selenium.isChecked('''id=title_1''') && selenium.isChecked('''id=title_2'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+  - execute event 7 : selenium.click('''id=title_1''');
+  - execute event 8 : selenium.click('''id=title_2''');
+  - execute event 9 : selenium.click('''css=button''');
+  - execute event 10 : assertHelper.assertEquals('''Thank you, your form has been submitted!''', selenium.getAlert());
+Elapsed time: 1.575 seconds
+# reduced
+  - executing prefix events
+  - execute event 6 : selenium.click('''id=all'''); assertHelper.assertEquals(true, selenium.isChecked('''id=title_1''') && selenium.isChecked('''id=title_2'''));
+	@A failure occurs at event 6 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[true], actual:[false]
+	---
+Elapsed time: 0.662 seconds
+Total Test: 6[0] (Pass: 2[0], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [6] (size: 1/11)

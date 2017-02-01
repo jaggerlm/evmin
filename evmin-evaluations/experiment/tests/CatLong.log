@@ -1,0 +1,56 @@
+# url: http://localhost:8080/catform.html
+There are 13 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.type('''css=input[name=\"credit \"]''', '''879667543456''');
+  - execute event 9 : selenium.type('''css=input[name=\"exp \"]''', '''17/18''');
+  - execute event 10 : selenium.click('''id=phone_yes''');
+  - execute event 11 : selenium.type('''id=PhoneNumber''', '''7 months''');
+  - execute event 12 : assertHelper.assertEquals(false, ('''on'''.equals(selenium.getValue('''id=phone_yes''')) && selenium.isEditable('''id=phone_no''')) || '''on'''.equals(selenium.getValue('''id=phone_no''')) && !selenium.isEditable('''id=phone_no''')); selenium.click('''css=button''');
+	@A failure occurs at event 12 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : selenium.type('''css=input[name=\"exp \"]''', '''17/18''');
+  - execute event 10 : selenium.click('''id=phone_yes''');
+  - execute event 11 : selenium.type('''id=PhoneNumber''', '''7 months''');
+  - execute event 12 : assertHelper.assertEquals(false, ('''on'''.equals(selenium.getValue('''id=phone_yes''')) && selenium.isEditable('''id=phone_no''')) || '''on'''.equals(selenium.getValue('''id=phone_no''')) && !selenium.isEditable('''id=phone_no''')); selenium.click('''css=button''');
+# url: http://localhost:8080/catform.html
+There are 13 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.type('''css=input[name=\"credit \"]''', '''879667543456''');
+  - execute event 9 : selenium.type('''css=input[name=\"exp \"]''', '''17/18''');
+  - execute event 10 : selenium.click('''id=phone_yes''');
+  - execute event 11 : selenium.type('''id=PhoneNumber''', '''7 months''');
+  - execute event 12 : assertHelper.assertEquals(false, ('''on'''.equals(selenium.getValue('''id=phone_yes''')) && selenium.isEditable('''id=phone_no''')) || '''on'''.equals(selenium.getValue('''id=phone_no''')) && !selenium.isEditable('''id=phone_no''')); selenium.click('''css=button''');
+# url: http://localhost:8080/catform.html
+There are 13 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 6 : selenium.type('''name=email''', '''mouna@cse.unl.edu''');
+  - execute event 7 : selenium.type('''name=Phone''', '''4023045473''');
+  - execute event 8 : selenium.type('''css=input[name=\"credit \"]''', '''879667543456''');
+  - execute event 9 : selenium.type('''css=input[name=\"exp \"]''', '''17/18''');
+  - execute event 10 : selenium.click('''id=phone_yes''');
+  - execute event 11 : selenium.type('''id=PhoneNumber''', '''7 months''');
+  - execute event 12 : assertHelper.assertEquals(false, ('''on'''.equals(selenium.getValue('''id=phone_yes''')) && selenium.isEditable('''id=phone_no''')) || '''on'''.equals(selenium.getValue('''id=phone_no''')) && !selenium.isEditable('''id=phone_no''')); selenium.click('''css=button''');
+	@A failure occurs at event 12 [java.lang.NullPointerException]
+	---
+	null
+	---
+circumstance [n=2]: [6, 7, 8, 9, 10, 11, 12]
+ddmin: testing subsets

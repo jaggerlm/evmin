@@ -1,0 +1,578 @@
+(function(){
+	var common = require('../rr.util.js').common;
+	var path = require('path');
+	var Map = common.util.Map;
+	var Vector = require("collection").Vector,Set = require("collection").Set;
+	var config = require('../jalangi.config.js').config;
+	var rrconfig = require('../rr.config.js').config;
+	var constants = require('../rr.constant.js').constants;
+	require('../jalangi/instrument/iidToLocation.js');
+	var fs = require('fs');
+	function removeFile(file){
+		if(fs.existsSync(file)){
+			fs.unlinkSync(file);
+		}
+	}
+
+	DOMGranularity = {
+		'L1':1, // a whole object
+		'L2':2, // specify the read and write operation
+		'L3':3  // specify the read and write operation, and the operated element or attribute, and the tree structure
+	}
+
+	DOMOp = {
+		'R':1,
+		'W':2
+	};
+	function Conds(){
+		this.conditions = {};
+		this.map = {};
+		this.addCond = function(node){
+			if(node.__type != "C") return;
+			this.conditions[node.test] = this.conditions[node.test] || [];
+			if(node.__iid == node.test){
+				this.conditions[node.test].push(node);
+			}else if(node.ce){
+				var len = this.conditions[node.test].length;
+				if(len>0){
+					this.conditions[node.test][len-1].ce = {iid:node.__iid,opid:node.opid};
+				}
+			}else if(node.cr){
+				var len = this.conditions[node.test].length;
+				if(len>0){
+					this.conditions[node.test][len-1].cr = {iid:node.__iid,opid:node.opid};
+				}
+			}
+		}
+		this.getConditions = function(){
+			return this.conditions;
+		}
+	}
+
+	/******************** DDG reader ******************/
+	function DDGReader(options){
+		this.sid = options.sid;
+		this.granularity = options.granularity || DOMGranularity.L3;
+		this.options = options;
+		var t_begin = (new Date()).getTime();
+		if(options.weak){
+			console.log('[OPTIONS:slicing with weak analysis]\n',JSON.stringify(options));
+			this.initWeak();
+		}else{
+			console.log('[OPTIONS:slicing directly]\n',JSON.stringify(options));
+			this.init();
+		}
+		console.log('[Trace is loaded] time cost:',((new Date()).getTime()-t_begin)/1000,'s');
+	}
+
+
+	DDGReader.prototype.all = {};	
+	DDGReader.prototype.evOps = {};
+	DDGReader.prototype.evRw = {};
+	DDGReader.prototype.initWeak = function(){
+		var options = this.options;
+		var ddgFile = path.join(process.cwd(),options.file+'.weak.ddg');
+		var res = require(ddgFile);
+		for(var v in res){
+			this[v]= res[v];
+		}
+		this.init();
+		//for(var opid in this.all){
+		//	this._addToEvOps(this.loadRecord(opid));
+		//}
+	}
+
+	DDGReader.prototype.init = function(){
+		var p = config.logpath + this.sid+".tmp";
+		this.conds = new Conds();
+		var content = fs.readFileSync(p);
+		var arr = content.toString().split('\n');
+		console.log('======read file end',arr.length);
+		for(var i =0;i<arr.length;i++){
+			if(arr[i]){
+				var node = JSON.parse(arr[i]);
+				if(i<=100)
+					console.log(arr[i]);
+				if(!this.all[node.opid]){
+					this.all[node.opid] = node; 
+					this._addToEvOps(node);
+				}else{
+					var orig = this.all[node.opid].dps.map;
+					orig = common.util.extend(orig, node.dps.map);
+				}
+				if(rrconfig.enables.weak && !this.options.weak){
+					this.conds.addCond(node);
+				}
+				if(DOMGranularity.L1 == this.granularity && node.mode == 2){
+					this.evRw[node.evid] = DOMOp.W; //write is 2i
+				}else if(DOMGranularity.L2 == this.granularity && node.mode ==2){
+					this.evRw[node.evid] = this.evRw[node.evid]| DOMOp[node.M]; //
+				}
+			}
+		}
+
+		console.log('======init  end',arr.length);
+		var altFile = config.logpath + this.sid+".alt";
+		if(!fs.existsSync(altFile)){
+			return;
+		}
+		content = fs.readFileSync(altFile);
+		arr = content.toString().split('\n');
+		for( i=0;i<arr.length;i++){
+			if(arr[i]){
+				var m = JSON.parse(arr[i]);
+				if(m.T == constants.RefactorType.REMOVE){
+					var rcd = this.loadRecord(m.opid);
+					delete rcd.dps.map[m.dpsid];
+				}
+			}
+		}
+	}
+
+	DDGReader.prototype.loadRecord = function(opid){
+		return this.all[opid];
+	}
+
+	DDGReader.prototype.formatLineDepend = function(opid1,opid2){
+		var node1 = this.loadRecord(opid1);
+		var node2 = this.loadRecord(opid2);
+		var line1 = J$.iidToLine(node1.__iid);
+		var line2 = J$.iidToLine(node2.__iid);
+		this.lineCache = this.lineCache||{};
+		this.lineCache[line1] = this.lineCache[line1]||{};
+		if(line1!=line2)
+			this.lineCache[line1][line2] = true;
+	}
+
+	DDGReader.prototype.formatDepend = function(opid1,opids){
+		var node1 = this.loadRecord(opid1); 
+		if(!node1) return;
+		var s = '';
+		for(var opid2 in opids){
+			var node2 = this.loadRecord(opid2);
+			if(node2 && node1.evid > node2.evid)
+				s+=( node1.evid + '->' + node2.evid + ' | {opid:'+ opid1 +',T:'+node1.__type+',iid:'+node1.__iid+',L:'+J$.iidToLocation(node1.__iid)+', dps:'+JSON.stringify(keys(node1.dps.map))+'}' + '-> {opid:' + opid2 + ',T:'+node2.__type+',iid:'+node2.__iid +',L:' + J$.iidToLocation(node2.__iid)+'}\n');
+		}
+		return s;
+	}
+
+	DDGReader.prototype.getFaultCriterionByIids = function(iids){
+		var res = {};
+		for(var opid in this.all){
+			var rcd = this.all[opid];
+			if(iids[rcd.__iid]){
+				res[rcd.evid] = true;
+			}
+		}
+		var list = [];
+		for(var i in res){
+			list.push(i);
+		}
+		return list;
+	}
+	DDGReader.prototype.getFaultCriterionByIids2 = function(errorEvs,iids){
+		var res = {};
+		var list = [];
+		var edg = new EventDependencyGraph(this);
+		var eops = {};
+		var errors={};
+		for(var i=0;i<errorEvs.length;i++){
+			errors[errorEvs[i]] = true;
+		}
+		for(var i=0;i<errorEvs.length;i++){
+			var opids = this.loadRecordsByEvid(errorEvs[i]);
+			for(var opid in opids){
+				var rcd = this.all[opid];
+				if(rcd && iids[rcd.__iid]){
+					var dops = edg.getDps(this.all[opid]);
+					for(var dopid in dops){
+						var rcd = this.all[dopid];
+						if(rcd && rcd.evid && !res[rcd.evid] && !errors[rcd.evid]){
+							res[rcd.evid] = true;
+							list.push(rcd.evid);
+						}
+					}
+				}
+			}
+		}
+		return list;
+	}
+	DDGReader.prototype.getFaultCriterionByAsserts = function(errorid){
+		
+		var ops = this.loadRecordsByEvid('assert');
+		var arr = [];
+		for(var opid in ops){
+			var op = ops[opid];
+			for(did in op.dps.map){
+				var rcd = this.loadRecord(did);
+				if(!rcd || !rcd.opid){
+					continue;
+				}
+				if(rcd.evid == 'assert') continue;
+				var eid = rcd.evid
+				if(errorid){
+					if(errorid<=eid){
+						continue;
+					}
+				}
+				arr.push(eid);
+			}
+		}
+		return arr;
+	}
+
+	DDGReader.prototype.mergeForDOM = function(errors){
+
+		if(this.granularity == DOMGranularity.L1){
+			for(var i=0;i<errors.length;i++){
+				if(this.evRw[errors[i]]){
+					return keys(this.evRw,parseInt);
+				}
+			}
+		}else if(this.granularity == DOMGranularity.L2){
+			var std = DOMOp.W;
+			var res = {};
+			for(var i=0;i<errors.length;i++){
+				if(this.evRw[errors[i]]){
+					for(var ev in this.evRw){
+						if(this.evRw[ev]>=std){
+							res[ev] = true;
+						}
+					} 
+					for(var k=0;k<errors.length;k++){
+						res[errors[k]] = true;
+					}
+					return keys(res,parseInt);
+				}
+			}	
+		}
+		return errors;
+	}
+	DDGReader.prototype.checkContainsWrite = function(){
+		var res = {};
+		var all  = this.conds.getConditions();
+		for(var iid in all){
+			var cds  = all[iid];
+			for(var i=0;i<cds.length;i++){
+				if(!cds[i].ce || !cds[i].cr) {
+					continue;
+				}
+				for(var j=cds[i].ce.opid+1;j<cds[i].cr.opid;j++){
+					var rcd = this.loadRecord(j);
+					if(rcd && rcd.M == 'W'){
+						cds[i].containsW = true;
+						res[cds[i].opid] = cds[i];
+						break;
+					}
+				}
+			}
+		}
+		return res;
+	}
+	/**
+	 *@param isPersist whether save the result to file
+	 *@param options format:{file,debug, dpsLevel[=opid||line(default)]}, used to persist the result.
+	 */
+	DDGReader.prototype.getSlice = function(eventCut){
+		var options = this.options;
+		eventCut.forEach(function(v,i,arr){
+			return arr[i] = parseInt(v);
+		});
+		var edg = new EventDependencyGraph(this);
+		eventSlice = new Set(this.mergeForDOM(eventCut));
+		console.log('[Start to slice for sid='+this.sid+',','error events:',eventCut.join(','),']');
+		var t_begin = (new Date()).getTime();
+		if(options.weak){
+			var res = edg.getWeakEventDps(eventSlice,options);
+			var resLog = options.file.replace('_2.log','_3.log');
+			options.file = options.file+'.weak';
+		}else{
+			var res = edg.getEventDps2(eventSlice,options);
+			var resLog = options.file;
+		}
+
+		if(options && res){
+			//write result to file
+			var t_int = ((new Date()).getTime()-t_begin)/1000;
+			console.log('[End slicing. Check file ',resLog,'] time cost:', t_int+'s');
+			console.log('result length:',res.list.length,'\n',res.list.join(','));
+			var sl = res.list.join(rrconfig.record_separator);
+			removeFile(resLog);
+			fs.appendFileSync(resLog, sl, {flag:'a+'});
+			//write details
+			if(options.debug){
+				var detFile = options.file+'.det';	
+				removeFile(detFile);
+				t_begin = new Date().getTime();
+				fs.appendFileSync(detFile,'---------params------------\n',{flag:'a+'});
+				fs.appendFileSync(detFile, 'request info:'+JSON.stringify(options.request)+'\n');
+				fs.appendFileSync(detFile, 'sid:'+this.sid+'\n');
+				fs.appendFileSync(detFile, 'eventCut:'+JSON.stringify(eventCut));
+				fs.appendFileSync(detFile,'\n---------result------------\n');
+				fs.appendFileSync(detFile, 'length:'+res.list.length+'\n');
+				fs.appendFileSync(detFile, 'result:'+sl);
+				fs.appendFileSync(detFile,'\n---------detail------------\n');
+				if(options.dpsLevel == 'opid'){
+					t_begin = new Date().getTime();
+					for(var opid in res.ddg){
+						fs.appendFileSync(detFile,this.formatDepend(opid,res.ddg[opid]));
+					}
+				}else{
+					for(var opid in res.ddg){
+						var _dps = res.ddg[opid]; 
+						for(var dop in _dps){
+							this.formatLineDepend(opid,dop);
+						}
+					}
+					for(var x in this.lineCache){
+						var ldps = '';
+						for(var line in this.lineCache[x]){
+							if(line)
+								ldps+=line+",";
+						}
+						if(ldps) fs.appendFileSync(detFile,x+"->{"+ldps+"}"+'\n');
+					}
+				}
+				console.log('[End writing details to file',detFile,'] time cost:',(new Date().getTime()-t_begin)/1000,'s' );
+				//Write ddg information
+				if(rrconfig.enables.weak && !options.weak){
+					t_begin = new Date().getTime();
+					var ddgFile = options.file+'.weak.ddg';
+					removeFile(ddgFile);
+					fs.appendFileSync(ddgFile,'evCut='+JSON.stringify(eventCut)+';\n',{flag:'a+'});
+					//fs.appendFileSync(ddgFile,'all={};\n');
+					//for(var v in res.evMap) fs.appendFileSync(ddgFile,'all['+v+']='+JSON.stringify(res.evMap[v])+'\n');
+					fs.appendFileSync(ddgFile,'conds={};\n');
+					var wconds = this.checkContainsWrite();
+					for(var v in wconds) fs.appendFileSync(ddgFile,'conds['+v+']='+JSON.stringify(wconds[v])+'\n');
+					fs.appendFileSync(ddgFile,'exports.evCut = evCut; exports.conds = conds;');
+					console.log('[End writing DDG to file',ddgFile,'], time cost:',(new Date().getTime()-t_begin)/1000,'s');
+				}
+			}	
+		}
+		return res;
+	}
+	DDGReader.prototype.retreiveDPSOf = function(node){
+		if(!node || !node.dps)
+			return {};
+		return (node.dps.map);	
+	}
+	DDGReader.prototype._addToEvOps = function(node){
+		this.evOps[node.evid] = this.evOps[node.evid] || {};
+		this.evOps[node.evid][node.opid] = node;
+	}
+
+	DDGReader.prototype.loadRecordsByEvid = function(evid){
+		return this.evOps[evid];
+	}
+	DDGReader.prototype.loadEvsByOps = function(ops){
+		var res = new Map();
+		if(ops){
+			for(var i=0;i<ops.length;i++){
+				var rcd = this.loadRecord(ops[i]);
+				if(rcd)
+					res.put(rcd.evid);
+			}
+		}
+		return res.keyArray();
+	}
+	exports.DDGReader = DDGReader;
+	
+	/**
+	 * @param arr a initialized list of event
+	 */
+	var opKeys = {R:1,W:2};
+
+	function EventDependencyGraph(ddgReader){
+		//this.evMap = {};
+		this.ddg = {};
+		var reserved = {};	
+		//read operation in the dependece should be ignored
+		this.filterReadOp = function(rnode,res,callback){
+			for(opid in res){
+				var rcd = ddgReader.loadRecord(opid);
+				//TODO
+				if(rcd && (rcd.M != 'W')){
+					delete res[opid];
+				}else{
+					if(typeof callback === 'function'){
+						callback(rnode,rcd);
+					}
+				}
+			}
+			return res;
+		}
+		/*get all the dependent operations for a given operation*/
+		this.getDps = function(rnode,callback){
+			var res = {};
+			if(rnode && rnode.opid){
+				var initOpid = rnode.opid;
+				var q = [rnode];
+				while(q.length>0){
+					var node  = q.shift();
+					if(node){				
+						var depends = ddgReader.retreiveDPSOf(node);
+						for(var v in depends){
+							this.ddg[node.opid] = this.ddg[node.opid]||{};
+							if(this.ddg[node.opid][v])
+								continue;
+							this.ddg[node.opid][v] = true;
+							var dnode = ddgReader.loadRecord(v);
+							if(v !=initOpid && !res[v] && dnode){
+								res[v] = dnode;
+								q.push(dnode);
+								
+							}
+						}
+					}
+				}
+			}
+			return this.filterReadOp(rnode,res,callback);
+		};
+
+		function reserveCondition(res,node,callback){
+			for(var v in res){
+				callback(node,ddgReader.loadRecord(v));
+			}
+			for(var j=node.ce.opid+1;j<node.cr.opid;j++){
+				var rcd = ddgReader.loadRecord(j);
+				if(rcd)
+					callback(node,rcd);	
+			}
+		}
+		this.getCondBlocks = function(node,callback){
+			var res = this.getDps(node);
+			for(var v in res){
+				var rcd = ddgReader.loadRecord(v);
+				if(node.evid>rcd.evid){
+					reserveCondition(res,node,callback);
+					break;
+				}
+			}
+
+		}
+
+		function getWeakEventDps(evtSlice,options){
+			var callback = function(node1,node2){
+				if(node1 && node2){
+					reserved[node1.opid] = reserved[node1.opid]|| {};
+					reserved[node1.opid][node2.opid]= true;
+					evtSlice.add(node2.evid);
+				}
+			}
+			
+			var res = {};
+			var initialOps=[];
+
+			for(var i=0;i<evtSlice.size();i++){
+				for(var op in ddgReader.loadRecordsByEvid(evtSlice.get(i))){
+					this.getDps(ddgReader.loadRecord(op),callback);
+				}
+			}
+			for(var opid in ddgReader.conds){
+				var node = ddgReader.conds[opid];
+				if(node.containsW){
+					this.getCondBlocks(node,callback);
+				}
+			}
+			evtSlice =  this.calculateEventSlice(evtSlice,function(node1,node2){
+				if(node1 && node2 && reserved[node1.opid] && reserved[node1.opid][node2.opid]) return true;
+			},options);
+			return {list:evtSlice.toArray(),ddg:this.ddg};
+		}
+		/*
+		this.tranverseDirectDps = function (node,callback){
+			var depends = ddgReader.retreiveDPSOf(node);
+			for(var v in depends){
+				this.ddg[node.opid] = this.ddg[node.opid]||{};
+				if(this.ddg[node.opid][v]){
+					continue;
+				}
+				this.ddg[node.opid][v] = true;
+				var node2 = ddgReader.loadRecord(v);
+				if(typeof callback === 'function' && node2){
+					callback(node,node2);
+				}
+			}
+		}*/
+
+		//it will be more faster using Depth First algorithm
+		this.calculateEventSlice = function (evtSlice, filter,options){
+			//TODO
+			var q = evtSlice.toArray();
+			while(q.length>0){
+				var curE = q.shift();
+				var opsOfCurE = ddgReader.loadRecordsByEvid(curE);
+				for(var opid in opsOfCurE){
+					var opOfCurE = opsOfCurE[opid];
+					if(!opOfCurE.opid || !opOfCurE.evid)
+						continue;
+					//this.evMap[opid] = ddgReader.loadRecord(opid);
+					this.getDps(opOfCurE,function(node1,node2){
+						if(typeof filter === 'function' && !filter(node1,node2))
+							return;
+						if(!evtSlice.has(node2.evid)){
+							evtSlice.add(node2.evid);
+							q.push(node2.evid);
+						}
+					});
+				}
+			}
+			return evtSlice;
+		}
+
+	
+		function getEventDps2(evtSlice,options){
+			evtSlice = this.calculateEventSlice(evtSlice,null, null);
+			return {list:evtSlice.toArray(),ddg:this.ddg};
+
+		}
+		/*
+		function getEventDps(eventSlice,options){
+			var res = {};
+			var initialArr = eventSlice.toArray();
+			if(!initialArr || initialArr.length<1){
+				return {list:[]};
+			}
+			var q = [].concat(initialArr);
+			for(var i=0;i<initialArr.length;i++){
+				res[initialArr[i]] = true;
+			}
+			while(q.length>0){
+				var curE = q.shift();
+				var ops = ddgReader.loadRecordsByEvid(curE);
+				for(var opid in ops){
+					var rcd = ops[opid];
+					if(!rcd.opid || !rcd.evid)
+						continue;
+					
+					this.evMap[opid] = ddgReader.loadRecord(opid);;
+					var dops = this.getDps(rcd);
+					for(var did in dops){
+						var drcd = ddgReader.loadRecord(did);
+						this.ddg[rcd.opid] = this.ddg[rcd.opid] || {};
+						if(drcd && drcd.opid&&!this.ddg[rcd.opid][drcd.opid]){
+							this.ddg[rcd.opid][drcd.opid]=true;
+							//the first  dependency opration that why drcd.evid is in the result set.
+							if(!res[drcd.evid]){
+								res[drcd.evid] = true;
+								q.push(drcd.evid);
+							}
+						}
+					}
+				}
+			}
+			return {list:keys(res),ddg:this.ddg,evMap:this.evMap};
+		}*/
+		this.getEventDps2 = getEventDps2;
+		this.getWeakEventDps = getWeakEventDps;
+	}
+	function keys(map,cb){
+		var res = [];
+		for(var x in map){
+			if(typeof cb == "function") x = cb(x);
+			res.push(x);
+		}
+		return res;
+	};
+})();

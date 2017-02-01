@@ -1,0 +1,71 @@
+# url: http://localhost:8080/Reorder.html
+There are 10 events (with 0 prefix events)
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])...
+circumstance [n=2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 5 : selenium.type('''xpath=(//input[@name='fn'])[6]''', '''678654''');
+  - execute event 6 : selenium.dragAndDropToObject('''css=#sortable2 > li.ui-state-default''', '''//ul[@id='sortable2']/li[3]''');
+  - execute event 7 : selenium.dragAndDropToObject('''//ul[@id='sortable']/li[1]''', '''//ul[@id='sortable']/li[3]''');
+  - execute event 8 : selenium.click('''css=div.clicked''');assertHelper.assertEquals(false, !''''''.equals(selenium.getText('''id=result-text''')));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [5, 6, 7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 7 : selenium.dragAndDropToObject('''//ul[@id='sortable']/li[1]''', '''//ul[@id='sortable']/li[3]''');
+  - execute event 8 : selenium.click('''css=div.clicked''');assertHelper.assertEquals(false, !''''''.equals(selenium.getText('''id=result-text''')));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [7, 8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 8 : selenium.click('''css=div.clicked''');assertHelper.assertEquals(false, !''''''.equals(selenium.getText('''id=result-text''')));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+circumstance [n=2]: [8, 9]
+ddmin: testing subsets
+  - executing prefix events
+  - execute event 9 : selenium.click('''css=button[type=\"button\"]''');
+  - executing prefix events
+  - execute event 8 : selenium.click('''css=div.clicked''');assertHelper.assertEquals(false, !''''''.equals(selenium.getText('''id=result-text''')));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+ddmin([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) = [8]
+Delta Debugging time: 7.016 seconds
+### Validation ###
+# original
+  - executing prefix events
+  - execute event 0 : selenium.type('''name=fn''', '''Mouna''');
+  - execute event 1 : selenium.type('''xpath=(//input[@name='fn'])[2]''', '''Hammoudi''');
+  - execute event 2 : selenium.click('''name=fem''');
+  - execute event 3 : selenium.type('''xpath=(//input[@name='fn'])[4]''', '''403746784''');
+  - execute event 4 : selenium.type('''xpath=(//input[@name='fn'])[5]''', '''67837 B street''');
+  - execute event 5 : selenium.type('''xpath=(//input[@name='fn'])[6]''', '''678654''');
+  - execute event 6 : selenium.dragAndDropToObject('''css=#sortable2 > li.ui-state-default''', '''//ul[@id='sortable2']/li[3]''');
+  - execute event 7 : selenium.dragAndDropToObject('''//ul[@id='sortable']/li[1]''', '''//ul[@id='sortable']/li[3]''');
+  - execute event 8 : selenium.click('''css=div.clicked''');assertHelper.assertEquals(false, !''''''.equals(selenium.getText('''id=result-text''')));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+  - execute event 9 : selenium.click('''css=button[type=\"button\"]''');
+Elapsed time: 1.46 seconds
+# reduced
+  - executing prefix events
+  - execute event 8 : selenium.click('''css=div.clicked''');assertHelper.assertEquals(false, !''''''.equals(selenium.getText('''id=result-text''')));
+	@A failure occurs at event 8 [java.lang.RuntimeException]
+	---
+	assertion failure!(expected:[false], actual:[true]
+	---
+Elapsed time: 0.745 seconds
+Total Test: 5[0] (Pass: 1[0], Fail: 4[0], Unresolved: 0[0])
+Reduced events: [8] (size: 1/10)

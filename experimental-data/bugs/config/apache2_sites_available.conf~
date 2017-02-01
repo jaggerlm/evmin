@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	DocumentRoot /home/user/mnt/www
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+	Redirect /bugs/18 http://192.168.137.2:8081/
+	Redirect /bugs/19 http://192.168.137.2:8082/
+	Redirect /bugs/18 http://10.0.2.15
+	Redirect /bugs/18 http://192.168.137.2
+</VirtualHost>

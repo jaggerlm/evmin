@@ -1,0 +1,690 @@
+(function (sandbox, rr) {
+	var dps = rr.dps;
+    function WeakAnalysis() {
+        var MAX_STRING_LENGTH = 30;
+		var symbolize = dps.AnotatedValue.symbolize;
+        var SymbolicBool = dps.SymbolicBool;
+        var SymbolicLinear = dps.SymbolicLinear
+        var SymbolicStringExpression = dps.SymbolicStringExpression;
+        var SymbolicStringPredicate = dps.SymbolicStringPredicate;
+        var ToStringPredicate = dps.ToStringPredicate;
+        var FromCharCodePredicate = dps.FromCharCodePredicate;
+        var SymbolicType = dps.SymbolicType;
+        var SymbolicObject = dps.SymbolicObject;
+        var SymbolicUndefined = dps.SymbolicUndefined;
+       	var SymbolicNativeFunction = dps.SymbolicNativeFunction;
+		var SymbolicNativeFields = dps.SymbolicNativeFields;
+		var Symbolic = dps.symbolic;
+        var ExecutionIndex = dps.ExecutionIndex;
+        var executionIndex = new ExecutionIndex();
+		var sfuns = rr.sfuns;
+        var pathConstraint = [];
+        pathConstraint.count = 0;
+
+        var getConcrete = this.getConcrete = dps.AnotatedValue.getConcrete;
+        var getSymbolic = this.getSymbolic = dps.AnotatedValue.getSymbolic;
+
+		function makePredicate(left_s) {
+            var ret = left_s;
+            if (left_s instanceof SymbolicLinear) {
+                if (left_s.op === SymbolicLinear.UN) {
+                    ret = left_s.setop("!=");
+                }
+                return ret;
+            } else if (left_s instanceof SymbolicStringExpression) {
+                ret = new SymbolicStringPredicate("!=", left_s, "");
+                return ret;
+            } else if (left_s instanceof SymbolicStringPredicate ||
+                left_s instanceof SymbolicBool ||
+                left_s instanceof SymbolicType ||
+                left_s instanceof FromCharCodePredicate ||
+                left_s instanceof ToStringPredicate) {
+                return ret;
+            } else if(left_s instanceof SymbolicUndefined ||
+				left_s instanceof SymbolicObject){
+				return ret;
+			}
+            return undefined;
+        }
+
+		/**
+		 * idx: aux symbol
+		 * val: [ AnnotatedValue, [], [typeof val.concrete], 0, true|false ]   
+		 * getNextSymbol: getNextSymbol function
+		 */
+        this.makeConcolic = function (idx, val, getNextSymbol) {
+            var ret, concrete, type, stype, fieldsOrdered, len, i, slength;
+			concrete = getConcrete(val[0]);
+            type = typeof concrete;
+
+            executionIndex.executionIndexCall();
+            stype = makeConcolicType(getNextSymbol(true), typeof concrete, val[2], val[3], val[4]);
+            if (type === 'string') {
+                slength = makeConcolicNumber(idx+'.length', val[0].length);
+                ret = makeConcolicString(idx, val[0], slength, stype);
+            } else if (type === 'number' || type === 'boolean') {
+                ret = makeConcolicNumber(idx, val[0], stype);
+            } else if (type === 'object' || type === 'function') {
+                ret = makeConcolicObject(idx, val[0], stype);
+                fieldsOrdered = val[1];
+                len = fieldsOrdered.length;
+                for (i = 0; i < len; i++) {
+                    getSymbolic(ret).addField(fieldsOrdered[i]);
+                }
+            } else if (type === "undefined") {
+                ret = makeConcolicUndefined(idx, val[0], stype);
+            }
+            //installConstraint(getSymbolic(ret).stype, true, true);
+			return ret;
+        }
+
+        this.makeConcolicPost = function () {
+            executionIndex.executionIndexReturn();
+        }
+
+        function makeConcolicNumber(idx, val, stype) {
+            return symbolize(val, new SymbolicLinear(idx, stype));
+        }
+
+        function makeConcolicObject(idx, val, stype) {
+            return symbolize(val, new SymbolicObject(idx, stype));
+        }
+
+        function makeConcolicUndefined(idx, val, stype) {
+            return symbolize(val, new SymbolicUndefined(idx, stype));
+        }
+
+        function makeConcolicType(idx, val, possibleTypes, currentTypeIdx, isFrozen) {
+            return symbolize(val, new SymbolicType(idx, possibleTypes, currentTypeIdx, isFrozen));
+        }
+
+        function makeConcolicString(idx, val, slength, stype) {
+            installAxiom(J$.B(0, ">=", slength, 0));
+            if (idx.indexOf("x") === 0) {
+                installAxiom(J$.B(0, "<=", slength, MAX_STRING_LENGTH));  // add this axiom only for input symbolic values
+            }
+            return symbolize(val, new SymbolicStringExpression(idx, slength, stype));
+        }
+        
+		this.getFieldPre = function (iid, base, offset) {
+            var base_s = getSymbolic(base);
+            if (base_s) {
+                addType(base_s, "object");
+            }
+        }
+
+        this.getField = function (iid, base, offset, result) {
+            var ret, base_s = this.getSymbolic(base), base_c = this.getConcrete(base);
+			var result_c = getConcrete(result);
+            if (base_s && base_s.getField) {
+                ret = base_s.getField(offset);
+            }
+            if (base_s instanceof SymbolicObject && !(offset in base_c)) {
+                base_s.addField(offset);
+                ret = J$.readInput(undefined, false, base_s.getSymbolForField(offset));
+                base_c[offset] = ret;
+                return {result:ret};
+            } else if(getSymbolic(offset)){ 
+                //ret = new SymbolicNativeFields(base,offset);
+				ret = sfuns.object_getField.apply(undefined, [result_c, base, offset]);
+            }
+            if (typeof ret !== 'undefined') {
+                return {result: symbolize(result, getSymbolic(ret))};
+            }
+        }
+
+        this.invokeFunPre = function (iid, f, base, args, isConstructor) {
+            executionIndex.executionIndexInc(iid);
+            var f_s = this.getSymbolic(f);
+            if (f_s) {
+                addType(f_s, "function");
+            }
+        }
+
+        function regexp_test(str) {
+            // this is a regexp object
+            var concrete = J$.getConcrete(str);
+            var newSym;
+
+            if (str !== concrete && str.symbolic && str.symbolic.isCompound && str.symbolic.isCompound()) {
+                newSym = J$.readInput(concrete, true);
+                J$.addAxiom(J$.B(0, "==", newSym, str));  // installing an axiom
+            } else {
+                newSym = str;
+            }
+            return J$.B(0, "regexin", newSym, this);
+        }
+	
+		function concat(val, a) {
+			return [val].concat(Array.prototype.slice.call(a, 0));
+		};
+		var funcount = 0;
+		function getNextFuncallSymbol(){
+			funcount++;
+			return 'f'+funcount;
+		}
+		this.invokeFun = function (iid, f, base, args, val, isConstructor, isMethod, node) {
+		//	return;
+			f = getConcrete(f);
+            var isSymbolic = false;
+            if (getSymbolic(base)) {
+                isSymbolic = true;
+            }
+            var i, len = args.length;
+            for (i = 0; i < len; ++i) {
+                if (getSymbolic(args[i])) {
+                    isSymbolic = true;
+                    break;
+                }
+            }
+			if(!isSymbolic)
+				return;
+			var sym = new SymbolicNativeFunction(base,f,args,val, isConstructor).getSym();
+			if(typeof sym !== 'undefined'){
+				var choices = {}
+				choices[node.evid] = {
+					evid:node.evid,
+					symbolic:sym
+				}
+				ret = J$.readInput(val,false,getNextFuncallSymbol());
+				node.dataChoice = choices;
+				node.stype = {conc:ret.symbolic.stype.concrete};
+				node.symbolic = getSymbolic(ret);
+				R$.weakg.collector.installAuxiom(node);
+				return {result:symbolize(val,getSymbolic(ret))};
+			}
+        }
+
+        this.putFieldPre = function (iid, base, offset, val) {
+            var base_s = getSymbolic(base);
+            if (base_s) {
+                addType(base_s, "object");
+            }
+            return {result:val,base:base,offset:offset,val:val};
+        }
+
+        this.putField = function (iid, base, offset, val) {
+            var base_s = this.getSymbolic(base);
+            if (base_s && base_s.putField) {
+                base_s.putField(offset, val);
+            }
+            return {result:val};
+        }
+
+        function addType(_s, type) {
+            if (_s && _s.stype) {
+                getSymbolic(_s.stype).addType(type);
+            }
+        }
+
+        function isSymbolicString(s) {
+            return s && s instanceof SymbolicStringExpression;
+        }
+
+        function isSymbolicNumber(s) {
+            return s && s instanceof SymbolicLinear;
+        }
+
+        function isSymbolicObject(s) {
+            return s && s instanceof SymbolicObject;
+        }
+
+        function isSymbolicType(s) {
+            return s && s instanceof SymbolicType;
+        }
+
+        function isSymbolicUndefined(s) {
+            return s && s instanceof SymbolicUndefined;
+        }
+
+        function symbolicIntToString(num) {
+            var concrete = getConcrete(num);
+            var newSym = J$.readInput("" + concrete, false,num.symbolic.toString());
+            installAxiom(symbolize(true, new ToStringPredicate(getSymbolic(num), getSymbolic(newSym))));
+            return newSym;
+        }
+
+        function symbolicStringToInt(str) {
+            var concrete = getConcrete(str);
+            var newSym = J$.readInput(+concrete, false,str.symbolic.toString());
+            installAxiom(symbolize(true, new ToStringPredicate(getSymbolic(newSym), getSymbolic(str))));
+            return newSym;
+        }
+
+
+        this.binary = function (iid, op, left, right, result) {
+			var result_c = getConcrete(result);	
+            // needs to be changed based on analysis
+            var ret;
+            var left_c = this.getConcrete(left),
+                left_s = this.getSymbolic(left),
+                right_c = this.getConcrete(right),
+                right_s = this.getSymbolic(right);
+
+            var type = typeof result_c;
+
+            switch (op) {
+                case "+":
+                case "<":
+                case ">":
+                case "<=":
+                case ">=":
+                    if (typeof right_c === "number" || typeof right_c === "string") {
+                        addType(left_s, typeof right_c);
+                    } else {
+                        addType(left_s, "number");
+                        addType(left_s, "string");
+                    }
+                    if (typeof left_c === "number" || typeof left_c === "string") {
+                        addType(right_s, typeof left_c);
+                    } else {
+                        addType(right_s, "number");
+                        addType(right_s, "string");
+                    }
+                    break;
+                case "-":
+                case "*":
+                case "/":
+                case "%":
+                case "<<":
+                case ">>":
+                case ">>>":
+                case "&":
+                case "|":
+                case "^":
+                    addType(left_s, "number");
+                    addType(right_s, "number");
+                    break;
+                case "==":
+                case "!=":
+                case "===":
+                case "!==":
+                    if (right_c === null) {
+                        addType(left_s, "null");
+                        addType(left_s, "object");
+                    } else {
+                        addType(left_s, typeof right_c);
+                    }
+                    if (left_c === null) {
+                        addType(left_s, "null");
+                        addType(left_s, "object");
+                    } else {
+                        addType(right_s, typeof left_c);
+                    }
+                    break;
+                case "||":
+                case "&&":
+                    addType(left_s, "boolean");
+                    addType(right_s, "boolean");
+                    break;
+                case "instanceof":
+                    addType(left_s, right_c);
+                    break;
+                case "in":
+                    addType(right_s, "object");
+                    break;
+                case "regexin":
+                    addType(left_s, "string");
+                    break;
+                default:
+                    //throw new Error(op + " at " + iid + " not found");
+                    break;
+            }
+
+
+            if (op === "+") {
+                if (type === 'string') {
+					if (isSymbolicNumber(left_s)) {
+                        left = symbolicIntToString(left);
+                        left_s = getSymbolic(left);
+                        left_c = getConcrete(left);
+                    }
+                    if (isSymbolicNumber(right_s)) {
+                        right = symbolicIntToString(right);
+                        right_s = getSymbolic(right);
+                        right_c = getConcrete(right);
+                    }
+                    if (isSymbolicString(left_s) && isSymbolicString(right_s)) {
+                        ret = left_s.concat(right_s);
+                    } else if (isSymbolicString(left_s)) {
+                        ret = left_s.concatStr(right_c);
+                    } else if (isSymbolicString(right_s)) {
+                        ret = right_s.concatToStr(left_c);
+                    }
+                } else if (type === 'number') {
+                    if (isSymbolicString(left_s)) {
+                        left = symbolicStringToInt(left);
+                        left_s = getSymbolic(left);
+                        left_c = getConcrete(left);
+                    }
+                    if (isSymbolicString(right_s)) {
+                        right = symbolicStringToInt(right);
+                        right_s = getSymbolic(right);
+                        right_c = getConcrete(right);
+                    }
+                    if (isSymbolicNumber(left_s) && isSymbolicNumber(right_s)) {
+                        ret = left_s.add(right_s);
+                    } else if (isSymbolicNumber(left_s)) {
+                        right_c = right_c + 0;
+                        if (right_c == right_c)
+                            ret = left_s.addLong(right_c);
+                    } else if (isSymbolicNumber(right_s)) {
+                        left_c = left_c + 0;
+                        if (left_c == left_c)
+                            ret = right_s.addLong(left_c);
+                    }
+                }
+            } else if (op === "-") {
+                if (type === 'number') {
+                    if (isSymbolicString(left_s)) {
+                        left = symbolicStringToInt(left);
+                        left_s = getSymbolic(left);
+                        left_c = getConcrete(left);
+                    }
+                    if (isSymbolicString(right_s)) {
+                        right = symbolicStringToInt(right);
+                        right_s = getSymbolic(right);
+                        right_c = getConcrete(right);
+                    }
+                    if (isSymbolicNumber(left_s) && isSymbolicNumber(right_s)) {
+                        ret = left_s.subtract(right_s);
+                    } else if (isSymbolicNumber(left_s)) {
+                        right_c = right_c + 0;
+                        if (right_c == right_c)
+                            ret = left_s.subtractLong(right_c);
+                    } else if (isSymbolicNumber(right_s)) {
+                        left_c = left_c + 0;
+                        if (left_c == left_c)
+                            ret = right_s.subtractFrom(left_c);
+                    }
+                }
+            } else if (op === "<" || op === ">" || op === "<=" || op === ">=" || op === "==" || op === "!=" || op === "===" || op === "!==") {
+                if (op === "===" || op === "!==") {
+                    op = op.substring(0, 2);
+                }
+                if (op === "==" || op === "!=") {
+                    if (isSymbolicString(left_s) && isSymbolicString(right_s)) {
+                        ret = new SymbolicStringPredicate(op, left_s, right_s);
+                    } else if (isSymbolicString(left_s)) {
+                        ret = new SymbolicStringPredicate(op, left_s, right_c + "");
+                    } else if (isSymbolicString(right_s)) {
+                        ret = new SymbolicStringPredicate(op, left_c + "", right_s);
+                    }
+                    if (isSymbolicType(left_s)) {
+                        left_s.addType(right_c + "");
+                    }
+                    if (isSymbolicType(right_s)) {
+                        left_s.addType(left_c + "");
+                    }
+                }
+                if (isSymbolicNumber(left_s) && isSymbolicNumber(right_s)) {
+                    if (left_s.op !== SymbolicLinear.UN) {
+                        if (right_c)
+                            ret = left_s;
+                        else
+                            ret = left_s.not();
+                    } else if (right_s.op !== SymbolicLinear.UN) {
+                        if (left_c)
+                            ret = right_s;
+                        else
+                            ret = right_s.not();
+                    } else {
+                        ret = left_s.subtract(right_s);
+                    }
+                } else if (isSymbolicNumber(left_s) && typeof right_c === 'number') {
+                    if (left_s.op !== SymbolicLinear.UN)
+                        if (right_c)
+                            ret = left_s;
+                        else
+                            ret = left_s.not();
+                    else
+                        ret = left_s.subtractLong(right_c);
+                } else if (isSymbolicNumber(right_s) && typeof left_c === 'number') {
+                    if (right_s.op !== SymbolicLinear.UN)
+                        if (left_c)
+                            ret = right_s;
+                        else
+                            ret = right_s.not();
+                    else
+                        ret = right_s.subtractFrom(left_c);
+                }
+                if (isSymbolicNumber(ret)) {
+                    ret = ret.setop(op);
+                }
+
+            } else if (op === "*" && type === 'number') {
+                if (isSymbolicString(left_s)) {
+                    left = symbolicStringToInt(left);
+                    left_s = getSymbolic(left);
+                    left_c = getConcrete(left);
+                }
+                if (isSymbolicString(right_s)) {
+                    right = symbolicStringToInt(right);
+                    right_s = getSymbolic(right);
+                    right_c = getConcrete(right);
+                }
+                if (isSymbolicNumber(left_s) && isSymbolicNumber(right_s)) {
+                    ret = right_s.multiply(left_c);
+                } else if (isSymbolicNumber(left_s) && typeof right_c === 'number') {
+                    ret = left_s.multiply(right_c);
+                } else if (isSymbolicNumber(right_s) && typeof left_c === 'number') {
+                    ret = right_s.multiply(left_c);
+                }
+            } else if (op === "&&" || op === "||") {
+                if (left_s && right_s) {
+                    ret = new SymbolicBool(op, makePredicate(left_s), makePredicate(right_s));
+                } else if (left_s) {
+                    if (op === "&&" && right_c) {
+                        ret = left_s;
+                    }
+                    if (op === "||" && !right_c) {
+                        ret = left_s;
+                    }
+                } else if (right_s) {
+                    if (op === "&&" && left_c) {
+                        ret = right_s;
+                    }
+                    if (op === "||" && !left_c) {
+                        ret = right_s;
+                    }
+                }
+            } else if (op === "regexin") {
+                if (isSymbolicString(left_s)) {
+                    ret = new SymbolicStringPredicate("regexin", left_s, right_c);
+                }
+            } else if (op === '|') {
+                if (isSymbolicString(left_s)) {
+                    left = symbolicStringToInt(left);
+                    left_s = getSymbolic(left);
+                    left_c = getConcrete(left);
+                }
+                if (isSymbolicString(right_s)) {
+                    right = symbolicStringToInt(right);
+                    right_s = getSymbolic(right);
+                    right_c = getConcrete(right);
+                }
+                if (isSymbolicNumber(left_s) && typeof right_c === 'number' && right_c === 0) {
+                    ret = left_s;
+                } else if (isSymbolicNumber(right_s) && typeof left_c === 'number' && left_c === 0) {
+                    ret = right_s;
+                }
+            }
+            //var ret = (left_s?left_s:left_c) + " " + op + " " + (right_s?right_s:right_c);
+            if (ret && ret.type === Symbolic) {
+                return {result:symbolize(result, ret)};
+            } else {
+                return {result:result};
+            }
+        }
+
+        this.unary = function (iid, op, left, result) {
+            // needs to be changed based on analysis
+            var ret,
+                left_c = this.getConcrete(left),
+                left_s = this.getSymbolic(left);
+
+            if (left_s) {
+                switch (op) {
+                    case "+":
+                    case "-":
+                    case "~":
+                        addType(left_s, "number");
+                        break;
+                    case "!":
+                        addType(left_s, "boolean");
+                        break;
+                    case "typeof":
+                        // @todo generate type constraint
+                        break;
+                    default:
+                        //throw new Error(op + " at " + iid + " not found");
+                        break;
+                }
+
+
+                if (op === "-") {
+                    if (isSymbolicString(left_s)) {
+                        left = symbolicStringToInt(left);
+                        left_s = getSymbolic(left);
+                        left_c = getConcrete(left);
+                    }
+                    ret = left_s.negate();
+                } else if (op === "!") {
+                    ret = makePredicate(left_s).not();
+                } else if (op === "+") {
+                    if (isSymbolicString(left_s)) {
+                        left = symbolicStringToInt(left);
+                        left_s = getSymbolic(left);
+                        left_c = getConcrete(left);
+                    }
+                    ret = left_s;
+                } else if (op === "typeof") {
+                    if (left_s && left_s.stype) {
+                        ret = getSymbolic(left_s.stype);
+                    }
+                }
+            }
+            if (ret && ret.type === Symbolic) {
+                return {result:symbolize(result, ret)};
+            } else {
+                return {result:result};
+            }
+//        var ret = " " + op + " " + (left_s?left_s:left_c);
+//        return ret;
+        }
+
+        this.conditional = function (iid, left) {
+            // needs to be changed based on analysis
+            executionIndex.executionIndexInc(iid);
+            var left_s = this.getSymbolic(left);
+            if (left_s) {
+                addType(left_s, "boolean");
+            }
+			installConstraint(left,getConcrete(left));
+            return {result:left};
+//        var left_s = this.getSymbolic(left);
+//        var ret;
+//
+//        if (left_s) {
+//            ret = makePredicate(left_s);
+//            pathConstraint.push([executionIndex.executionIndexGetIndex(), result?ret:ret.not()]);
+//        }
+//        //console.log("------------------ constraint: "+left_s+" is "+(!!left_c));
+//        return left;
+        };
+		
+        this.functionEnter = function (iid, fun, dis /* this */, args) {
+            executionIndex.executionIndexCall();
+			//if(dps.AnotatedValue.isHandler(fun)){
+			//	R$.weakg.eventEnter(args[0]);
+			//}
+        };
+		
+        this.functionExit = function (iid,returnVal,exceptionVal) {
+            executionIndex.executionIndexReturn();
+        };
+
+
+        function installAxiom(c) {
+			if (c === "begin") {
+                pathConstraint.push("begin");
+                pathConstraint.count++;
+            } else if (c === "and" || c === "or") {
+                c = (c === 'and') ? "&&" : "||";
+                var ret, i, start = -1, len;
+                pathConstraint.count--;
+                len = pathConstraint.length;
+                for (i = len - 1; i >= 0; i--) {
+                    if (pathConstraint[i] === "begin") {
+                        start = i + 1;
+                        break;
+                    }
+                }
+                if (start === -1) {
+                    throw new Error("J$.addAxiom('begin') not found");
+                }
+                if (start === len) {
+                    return;
+                }
+
+                i = start;
+                var c1 = pathConstraint[i];
+                c1 = c1[1];
+                var c2;
+                while (i < len - 1) {
+                    i++;
+                    c2 = pathConstraint[i];
+                    c2 = c2[1];
+                    c1 = new SymbolicBool(c, c1, c2);
+                }
+                pathConstraint.splice(start - 1, len - start + 1);
+                pathConstraint.push([null, c1]);
+            } else if (c === 'ignore') {
+                pathConstraint.pop();
+            } else {
+                var s = getSymbolic(c);
+                if (s) {
+                    s = makePredicate(s);
+                }
+
+                if (s) {
+                    pathConstraint.push([null, s]);
+                } else if (pathConstraint.count > 0) {
+                    if (getConcrete(c)) {
+                        pathConstraint.push([null, SymbolicBool.true]);
+                    } else {
+                        pathConstraint.push([null, SymbolicBool.false]);
+                    }
+                }
+            }
+        }
+
+        this.installAxiom = installAxiom;
+
+        function installConstraint(c, result, doAdd) {
+            if (pathConstraint.count > 0 && !doAdd)
+                return;
+            var s = getSymbolic(c);
+            if (s) {
+                s = makePredicate(s);
+            }
+            if (s) {
+                pathConstraint.push([executionIndex.executionIndexGetIndex(), result ? s : s.not()]);
+            }
+        }
+
+        this.endExecution = function () {
+			R$.weakg.end();
+        }
+
+		this.invoke = function(method){
+			var args = Array.prototype.slice.call(arguments,1);
+			if(this[method])
+				return this[method].apply(this, args);
+		}
+		R$.pathConstraint = pathConstraint;
+    }
+
+//----------------------------------------- End symbolic execution and constraint generation -------------------
+	dps.WeakAnalysis = WeakAnalysis;
+}(J$,R$));

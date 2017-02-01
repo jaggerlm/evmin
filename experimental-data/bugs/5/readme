@@ -1,0 +1,8 @@
+project:handsontable
+issue: https://github.com/handsontable/handsontable/issues/2231
+
+rp:
+1. Edit a cell C2, enter a date 01/14/20060 and confirm the change.
+2. Now try to change it again
+result: the C2 will not change
+expect: the C2 is changed to the modified value.

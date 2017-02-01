@@ -1,0 +1,848 @@
+(function(module){
+
+    function SymbolicType(sym, possibleTypes, currentTypeIdx, isFrozen) {
+        if (!(this instanceof SymbolicType)) {
+            return new SymbolicType(sym, possibleTypes, currentTypeIdx, isFrozen);
+        }
+        this.sym = sym;
+        this.possibleTypes = possibleTypes;
+        this.currentTypeIdx = currentTypeIdx;
+        this.isFrozen = isFrozen;
+    }
+
+    SymbolicType.prototype = {
+        constructor: SymbolicType,
+
+        addType: function(type) {
+            if (!this.isFrozen && this.possibleTypes.indexOf(type) <0 ) {
+                this.possibleTypes.push(type);
+            }
+        },
+        
+		toString: function() {
+            var sb = "";
+            var i, len = this.possibleTypes.length;
+            for (i = 0; i < len; i++) {
+                if (i !== 0) {
+                    sb += " AND ";
+                }
+                sb += this.sym;
+                if (i === this.currentTypeIdx) {
+                    sb += " == ";
+                } else {
+                    sb += " != ";
+                }
+                sb += this.possibleTypes[i];
+            }
+            if (this.isFrozen) {
+                sb += " [fixed type]";
+            }
+            return sb;
+        },
+
+        getSolution: function(idx) {
+            var sb = ", [";
+            var i, len = this.possibleTypes.length;
+            for (i = 0; i < len; i++) {
+                if (i !== 0) {
+                    sb += " , ";
+                }
+                sb += "\""+this.possibleTypes[i]+"\"";
+            }
+            sb += "], ";
+            sb += idx+","+this.isFrozen;
+            return sb;
+        },
+
+        getType: function(offset) {
+            return this.possibleTypes[this.currentTypeIdx+offset];
+        },
+
+        type: module.dps.symbolic
+}
+
+    module.dps.SymbolicType = SymbolicType;
+} (R$));
+(function(module){
+
+    function SymbolicUndefined(sym, stype) {
+        if (!(this instanceof SymbolicUndefined)) {
+            return new SymbolicUndefined(sym, stype);
+        }
+        if (sym instanceof SymbolicUndefined) {
+            this.sym = sym.sym;
+        } else {
+            this.sym = sym;
+            this.stype = stype;
+        }
+    }
+
+    SymbolicUndefined.prototype = {
+        constructor: SymbolicUndefined,
+
+        toString : function() {
+            return this.sym+"";
+        },
+		not: function(){
+			return true;
+		},
+        type: module.dps.symbolic
+
+    };
+
+    module.dps.SymbolicUndefined = SymbolicUndefined;
+}(R$));
+(function(module){
+
+    function SymbolicBool (op, left, right) {
+        if (!(this instanceof SymbolicBool)){
+            return new SymbolicBool(op, left, right);
+        }
+        this.left = left;
+        this.right = right;
+        switch(op) {
+            case "!":
+                if (left.op === SymbolicBool.TRUE) {
+                    return SymbolicBool.false;
+                } else if (left.op === SymbolicBool.FALSE) {
+                    return SymbolicBool.true;
+                }
+                this.op = SymbolicBool.NOT;
+                break;
+            case "&&":
+                if (left.op === SymbolicBool.TRUE) {
+                    return right;
+                } else if (left.op === SymbolicBool.FALSE) {
+                    return SymbolicBool.false;
+                }
+                if (right.op === SymbolicBool.TRUE) {
+                    return left;
+                } else if (right.op === SymbolicBool.FALSE) {
+                    return SymbolicBool.false;
+                }
+                this.op = SymbolicBool.AND;
+                break;
+            case "||":
+                if (left.op === SymbolicBool.TRUE) {
+                    return SymbolicBool.true;
+                } else if (left.op === SymbolicBool.FALSE) {
+                    return right;
+                }
+                if (right.op === SymbolicBool.TRUE) {
+                    return SymbolicBool.true;
+                } else if (right.op === SymbolicBool.FALSE) {
+                    return left;
+                }
+                this.op = SymbolicBool.OR;
+                break;
+            case "true":
+                this.op = SymbolicBool.TRUE;
+                break;
+            case "false":
+                this.op = SymbolicBool.FALSE;
+                break;
+            default:
+                this.op = SymbolicBool.LITERAL;
+                this.left = op;
+        }
+    }
+
+
+
+    SymbolicBool.simpleImplies = function(f1, f2) {
+        if (f1 === f2) {
+            return true;
+        } else if (f1 instanceof SymbolicBool && f1.isAnd()) {
+            if (SymbolicBool.simpleImplies(f1.left, f2) || SymbolicBool.simpleImplies(f1.right, f2)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    };
+
+    SymbolicBool.NOT = 0;
+    SymbolicBool.AND = 1;
+    SymbolicBool.OR = 2;
+    SymbolicBool.IMPLIES = 3;
+    SymbolicBool.EQUIV = 4;
+    SymbolicBool.XOR = 5;
+    SymbolicBool.TRUE = 6;
+    SymbolicBool.FALSE = 7;
+    SymbolicBool.LITERAL = 8;
+
+    SymbolicBool.prototype = {
+        constructor: SymbolicBool,
+        not: function() {
+            switch(this.op) {
+                case SymbolicBool.NOT:
+                    return this.left;
+                    break;
+                case SymbolicBool.TRUE:
+                    return SymbolicBool.false;
+                    break;
+                case SymbolicBool.FALSE:
+                    return SymbolicBool.true;
+                default:
+                    return new SymbolicBool("!",this);
+            }
+        },
+        toString: function() {
+            switch(this.op) {
+                case SymbolicBool.TRUE:
+                    return "TRUE";
+                case SymbolicBool.FALSE:
+                    return "FALSE";
+                case SymbolicBool.NOT:
+                    return "(!"+this.left+")";
+                case SymbolicBool.AND:
+                    return "("+this.left+" && " + this.right+")";
+                case SymbolicBool.OR:
+                    return "("+this.left+" || " + this.right+")";
+                case SymbolicBool.LITERAL:
+                    return "b"+this.left;
+            }
+        },
+
+       print: function(formulaFh) {
+            fs.writeSync(formulaFh,"(");
+            switch(this.op) {
+                case SymbolicBool.NOT:
+                    fs.writeSync(formulaFh,"NOT ");
+                    this.left.print(formulaFh);
+                    break;
+                case SymbolicBool.AND:
+                    this.left.print(formulaFh);
+                    fs.writeSync(formulaFh," AND ");
+                    this.right.print(formulaFh);
+                    break;
+                case SymbolicBool.OR:
+                    this.left.print(formulaFh);
+                    fs.writeSync(formulaFh," OR ");
+                    this.right.print(formulaFh);
+                    break;
+            }
+            fs.writeSync(formulaFh,")");
+        },
+
+        type: module.dps.symbolic
+
+    }
+
+    SymbolicBool.true = new SymbolicBool("true");
+    SymbolicBool.false = new SymbolicBool("false");
+
+//------------------------------------------- End boolean symbolic expressions ----------------------------
+
+    module.dps.SymbolicBool=SymbolicBool;
+}(R$));
+
+(function(module){
+
+    function HOP(obj, prop) {
+        return Object.prototype.hasOwnProperty.call(obj, prop);
+    };
+
+    var SymbolicBool = module.dps.SymbolicBool;
+
+    function SymbolicLinear (i, stype) {
+        if (!(this instanceof SymbolicLinear)) {
+            return new SymbolicLinear(i, stype);
+        }
+
+        var key;
+        this.linear = {};
+        this.op = SymbolicLinear.UN;
+        this.constant = 0;
+
+        if (i !== undefined) {
+            if (i instanceof SymbolicLinear) {
+                for (key in i.linear) {
+                    if (HOP(i.linear,key)) {
+                        this.linear[key] = i.linear[key];
+                    }
+                }
+                this.constant = i.constant;
+                this.op = i.op;
+                this.stype = i.stype;
+            } else {
+                this.linear[i] = 1;
+                this.stype = stype;
+            }
+        }
+
+    }
+
+    SymbolicLinear.EQ = 0;
+    SymbolicLinear.NE = 1;
+    SymbolicLinear.GT = 2;
+    SymbolicLinear.GE = 3;
+    SymbolicLinear.LT = 4;
+    SymbolicLinear.LE = 5;
+    SymbolicLinear.UN = 6;
+
+    SymbolicLinear.prototype = {
+        constructor: SymbolicLinear,
+
+        equals: function (e) {
+            var sizeThis = 0, sizee = 0;
+            if (this === e)
+                return true;
+            if ((e === null) || !(e instanceof SymbolicLinear))
+                return false;
+            for (var key in this.linear) {
+                if (HOP(this.linear,key)) {
+                    sizeThis++;
+                    if (this.linear[key] !== e.linear[key]) {
+                        return false;
+                    }
+                }
+            }
+            for (var key in e.linear) {
+                if (HOP(e.linear,key)) {
+                    sizee++;
+                }
+            }
+            if (sizeThis !== sizee) {
+                return false;
+            }
+            return (this.constant === e.constant) && (this.op === e.op);
+        },
+
+        isEmpty: function() {
+            for (var key in this.linear) {
+                if (HOP(this.linear,key)) {
+                    return false;
+                }
+            }
+            return true;
+        },
+		size:function(){
+			var size = 0;
+			for(var key in this.linear){
+				if(this.linear[key] !=0){
+					size++;
+				}
+			}
+			if(this.constant!=0) size++;
+			return size;
+		},	
+        negate: function () {
+            var tmp = new SymbolicLinear();
+            for (var key in this.linear) {
+                if (HOP(this.linear,key)) {
+                    tmp.linear[key] = -this.linear[key];
+                }
+            }
+            tmp.constant = -this.constant;
+            //tmp.stype = this.stype;
+            return tmp;
+        },
+
+        addLong: function(l) {
+            return this.addSubtractLong(l, true);
+        },
+
+        subtractLong: function(l) {
+            return this.addSubtractLong(l, false);
+        },
+
+        addSubtractLong: function(l, add) {
+            var tmp = new SymbolicLinear(this);
+            if (add)
+                tmp.constant = this.constant + l;
+            else
+                tmp.constant = this.constant - l;
+            return tmp;
+        },
+
+
+        add: function(e) {
+            return this.addSubtract(e, true);
+        },
+
+        subtract: function(e) {
+            return this.addSubtract(e, false);
+        },
+
+        addSubtract: function(e, add) {
+            var tmp = new SymbolicLinear(this);
+            for (var key in e.linear) {
+                if (HOP(e.linear,key)) {
+
+                    var coeff = this.linear[key];
+                    if (coeff === undefined) coeff = 0;
+
+                    var toadd;
+                    if (add) {
+                        toadd = coeff + e.linear[key];
+                    } else {
+                        toadd = coeff - e.linear[key];
+                    }
+                    if (toadd == 0) {
+                        delete tmp.linear[key];
+                    } else {
+                        tmp.linear[key] = toadd;
+                    }
+                }
+            }
+            if (tmp.isEmpty()) {
+                if (add)
+                    return this.constant + e.constant;
+                else
+                    return this.constant - e.constant;
+            }
+
+            if (add)
+                tmp.constant = this.constant + e.constant;
+            else
+                tmp.constant = this.constant - e.constant;
+
+            return tmp;
+        },
+
+        subtractFrom: function(l) {
+            var e = this.negate();
+            e.constant = l + e.constant;
+            return e;
+        },
+
+        multiply: function(l) {
+            if (l == 0) return 0;
+            if (l == 1) return this;
+            var tmp = new SymbolicLinear();
+            for (var key in this.linear) {
+                if (HOP(this.linear,key)) {
+                    tmp.linear[key] = l * this.linear[key];
+                }
+            }
+            tmp.constant = l * this.constant;
+            //tmp.stype = this.stype;
+            return tmp;
+        },
+
+        setop: function(op) {
+            var ret = new SymbolicLinear(this);
+            if (ret.op !== SymbolicLinear.UN) {
+                return ret;
+//            if (op === "==") { // (x op 0)==0 is same as !(x op 0)
+//                ret = ret.not();
+//            } else {
+//                throw new Error("setop(\""+op+"\") cannot be applied to "+ret);
+//            }
+            } else {
+                switch(op) {
+                    case "<":
+                        ret.op = SymbolicLinear.LT;
+                        break;
+                    case ">":
+                        ret.op = SymbolicLinear.GT;
+                        break;
+                    case ">=":
+                        ret.op = SymbolicLinear.GE;
+                        break;
+                    case "<=":
+                        ret.op = SymbolicLinear.LE;
+                        break;
+                    case "==":
+                        ret.op = SymbolicLinear.EQ;
+                        break;
+                    case "!=":
+                        ret.op = SymbolicLinear.NE;
+                        break;
+                    default:
+                        throw new Error("setop(\""+op+"\") cannot be applied to "+ret);
+                }
+            }
+            return ret;
+        },
+
+        not: function() {
+            var ret = new SymbolicLinear(this);
+            if (ret.op == SymbolicLinear.EQ) ret.op = SymbolicLinear.NE;
+            else if (ret.op == SymbolicLinear.NE) ret.op = SymbolicLinear.EQ;
+            else if (ret.op == SymbolicLinear.GT) ret.op = SymbolicLinear.LE;
+            else if (ret.op == SymbolicLinear.GE) ret.op = SymbolicLinear.LT;
+            else if (ret.op == SymbolicLinear.LT) ret.op = SymbolicLinear.GE;
+            else if (ret.op == SymbolicLinear.LE) ret.op = SymbolicLinear.GT;
+            return ret;
+        },
+
+        toString: function() {
+            var sb = "";
+            var first = true;
+            for (var key in this.linear) {
+                if (HOP(this.linear,key)) {
+                    var l = this.linear[key];
+                    if (first) {
+                        first = false;
+                    } else {
+                        sb += '+';
+                    }
+                    if (l < 0) {
+                        sb += '(';
+                        sb += l;
+                        sb += ")*";
+                        sb += key;
+                    } else if (l == 1) {
+                        sb += key;
+                    } else if (l > 0) {
+                        sb += l;
+                        sb += "*";
+                        sb += key;
+                    }
+                }
+            }
+            if (this.constant != 0) {
+                if (this.constant > 0)
+                    sb += '+';
+                sb += this.constant;
+            }
+            if (this.op == SymbolicLinear.EQ) {
+                sb += "==";
+                sb += '0';
+            } else
+            if (this.op == SymbolicLinear.NE) {
+                sb += "!=";
+                sb += '0';
+            } else
+            if (this.op == SymbolicLinear.LE) {
+                sb += "<=";
+                sb += '0';
+            } else
+            if (this.op == SymbolicLinear.LT) {
+                sb += "<";
+                sb += '0';
+            } else
+            if (this.op == SymbolicLinear.GE) {
+                sb += ">=";
+                sb += '0';
+            } else
+            if (this.op == SymbolicLinear.GT) {
+                sb += ">";
+                sb += '0';
+            }
+            return sb;
+        },
+
+        getFreeVars: function(freeVars) {
+            for (var key in this.linear) {
+                if (HOP(this.linear,key)) {
+                    freeVars[key] = 1;
+                }
+            }
+        },
+        type: module.dps.symbolic
+    }
+
+
+    module.dps.SymbolicLinear = SymbolicLinear;
+}(R$));
+
+(function(module){
+
+    function SymbolicObject(sym, stype) {
+        if (!(this instanceof SymbolicObject)) {
+            return new SymbolicObject(sym, stype);
+        }
+        if (sym instanceof SymbolicObject) {
+            this.sym = sym.sym;
+            //this.stype = sym.stype;
+            this.fields = sym.fields;
+            this.fieldsOrdered = sym.fieldsOrdered;
+        } else {
+            this.sym = sym;
+            this.stype = stype;
+            this.fields = {};
+            this.fieldsOrdered = [];
+        }
+    }
+
+    function HOP(obj, prop) {
+        return Object.prototype.hasOwnProperty.call(obj, prop);
+    };
+
+    SymbolicObject.prototype = {
+        constructor: SymbolicObject,
+
+        addField: function(field) {
+            if (!HOP(this.fields,field)) {
+                this.fields[field] = true;
+                this.fieldsOrdered.push(field);
+            }
+        },
+
+        getSymbolForField: function(field) {
+            return this.sym+"_"+((field+"").replace(/_/g,"__"));
+        },
+
+        toString : function() {
+            return this.sym+"";
+        },
+		not: function(){
+			return false;
+		},
+        type: module.dps.symbolic
+
+    };
+
+    module.dps.SymbolicObject = SymbolicObject;
+}(R$));
+(function(module){
+
+    function SymbolicStringVar(sym, concLength) {
+        if (!(this instanceof SymbolicStringVar)) {
+            return new SymbolicStringVar(sym);
+        }
+        this.sym = sym;
+        this.length = concLength;
+    }
+
+    SymbolicStringVar.prototype = {
+        constructor: SymbolicStringVar,
+        toString: function() {
+            return this.sym;
+        },
+
+        getField: function(offset) {
+			return this[offset];
+        }
+
+    }
+
+    module.dps.SymbolicStringVar = SymbolicStringVar;
+}(R$));
+(function(module){
+
+    var SymbolicStringVar = module.dps.SymbolicStringVar;
+
+    function SymbolicStringExpression(sym, concLength, stype) {
+        if (!(this instanceof SymbolicStringExpression)) {
+            return new SymbolicStringExpression(sym, stype);
+        }
+        if (sym instanceof SymbolicStringExpression) {
+            this.list = [];
+            for(var i=sym.list.length-1; i >=0; i--) {
+                this.list[i] = sym.list[i];
+            }
+            //this.stype = sym.stype;
+        } else {
+            this.list = [];
+            this.list.push(new SymbolicStringVar(sym, concLength));
+            this.stype = stype;
+        }
+    }
+
+    SymbolicStringExpression.prototype = {
+        constructor: SymbolicStringExpression,
+
+        getField : function(offset) {
+            if (offset === 'length') {
+                var ret = 0, len = this.list.length, val;
+                for(var i=0; i<len; i++) {
+                    val = this.list[i];
+					val = val.length;
+					if (i === 0) {
+                        ret = val;
+                    } else {
+                        ret = J$.B(0,"+", ret, val);
+                    }
+                }
+                return ret;
+
+            }
+            return undefined;
+        },
+       concatStr : function(str) {
+            if (str === "") {
+                return this;
+            }
+            var ret = new SymbolicStringExpression(this);
+            var last = ret.list[ret.list.length-1];
+            if (typeof last === 'string') {
+                ret.list[ret.list.length-1] = last + str;
+            } else {
+                ret.list.push(str);
+            }
+            return ret;
+        },
+		size:function(){
+			return this.list.length;
+		},
+        concat : function(expr) {
+            var ret = new SymbolicStringExpression(this);
+            var last = ret.list[ret.list.length-1];
+            var first = expr.list[0];
+            if (typeof last === 'string' && typeof first === 'string') {
+                ret.list[ret.list.length-1] = last + first;
+            } else {
+                ret.list.push(first);
+            }
+
+            var len = expr.list.length;
+            for (var i=1; i<len; i++) {
+                ret.list.push(expr.list[i]);
+            }
+            return ret;
+        },
+
+        concatToStr : function(str) {
+            if (str === "") {
+                return this;
+            }
+            var ret = new SymbolicStringExpression(this);
+            var first = ret.list[0];
+            if (typeof first === 'string') {
+                ret.list[0] = str + first;
+            } else {
+                ret.list.unshift(str);
+            }
+            return ret;
+        },
+
+        isCompound : function() {
+            return this.list.length > 1;
+        },
+
+        toString : function() {
+            var sb = "", len = this.list.length, elem;
+            for(var i=0; i<len; i++) {
+                if (i !== 0) {
+                    sb += "+";
+                }
+                elem = this.list[i];
+                if (elem instanceof SymbolicStringVar) {
+                    sb += elem;
+                } else {
+                    sb += '"'+elem+'"';
+                }
+            }
+            return sb;
+        },
+
+        type: module.dps.symbolic 
+
+    };
+
+    module.dps.SymbolicStringExpression = SymbolicStringExpression;
+}(R$));
+
+(function(module){
+	var ignoreNativeObjects = [window,document];
+	function SymbolicLiteral(value, parenthesis){
+		// is symbolic
+		if(value && value.symbolic){
+			if(parenthesis && typeof value.symbolic.size === 'function' && value.symbolic.size()>1){
+				this.sym = '('+value.symbolic.toString()+')';
+				return;
+			}
+			this.sym = value.symbolic.toString();
+			return;
+		}
+		// is constant
+		this.value = module.dps.AnotatedValue.getConcrete(value);
+		var tp = typeof this.value;
+		if(this.value === undefined || this.value === null
+			|| tp ==='number' || tp === 'boolean'){
+			this.sym= this.value;
+		}else if(tp === 'string'){
+			this.sym = "\""+this.value+"\"";
+		}else if(tp instanceof Array){
+			this.sym = [];
+			for(var i=0;i<this.value.length;i++){
+				this.sym.push(new SymbolicLiteral(this.value[i]).toString());
+			}
+			this.sym = '['+this.sym.join(',')+']'
+		}else if(tp === 'object'){
+			try{
+				if(ignoreNativeObjects.indexOf(this.value)>=0){
+					return;
+				}
+				this.sym= JSON.stringify(this.value,function(key,value){
+					return module.dps.AnotatedValue.getConcrete(value); 
+				});
+			}catch(e){
+				//console.debug('Error:',this.value,e);
+			}
+		}
+	}
+	//replaced by a concrete value.
+	SymbolicLiteral.prototype = {
+		constructor: SymbolicLiteral,
+		toString: function(){
+			return this.sym;	
+		}
+	}
+
+    module.dps.SymbolicLiteral = SymbolicLiteral;
+}(R$));
+(function(module){
+	var SymbolicLiteral = module.dps.SymbolicLiteral;
+
+	SymbolicNativeFunction.natives = [
+		Array,String,RegExp,Math,parseInt,parseFloat
+	]
+	function SymbolicNativeFunction(base,f,args,ret,isConstructor){
+		this.base = base;
+		this.f = f;
+		this.args = args;
+		this.ret = ret;
+		this.isConstructor = isConstructor;
+	}
+	SymbolicNativeFunction.prototype = {
+		constructor: SymbolicNativeFunction,
+		
+		getSym:function(){
+			var args = [];
+			for(var i=0;i<this.args.length;i++){
+				args.push(new SymbolicLiteral(this.args[i]).toString());
+			}
+			for(var i=0;i<SymbolicNativeFunction.natives.length;i++){
+				var nat = SymbolicNativeFunction.natives[i];
+				
+				if(this.isConstructor){
+					if(nat === this.f){
+						this.sym = 'new '+nat.prototype.constructor.name +'('+args.join(',')+')';
+					}
+				}else if(nat === this.f){
+					this.sym = this.f.name + '('+ args.join(',')+')';
+				}else if(nat.prototype && nat.prototype[this.f.name] === this.f){
+					var base = new SymbolicLiteral(this.base,true).toString();
+					this.sym = base+'.'+this.f.name+'('+ args.join(',')+')';
+				}
+			}
+			return this.sym;
+		}
+	}
+
+	function SymbolicNativeFields(base,offset){
+		this.base = base;
+		this.offset = offset;
+		return this.init();
+	}
+	SymbolicNativeFields.prototype = {
+		constructor:SymbolicNativeFields,
+		init:function(){
+			var base = new SymbolicLiteral(this.base).toString();
+			var offset = new SymbolicLiteral(this.offset).toString();
+
+			for(var i=0;i<SymbolicNativeFunction.natives.length;i++){
+				var nat = SymbolicNativeFunction.natives[i];
+				if(base instanceof nat){		
+					this.sym = base+'.'+offset;
+					return this;
+				}
+			}
+			return null;
+		},
+		toString:function(){
+			return this.sym;
+		},
+		type:module.dps.symbolic
+	}
+	module.dps.SymbolicNativeFunction = SymbolicNativeFunction;	
+	module.dps.SymbolicNativeFields = SymbolicNativeFields;
+})(R$);
+

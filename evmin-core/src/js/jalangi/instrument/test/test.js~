@@ -1,0 +1,5 @@
+require('../esnstrument.js');
+fs = require('fs');
+var src = fs.readFileSync('src.js').toString();
+var code = J$.instrumentCode(src,{wrapProgram:false,isEval:false}).code;
+console.log(code);
